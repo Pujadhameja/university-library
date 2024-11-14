@@ -126,11 +126,6 @@ const Home = () => {
               </div>
             </div>
           ))}
-          <Book
-            color={recommendation.color}
-            cover={recommendation.cover}
-            size="small"
-          />
         </div>
       </div>
     </div>
