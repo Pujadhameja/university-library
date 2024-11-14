@@ -12,7 +12,14 @@ export default {
       fontFamily: {
         "ibm-plex-sans": ["IBM Plex Sans", "sans-serif"],
       },
-      colors: {},
+      colors: {
+        user: {
+          primary: "#E7C9A5",
+        },
+        dashboard: {
+          primary: "#25388C",
+        },
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

@@ -1,3 +1,4 @@
+import Sidebar from "@/components/user/nav/Sidebar";
 import React from "react";
 
 function Layout({
@@ -5,7 +6,14 @@ function Layout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  return <main>{children}</main>;
+  return (
+    <main className="flex">
+      <Sidebar />
+      <div className="bg-gradient-horizontal min-h-screen w-full">
+        {children}
+      </div>
+    </main>
+  );
 }
 
 export default Layout;
