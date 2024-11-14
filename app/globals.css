@@ -7,11 +7,19 @@
     --radius: 0.5rem;
   }
 }
+
 @layer utilities {
   .bg-gradient-horizontal {
     background: linear-gradient(284.6deg, #32353e -10.01%, #14171c 114.89%);
   }
   .bg-gradient-vertical {
     background: linear-gradient(180deg, #14171c 0%, #1c2025 100%);
+  }
+  .bg-gradient-secondary {
+    background: linear-gradient(270deg, #37363a 0%, #353637 100%);
+  }
+
+  .book-shadow {
+    filter: drop-shadow(-50px 4px 20px #00000080);
   }
 }

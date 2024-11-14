@@ -9,7 +9,7 @@ function Layout({
   return (
     <main className="flex">
       <Sidebar />
-      <div className="bg-gradient-horizontal min-h-screen w-full">
+      <div className="bg-gradient-horizontal mx-auto min-h-screen w-full">
         {children}
       </div>
     </main>

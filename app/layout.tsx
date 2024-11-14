@@ -26,6 +26,18 @@ const ibmPlexSans = localFont({
       style: "normal",
     },
   ],
+  variable: "--ibm-plex-sans",
+});
+
+const bebasNeue = localFont({
+  src: [
+    {
+      path: "./fonts/BebasNeue-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+  ],
+  variable: "--bebas-neue",
 });
 
 export const metadata: Metadata = {
@@ -40,7 +52,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${ibmPlexSans.className} antialiased`}>{children}</body>
+      <body
+        className={` ${bebasNeue.variable} ${ibmPlexSans.variable} antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }

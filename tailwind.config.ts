@@ -10,7 +10,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        "ibm-plex-sans": ["IBM Plex Sans", "sans-serif"],
+        "ibm-plex-sans": ["var(--ibm-plex-sans)"],
+        "bebas-neue": ["var(--bebas-neue)"],
       },
       colors: {
         user: {
@@ -18,6 +19,13 @@ export default {
         },
         dashboard: {
           primary: "#25388C",
+        },
+        light: {
+          900: "#FFFFFF",
+          200: "#9298A1",
+        },
+        dark: {
+          800: "#16191E",
         },
       },
       borderRadius: {
