@@ -19,7 +19,15 @@
     background: linear-gradient(270deg, #37363a 0%, #353637 100%);
   }
 
+  .bg-gradient-input {
+    background: linear-gradient(270deg, #2e2e2f 0%, #28292a 100%);
+  }
+
   .book-shadow {
     filter: drop-shadow(-50px 4px 20px #00000080);
+  }
+
+  .user-page-container {
+    @apply mx-auto w-full items-center px-16 pt-24 text-light-200;
   }
 }
