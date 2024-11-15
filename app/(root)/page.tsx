@@ -1,5 +1,6 @@
-import Book from "@/components/Book";
 import Image from "next/image";
+
+import Book from "@/components/Book";
 
 const recommendation = {
   title: "Origin",
