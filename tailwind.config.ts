@@ -26,6 +26,7 @@ export default {
         },
         dark: {
           800: "#16191E",
+          500: "#1C2025",
         },
       },
       borderRadius: {
