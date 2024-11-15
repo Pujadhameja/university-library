@@ -28,7 +28,7 @@ const Book = ({ color, cover, size = "medium" }: BookProps) => {
     <div className={`relative ${scale.book}`}>
       <svg
         width="100%"
-        height="auto"
+        height="100%"
         viewBox="0 0 276 385"
         preserveAspectRatio="none"
         fill="none"
