@@ -8,11 +8,9 @@ function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex">
+    <main className="bg-gradient-horizontal flex">
       <Sidebar />
-      <div className="bg-gradient-horizontal mx-auto min-h-screen w-full">
-        {children}
-      </div>
+      <div className="mx-auto min-h-screen w-full max-w-7xl">{children}</div>
     </main>
   );
 }

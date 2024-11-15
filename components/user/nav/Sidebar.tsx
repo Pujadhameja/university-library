@@ -10,7 +10,7 @@ import logo from "@/public/assets/icons/logo.svg";
 const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <section className="bg-gradient-vertical sticky left-0 top-0 z-40 flex h-dvh min-w-fit  flex-col items-center justify-between max-sm:fixed lg:w-[150px]">
+    <section className="bg-gradient-vertical sticky left-0 top-0 z-40 flex h-dvh min-w-fit  flex-col items-center justify-between max-sm:fixed lg:max-w-[150px]">
       <div className="pt-10">
         <Link href="/">
           <Image src={logo} width={40} height={40} alt="site-logo" />
