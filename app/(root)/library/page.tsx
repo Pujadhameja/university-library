@@ -12,11 +12,9 @@ const Page = () => {
           {mockBooks.map((book, index) => (
             <div
               key={index}
-              className="flex w-[243px] flex-col justify-between"
+              className="flex w-[160px] flex-col justify-between"
             >
-              <div className="flex justify-center">
-                <Book color={book.color} cover={book.cover} size="medium" />
-              </div>
+              <Book color={book.color} cover={book.cover} size="medium" />
               <p className="line-clamp-2 text-lg text-light-900">
                 {book.title} - By {book.author}
               </p>
