@@ -18,9 +18,9 @@ const recommendation = {
 
 const Home = () => {
   return (
-    <div className="mx-auto w-full px-16 pt-24 text-light-200">
+    <div className="flex w-full flex-col px-16 pt-24 text-light-200">
       {/* Recommended book */}
-      <div className="flex flex-row gap-40 max-lg:flex-col-reverse max-lg:gap-8">
+      <div className="flex flex-row gap-40 max-xl:flex-col-reverse max-xl:gap-8">
         <div className="flex max-w-[645px] flex-col gap-5">
           <h1 className="text-7xl font-semibold text-light-900">
             {recommendation.title}
@@ -61,7 +61,7 @@ const Home = () => {
             <p>{recommendation.description}</p>
           </div>
           <div className="flex flex-row gap-6 max-md:flex-col">
-            <button className="inline-flex  w-[223px] items-center justify-center gap-2 whitespace-nowrap rounded-md bg-user-primary px-6 py-2">
+            <button className="inline-flex h-[54px] w-[223px] items-center justify-center gap-2 whitespace-nowrap rounded-md bg-user-primary px-6 py-2">
               <Image
                 src="/assets/icons/user/book.svg"
                 alt="book"
