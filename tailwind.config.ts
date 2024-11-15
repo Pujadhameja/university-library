@@ -29,6 +29,9 @@ export default {
           500: "#1C2025",
         },
       },
+      backgroundImage: {
+        "auth-user": "url('/assets/images/user/auth-bg.png')",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

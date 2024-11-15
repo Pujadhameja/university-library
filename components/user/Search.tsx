@@ -38,7 +38,7 @@ const Search = () => {
         value={search}
         placeholder="Thriller mistery"
         onChange={(e) => setSearch(e.target.value)}
-        className=" min-w-full border-none font-bold text-light-900 placeholder:text-light-900 focus-visible:ring-0"
+        className="user-input"
       />
     </div>
   );

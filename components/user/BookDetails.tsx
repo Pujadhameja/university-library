@@ -74,9 +74,7 @@ const BookDetails = ({ book }: BookProps) => {
           <AlertDialog>
             <AlertDialogTrigger
               className="inline-flex h-[54px] w-[223px] items-center justify-center gap-2 whitespace-nowrap rounded-md bg-user-primary px-6 py-2"
-              onClick={() => {
-                console.log("test");
-              }}
+              onClick={() => {}}
             >
               <Image
                 src="/assets/icons/user/book.svg"

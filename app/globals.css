@@ -30,4 +30,8 @@
   .user-page-container {
     @apply mx-auto w-full items-center px-16 pt-24 text-light-200;
   }
+
+  .user-input {
+    @apply min-w-full border-none font-bold placeholder:font-normal text-light-900 placeholder:text-light-200 focus-visible:ring-0;
+  }
 }
