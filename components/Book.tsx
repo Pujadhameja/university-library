@@ -76,7 +76,7 @@ const Book = ({ color, cover, size = "medium" }: BookProps) => {
           fill="#AAB8BC"
         />
       </svg>
-      <div className={`absolute left-[10%]  z-10 ${scale.cover}`}>
+      <div className={`absolute left-[11%]  z-10 ${scale.cover}`}>
         <Image src={cover} alt="cover" fill className="object-contain" />
       </div>
     </div>

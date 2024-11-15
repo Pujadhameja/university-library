@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import Book from "@/components/Book";
+import { mockBooks } from "@/constants";
 
 const recommendation = {
   title: "Origin",
@@ -17,7 +18,7 @@ const recommendation = {
 
 const Home = () => {
   return (
-    <div className="mx-auto w-full items-center px-16 pt-24 text-light-200">
+    <div className="mx-auto w-full px-16 pt-24 text-light-200">
       {/* Recommended book */}
       <div className="flex flex-row gap-40 max-lg:flex-col-reverse max-lg:gap-8">
         <div className="flex max-w-[645px] flex-col gap-5">
@@ -94,20 +95,19 @@ const Home = () => {
       <div className="pt-12">
         <h2 className="font-bebas-neue text-3xl">Your Borrowed Books</h2>
         <div className="flex flex-wrap gap-10 pt-8 max-sm:flex-col">
-          {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((_, index) => (
-            <div key={index} className="flex  flex-col">
+          {mockBooks.map((book, index) => (
+            <div
+              key={index}
+              className="flex w-[243px] flex-col justify-between"
+            >
               <div className="flex justify-center">
-                <Book
-                  color={recommendation.color}
-                  cover={recommendation.cover}
-                  size="medium"
-                />
+                <Book color={book.color} cover={book.cover} size="medium" />
               </div>
               <div>
                 <p className="text-lg text-light-900">
-                  {recommendation.title} - By {recommendation.author}
+                  {book.title} - By {book.author}
                 </p>
-                <p className="">{recommendation.genre}</p>
+                <p className="">{book.genre}</p>
               </div>
               <div className="flex flex-row gap-2 pt-2">
                 <Image
