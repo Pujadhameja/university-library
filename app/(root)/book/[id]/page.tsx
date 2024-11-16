@@ -20,7 +20,7 @@ const recommendation = {
 
 const page = () => {
   return (
-    <div className="user-page-container">
+    <section>
       <BookDetails book={recommendation} />
       <div className="flex flex-row gap-40 max-md:flex-col max-md:gap-8">
         <div className="max-w-[645px] max-xl:pt-12">
@@ -33,7 +33,7 @@ const page = () => {
               width={645}
             />
           </div>
-          <div className="flex flex-col gap-4 pt-12">
+          <div className="flex flex-col gap-4 pt-12 text-justify">
             <p className="font-semibold text-user-primary">Summary</p>
             <p>
               People in Glass Houses by Jayne Castle (a pseudonym for Jayne Ann
@@ -75,7 +75,7 @@ const page = () => {
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

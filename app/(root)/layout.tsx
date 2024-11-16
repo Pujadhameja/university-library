@@ -10,7 +10,7 @@ function Layout({
   return (
     <main className="bg-gradient-horizontal flex">
       <Sidebar />
-      <div className="mx-auto min-h-screen w-full max-w-7xl">{children}</div>
+      <div className="user-page-container">{children}</div>
     </main>
   );
 }

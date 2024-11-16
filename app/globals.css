@@ -28,7 +28,7 @@
   }
 
   .user-page-container {
-    @apply mx-auto w-full items-center px-16 pt-24 text-light-200;
+    @apply mx-auto w-full items-center px-16 pt-24 text-light-200 min-h-screen  max-w-7xl;
   }
 
   .user-input {

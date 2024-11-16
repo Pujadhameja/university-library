@@ -20,7 +20,7 @@ const recommendation = {
 
 const Home = () => {
   return (
-    <div className="flex w-full flex-col px-16 pt-24 text-light-200">
+    <section>
       <BookDetails book={recommendation} />
       <div className="pt-12">
         <h2 className="font-bebas-neue text-3xl">Your Borrowed Books</h2>
@@ -37,7 +37,7 @@ const Home = () => {
                 <p className="text-lg text-light-900">
                   {book.title} - By {book.author}
                 </p>
-                <p className="">{book.genre}</p>
+                <p>{book.genre}</p>
               </div>
               <div className="flex flex-row gap-2 pt-2">
                 <Image
@@ -46,7 +46,7 @@ const Home = () => {
                   width={18}
                   height={18}
                 />
-                <p className="">11 days left to due</p>
+                <p>11 days left to due</p>
               </div>
               <div className="pt-2">
                 <button className="bg-gradient-secondary inline-flex h-[40px] w-full items-center justify-center gap-2 whitespace-nowrap rounded-md px-6 py-2">
@@ -59,7 +59,7 @@ const Home = () => {
           ))}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
