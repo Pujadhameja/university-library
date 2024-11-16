@@ -2,8 +2,8 @@ import Image from "next/image";
 import React from "react";
 
 import Book from "@/components/Book";
-import { mockBooks } from "@/constants";
 import BookDetails from "@/components/user/BookDetails";
+import { mockBooks } from "@/constants";
 
 const recommendation = {
   title: "Origin",

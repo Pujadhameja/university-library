@@ -1,22 +1,22 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { set, useForm } from "react-hook-form";
+import Link from "next/link";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import { z } from "zod";
-import Image from "next/image";
+
 import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import Link from "next/link";
-import { useState } from "react";
+
 import UserDialog from "../UserDialog";
 
 type FormType = "sign-in" | "sign-up";
@@ -174,7 +174,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
         {type === "sign-up" ? "No account yet?" : "Have an account already?"}{" "}
         <Link
           href={type === "sign-up" ? "/sign-in" : "/sign-up"}
-          className="text-user-primary font-bold"
+          className="font-bold text-user-primary"
         >
           {type === "sign-up" ? "Sign In" : "Sign Up"}
         </Link>

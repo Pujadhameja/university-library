@@ -1,4 +1,6 @@
+import Image from "next/image";
 import React from "react";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -7,9 +9,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-  AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import Image from "next/image";
 
 interface DialogProps {
   open: boolean;

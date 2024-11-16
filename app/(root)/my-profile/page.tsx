@@ -1,7 +1,8 @@
-import { mockBooks } from "@/constants";
-import Book from "@/components/Book";
 import Image from "next/image";
 import React from "react";
+
+import Book from "@/components/Book";
+import { mockBooks } from "@/constants";
 
 const Page = () => {
   return (
