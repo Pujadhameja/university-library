@@ -14,7 +14,7 @@ const BookSize = {
   },
   medium: {
     book: "min-w-[143px] w-[143px] h-[199px]",
-    cover: "w-[126px] h-[174px] top-[-1]",
+    cover: "w-[126px] h-[174px] top-[-1%]",
   },
   large: {
     book: "min-w-[275px] w-[275px] h-[385px]",
