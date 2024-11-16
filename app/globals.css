@@ -34,4 +34,18 @@
   .user-input {
     @apply min-w-full border-none font-bold placeholder:font-normal text-light-900 placeholder:text-light-200 focus-visible:ring-0;
   }
+
+  .button-primary {
+    @apply min-h-[56px] bg-user-primary text-dark-800 hover:bg-user-primary !important;
+  }
+  .button-secondary {
+    @apply min-h-[56px] bg-gradient-secondary text-user-primary hover:bg-gradient-secondary !important;
+  }
+
+  .button-accept {
+    @apply min-h-[56px] bg-dashboard-approve-400 text-light-800 hover:bg-dashboard-approve-400 !important;
+  }
+  .button-deny {
+    @apply min-h-[56px] bg-dashboard-deny-400 text-light-800 hover:bg-dashboard-deny-400 !important;
+  }
 }

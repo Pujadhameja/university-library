@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { z } from "zod";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -16,17 +16,8 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
 import { useState } from "react";
+import UserDialog from "../UserDialog";
 
 type FormType = "sign-in" | "sign-up";
 
@@ -188,36 +179,17 @@ const AuthForm = ({ type }: { type: FormType }) => {
           {type === "sign-up" ? "Sign In" : "Sign Up"}
         </Link>
       </p>
-
-      <AlertDialog open={isDialogOpen}>
-        <AlertDialogContent className="border-none bg-dark-500">
-          <AlertDialogHeader className="items-center">
-            <Image
-              src="/assets/images/user/user-approval.svg"
-              alt="approval"
-              width={110}
-              height={110}
-            />
-            <AlertDialogTitle className="text-2xl font-semibold text-light-900">
-              Account Pending Approval
-            </AlertDialogTitle>
-            <AlertDialogDescription className="text-center">
-              Your account is awaiting admin approval. You will receive an email
-              once your account has been approved.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogAction
-              className="min-h-[56px] w-full bg-user-primary font-bold text-dark-800 hover:bg-user-primary"
-              onClick={() => {
-                setIsDialogOpen(false);
-              }}
-            >
-              Okay!
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <UserDialog
+        open={isDialogOpen}
+        title="Account Pending Approval"
+        description="Your account is awaiting admin approval. You will receive an email
+              once your account has been approved."
+        image="/assets/images/user/user-approval.svg"
+        buttonText="Okay!"
+        action={() => {
+          setIsDialogOpen(false);
+        }}
+      />
     </div>
   );
 };

@@ -19,14 +19,28 @@ export default {
         },
         dashboard: {
           primary: "#25388C",
+          approve: {
+            DEFAULT: "#027A48",
+            800: "#027A48",
+            400: "#4C7B62",
+            100: "#ECFDF3",
+          },
+          deny: {
+            DEFAULT: "#EF3A4B",
+            800: "#EF3A4B",
+            400: "#F46F70",
+          },
         },
         light: {
           900: "#FFFFFF",
+          800: "#F8FAFC",
           200: "#9298A1",
         },
         dark: {
           800: "#16191E",
           500: "#1C2025",
+          400: "#1E293B",
+          100: "#64748B",
         },
       },
       backgroundImage: {
