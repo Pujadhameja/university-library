@@ -9,7 +9,7 @@ import { sideBarLinks } from "@/constants/dashboard";
 const Sidebar = () => {
   const pathname = usePathname();
   return (
-    <div className="sticky left-0 top-0 flex h-dvh min-w-fit flex-col justify-between bg-white px-4">
+    <div className="sticky left-0 top-0 flex h-dvh min-w-fit flex-col justify-between border bg-white px-4">
       <div className="divide-y-2 divide-dashed">
         <div className="flex flex-row items-center gap-2 py-6">
           <Image

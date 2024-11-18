@@ -9,7 +9,7 @@ function AdminLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex bg-light-700">
+    <main className="flex bg-light-700 font-ibm-plex-sans">
       <Sidebar />
       <div className="mx-auto flex min-h-screen w-full max-w-7xl flex-col items-center text-dark-400">
         <TopNav />
