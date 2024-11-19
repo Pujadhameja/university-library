@@ -6,6 +6,8 @@ import Book from "@/components/Book";
 import { mockBorrowRequests, mockBooks } from "@/constants";
 
 const Dashbaord = () => {
+  // const mockBorrowRequests = [];
+
   return (
     <div className="mt-8 flex w-full flex-col">
       {/* Stat cards in this div should possibly be extracted to a component */}
@@ -33,6 +35,7 @@ const Dashbaord = () => {
       </div>
       <div className="mt-8 flex flex-row gap-4">
         <div className="flex max-w-[50%] flex-col gap-6">
+          {/* Book Requests */}
           <div className="w-full rounded-lg bg-white p-4">
             <div className="flex flex-row justify-between">
               <p className="text-2xl font-semibold">Borrow Requests</p>
@@ -44,59 +47,80 @@ const Dashbaord = () => {
               </Link>
             </div>
             <div className="mt-2 flex flex-col gap-2">
-              {mockBorrowRequests.map((request, index) => (
-                <div
-                  key={index}
-                  className="flex flex-row justify-between gap-4 rounded-lg bg-light-700 p-3"
-                >
-                  <div className="flex flex-row gap-4">
-                    <Book
-                      color={request.book.color}
-                      cover={request.book.cover}
-                      size="small"
-                    />
-                    <div className="flex flex-col justify-between">
-                      <p className="text-lg font-semibold">
-                        {request.book.title}
-                      </p>
-                      <p className="text-slate-500">
-                        By {request.book.author} • {request.book.genre}
-                      </p>
-                      <div className=" flex flex-row items-center gap-3 text-sm">
-                        <div className="flex flex-row items-center gap-1">
-                          <Image
-                            src="/assets/images/dashboard/useravatar.png"
-                            alt="avatar"
-                            width={18}
-                            height={18}
-                            className="size-[18px]"
-                          />
-                          <p>{request.user.name}</p>
-                        </div>
-                        <div className="flex flex-row gap-1">
-                          <Image
-                            src="/assets/icons/dashboard/calendar.svg"
-                            alt="calendar"
-                            width={16}
-                            height={16}
-                          />
-                          <p>{request.requestDate}</p>
+              {mockBorrowRequests.length > 0 ? (
+                <>
+                  {mockBorrowRequests.map((request, index) => (
+                    <div
+                      key={index}
+                      className="flex flex-row justify-between gap-4 rounded-lg bg-light-700 p-3"
+                    >
+                      <div className="flex flex-row gap-4">
+                        <Book
+                          color={request.book.color}
+                          cover={request.book.cover}
+                          size="small"
+                        />
+                        <div className="flex flex-col justify-between">
+                          <p className="text-lg font-semibold">
+                            {request.book.title}
+                          </p>
+                          <p className="text-slate-500">
+                            By {request.book.author} • {request.book.genre}
+                          </p>
+                          <div className=" flex flex-row items-center gap-3 text-sm">
+                            <div className="flex flex-row items-center gap-1">
+                              <Image
+                                src="/assets/images/dashboard/useravatar.png"
+                                alt="avatar"
+                                width={18}
+                                height={18}
+                                className="size-[18px]"
+                              />
+                              <p>{request.user.name}</p>
+                            </div>
+                            <div className="flex flex-row gap-1">
+                              <Image
+                                src="/assets/icons/dashboard/calendar.svg"
+                                alt="calendar"
+                                width={16}
+                                height={16}
+                              />
+                              <p>{request.requestDate}</p>
+                            </div>
+                          </div>
                         </div>
                       </div>
+                      <div className="size-fit cursor-pointer rounded-lg bg-white p-2 shadow-sm">
+                        <Image
+                          src="/assets/icons/dashboard/eye.svg"
+                          alt="eye"
+                          height={20}
+                          width={20}
+                        />
+                      </div>
                     </div>
-                  </div>
-                  <div className="size-fit cursor-pointer rounded-lg bg-white p-2 shadow-sm">
-                    <Image
-                      src="/assets/icons/dashboard/eye.svg"
-                      alt="eye"
-                      height={20}
-                      width={20}
-                    />
-                  </div>
+                  ))}
+                </>
+              ) : (
+                <div className="flex w-full flex-col items-center gap-4 p-6 text-center">
+                  <Image
+                    src="/assets/images/dashboard/no-book-requests.png"
+                    width={193}
+                    height={144}
+                    alt="no-book-requests"
+                  />
+                  <p className="text-lg font-semibold">
+                    No Pending Book Requests
+                  </p>
+                  <p className="text-slate-500">
+                    There are no borrow book requests awaiting your review at
+                    this time.
+                  </p>
                 </div>
-              ))}
+              )}
             </div>
           </div>
+          {/* Account Requests */}
           <div className="w-full rounded-lg bg-white p-4">
             <div className="flex flex-row justify-between">
               <p className="text-2xl font-semibold">Account Requests</p>
@@ -107,30 +131,50 @@ const Dashbaord = () => {
                 View All
               </Link>
             </div>
-            <div className="mt-2 grid grid-cols-3 gap-2">
-              {mockBorrowRequests.map((request, index) => (
-                <div
-                  key={index}
-                  className="flex flex-col items-center rounded-lg bg-light-700 px-4 py-2"
-                >
-                  <Image
-                    src="/assets/images/dashboard/useravatar.png"
-                    height={48}
-                    width={48}
-                    alt="avatar"
-                  />
-                  <p className="mt-4 text-lg font-semibold">
-                    {request.user.name}
-                  </p>
-                  <p className="text-slate-500">{request.user.email}</p>
-                </div>
-              ))}
-            </div>
+            {mockBorrowRequests.length > 0 ? (
+              <div className="mt-2 grid grid-cols-3 gap-2">
+                {mockBorrowRequests.map((request, index) => (
+                  <div
+                    key={index}
+                    className="flex flex-col items-center rounded-lg bg-light-700 px-4 py-2"
+                  >
+                    <Image
+                      src="/assets/images/dashboard/useravatar.png"
+                      height={48}
+                      width={48}
+                      alt="avatar"
+                    />
+                    <p className="mt-4 text-lg font-semibold">
+                      {request.user.name}
+                    </p>
+                    <p className="text-slate-500">{request.user.email}</p>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="mt-2 flex w-full flex-col items-center gap-4 p-6 text-center">
+                <Image
+                  src="/assets/images/dashboard/no-account-requests.png"
+                  width={193}
+                  height={144}
+                  alt="no-book-requests"
+                />
+                <p className="text-lg font-semibold">
+                  No Pending Account Requests
+                </p>
+                <p className="text-slate-500">
+                  There are currently no account requests awaiting approval.
+                </p>
+              </div>
+            )}
           </div>
         </div>
-        <div className="relative w-full max-w-[50%] overflow-hidden rounded-lg bg-white p-4">
-          {/* hide effect from the design */}
-          <div className="bg-gradient-hide absolute bottom-0 z-50 min-h-[70px] w-full" />
+        {/* Recently Addedd Books */}
+        <div className="relative max-h-[700px] w-full max-w-[50%] overflow-hidden rounded-lg bg-white p-4">
+          {/* hide effect from the design - we could make the max-h in the div above dependent on viewport size for example, not sure how to handle it */}
+          {mockBooks.length > 5 && (
+            <div className="bg-gradient-hide absolute bottom-0 z-50 min-h-[70px] w-full" />
+          )}
           <div className="flex flex-row justify-between">
             <p className="text-2xl font-semibold">Recently Added Books</p>
             <Link
