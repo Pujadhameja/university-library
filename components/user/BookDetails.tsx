@@ -23,7 +23,7 @@ interface BookProps {
 const BookDetails = ({ book }: BookProps) => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   return (
-    <div className="flex flex-row gap-40 max-xl:flex-col-reverse max-xl:gap-8">
+    <div className="flex flex-row  gap-8  max-xl:flex-col-reverse max-sm:items-center xl:gap-40 ">
       <div className="flex max-w-[645px] flex-col gap-5">
         <h1 className="text-7xl font-semibold text-light-900">{book.title}</h1>
         <div className="flex flex-row gap-4">
@@ -62,7 +62,7 @@ const BookDetails = ({ book }: BookProps) => {
         <div className="text-justify">
           <p>{book.description}</p>
         </div>
-        <div className="flex flex-row gap-6 max-md:flex-col">
+        <div className="flex flex-row gap-6 max-md:flex-col max-sm:items-center">
           <Button
             className="button-primary w-[223px]"
             onClick={() => {

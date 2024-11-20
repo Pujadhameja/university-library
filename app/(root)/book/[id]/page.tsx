@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 import Book from "@/components/Book";
@@ -69,7 +70,9 @@ const page = () => {
                 key={index}
                 className=" min-md:w-full mt-10 w-1/2 min-w-[143px] flex-col justify-between"
               >
-                <Book color={book.color} cover={book.cover} size="medium" />
+                <Link href={`/book/${index}`}>
+                  <Book color={book.color} cover={book.cover} size="medium" />
+                </Link>
               </div>
             ))}
           </div>

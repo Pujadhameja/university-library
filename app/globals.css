@@ -22,7 +22,6 @@
   .bg-gradient-input {
     background: linear-gradient(270deg, #2e2e2f 0%, #28292a 100%);
   }
-
   .bg-gradient-hide {
     background: linear-gradient(
       180deg,
@@ -30,26 +29,24 @@
       #ffffff 100%
     );
   }
-
   .book-shadow {
     filter: drop-shadow(-50px 4px 20px #00000080);
   }
-
-  .user-page-container {
-    @apply mx-auto w-full items-center px-16 pt-24 text-light-200 min-h-screen  max-w-7xl;
+  .section-header {
+    @apply font-bebas-neue text-3xl max-sm:text-center;
   }
-
+  .books-container {
+    @apply flex flex-wrap gap-10 pt-8 max-sm:flex-col max-sm:items-center;
+  }
   .user-input {
-    @apply min-w-full border-none font-bold placeholder:font-normal text-light-900 placeholder:text-light-200 focus-visible:ring-0;
+    @apply min-w-full border-none font-bold placeholder:font-normal text-light-900 placeholder:text-light-200 focus-visible:ring-0 focus-visible:shadow-none !important;
   }
-
   .button-primary {
     @apply min-h-[56px] bg-user-primary text-dark-800 hover:bg-user-primary !important;
   }
   .button-secondary {
     @apply min-h-[56px] bg-gradient-secondary text-user-primary hover:bg-gradient-secondary !important;
   }
-
   .button-accept {
     @apply min-h-[56px] bg-dashboard-approve-400 text-light-800 hover:bg-dashboard-approve-400 !important;
   }

@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 import Book from "@/components/Book";
@@ -9,15 +10,17 @@ const Page = () => {
     <section>
       <h1 className="text-7xl font-semibold text-light-900">Hello, User</h1>
       <div className="pt-20">
-        <h2 className="font-bebas-neue text-3xl">Your Borrowed Books</h2>
-        <div className="flex flex-wrap gap-10 pt-8 max-sm:flex-col">
+        <h2 className="section-header">Your Borrowed Books</h2>
+        <div className="books-container">
           {mockBooks.map((book, index) => (
             <div
               key={index}
               className="flex w-[243px] flex-col justify-between"
             >
               <div className="flex justify-center">
-                <Book color={book.color} cover={book.cover} size="medium" />
+                <Link href={`/book/${index}`}>
+                  <Book color={book.color} cover={book.cover} size="medium" />
+                </Link>
               </div>
               <div>
                 <p className="text-lg text-light-900">

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 import Book from "@/components/Book";
@@ -23,15 +24,17 @@ const Page = () => {
       </div>
 
       <div className="flex w-full flex-col pt-20">
-        <h2 className="font-bebas-neue text-3xl">Search Result</h2>
-        <div className="flex grow flex-wrap gap-10 pt-8 max-sm:flex-col">
+        <h2 className="section-header">Search Result</h2>
+        <div className="books-container">
           {mockBooks.map((book, index) => (
             <div
               key={index}
               className="flex w-[160px] flex-col justify-between"
             >
-              <Book color={book.color} cover={book.cover} size="medium" />
-              <p className="line-clamp-2 text-lg text-light-900">
+              <Link href={`/book/${index}`}>
+                <Book color={book.color} cover={book.cover} size="medium" />
+              </Link>
+              <p className="line-clamp-2 text-lg font-semibold text-light-900">
                 {book.title} - By {book.author}
               </p>
               <p>{book.genre}</p>

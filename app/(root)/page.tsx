@@ -1,9 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
 
 import Book from "@/components/Book";
 import BookDetails from "@/components/user/BookDetails";
 import { mockBooks } from "@/constants";
-
 const recommendation = {
   title: "Origin",
   author: "Dan Brown",
@@ -22,18 +22,20 @@ const Home = () => {
     <section>
       <BookDetails book={recommendation} />
       <div className="pt-12">
-        <h2 className="font-bebas-neue text-3xl">Your Borrowed Books</h2>
-        <div className="flex flex-wrap gap-10 pt-8 max-sm:flex-col">
+        <h2 className="section-header">Your Borrowed Books</h2>
+        <div className="books-container">
           {mockBooks.map((book, index) => (
             <div
               key={index}
-              className="flex w-[243px] flex-col justify-between"
+              className="my-8 flex w-[243px] flex-col justify-between"
             >
               <div className="flex justify-center">
-                <Book color={book.color} cover={book.cover} size="medium" />
+                <Link href={`/book/${index}`}>
+                  <Book color={book.color} cover={book.cover} size="medium" />
+                </Link>
               </div>
               <div>
-                <p className="text-lg text-light-900">
+                <p className="text-lg font-semibold text-light-900">
                   {book.title} - By {book.author}
                 </p>
                 <p>{book.genre}</p>
