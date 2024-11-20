@@ -10,6 +10,7 @@ export const mockBooks = [
       "Origin is a 2017 mystery-thriller novel by American author Dan Brown. It is the fifth installment in the Robert Langdon series, following previous bestsellers such as The Da Vinci Code and Angels & Demons. ",
     color: "#012B48",
     cover: "/assets/images/user/origin.png",
+    createdAt: "12/11/2024",
   },
   {
     title: "Hobbit",
@@ -22,6 +23,7 @@ export const mockBooks = [
       "The Hobbit is set in Middle-earth and follows home-loving Bilbo Baggins, the hobbit of the title, who joins the wizard Gandalf and the thirteen dwarves of Thorin's Company, on a quest to reclaim the dwarves' home and treasure from the dragon Smaug.",
     color: "#70935d",
     cover: "/assets/images/user/hobbit.png",
+    createdAt: "12/11/2024",
   },
   {
     title: "The Great Gatsby",
@@ -34,6 +36,7 @@ export const mockBooks = [
       "The Great Gatsby, novel by American author F. Scott Fitzgerald, published in 1925. It tells the story of Jay Gatsby, a self-made millionaire, and his pursuit of Daisy Buchanan, a wealthy young woman whom he loved in his youth. Set in 1920s New York, the book is narrated by Nick Carraway.",
     color: "#203492",
     cover: "/assets/images/user/gatsby.png",
+    createdAt: "12/11/2024",
   },
   {
     title: "Harry Potter and the Philosopher's Stone",
@@ -46,6 +49,7 @@ export const mockBooks = [
       "Harry Potter and the Philosopher's Stone is a fantasy novel written by the British author J. K. Rowling. It is the first novel in the Harry Potter series and was Rowling's debut novel.",
     color: "#c1895c",
     cover: "/assets/images/user/harry.png",
+    createdAt: "12/11/2024",
   },
   {
     title: "The Huge Book of Amazing Facts & Interesting Stuff",
@@ -58,6 +62,7 @@ export const mockBooks = [
       "The Huge Book of Amazing Facts & Interesting Stuff is a collection of facts and trivia that will entertain and educate. It covers a wide range of topics, from history and science to pop culture and the natural world.",
     color: "#59236b",
     cover: "/assets/images/user/amazing.png",
+    createdAt: "12/11/2024",
   },
   {
     title: "Don't Turn Around",
@@ -70,6 +75,7 @@ export const mockBooks = [
       "Two strangers, Cait and Rebecca, are driving across America. Cait’s job is to transport women to safety. Out of respect, she never asks any questions. Like most of the women, Rebecca is trying to escape something. But what if Rebecca’s secrets put them both in danger? There’s a reason Cait chooses to keep on the road, helping strangers. She has a past of her own, and knows what it’s like to be followed. And there is someone right behind them, watching their every move…",
     color: "#058a9c",
     cover: "/assets/images/user/dont.png",
+    createdAt: "12/11/2024",
   },
   {
     title: "Gerald's Game",
@@ -82,6 +88,7 @@ export const mockBooks = [
       "Gerald's Game is a 1992 suspense novel by American writer Stephen King. The story is about a woman whose husband dies of a heart attack while she is handcuffed to a bed, and, following the subsequent realization that she is trapped with little hope of rescue, begins to let the voices inside her head take over.",
     color: "#c94241",
     cover: "/assets/images/user/gerald.png",
+    createdAt: "12/11/2024",
   },
   {
     title: "The Maidens",
@@ -94,6 +101,7 @@ export const mockBooks = [
       "Edward Fosca is a murderer. Of this Mariana is certain. But Fosca is untouchable. A handsome and charismatic Greek Tragedy professor at Cambridge University, Fosca is adored by staff and students alike—particularly by the members of a secret society of female students known as The Maidens.",
     color: "#020202",
     cover: "/assets/images/user/maidens.png",
+    createdAt: "12/11/2024",
   },
   {
     title: "The Fury",
@@ -106,6 +114,7 @@ export const mockBooks = [
       "Lana Farrar is a reclusive ex-movie star and one of the most famous women in the world. Every year, she invites her closest friends to escape the English weather and spend Easter on her idyllic private Greek island.",
     color: "#ac8662",
     cover: "/assets/images/user/fury.png",
+    createdAt: "12/11/2024",
   },
 ];
 
@@ -208,5 +217,29 @@ export const mockBorrowRequests = [
       email: "ronaldrichard@gmail.com",
     },
     requestDate: "13/11/2024",
+  },
+];
+
+export const mockUsers = [
+  {
+    name: "John Doe",
+    email: "johndoe@gmail.com",
+    joinedAt: "12/11/2024",
+    universityID: "123456",
+    booksBorrowed: 2,
+  },
+  {
+    name: "Jane Doe",
+    email: "janedoe@gmail.com",
+    joinedAt: "15/11/2024",
+    universityID: "123457",
+    booksBorrowed: 1,
+  },
+  {
+    name: "Marc Atenson",
+    email: "marcinee@gmail.com",
+    joinedAt: "01/11/2024",
+    universityID: "123458",
+    booksBorrowed: 3,
   },
 ];

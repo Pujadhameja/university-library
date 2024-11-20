@@ -30,6 +30,7 @@ export default {
             800: "#EF3A4B",
             400: "#F46F70",
           },
+          link: "#0089F1",
         },
         light: {
           900: "#FFFFFF",
