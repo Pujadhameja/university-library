@@ -2,15 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-import {
-  Table,
-  TableBody,
-  TableCaption,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
 import { mockUsers } from "@/constants";
 
 const Users = () => {
