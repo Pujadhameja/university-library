@@ -2,7 +2,7 @@ export const sideBarLinks = [
   {
     img: "/assets/icons/dashboard/home.svg",
     selectedImg: "/assets/icons/dashboard/home-selected.svg",
-    route: "/dashboard/home",
+    route: "/dashboard",
     text: "Home",
   },
   {
