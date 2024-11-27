@@ -53,4 +53,17 @@
   .button-deny {
     @apply min-h-[56px] bg-dashboard-deny-400 text-light-800 hover:bg-dashboard-deny-400 !important;
   }
+
+  .table-header {
+    @apply text-start font-normal text-dark-200;
+  }
+  .table-row {
+    @apply flex flex-row items-center justify-start gap-2;
+  }
+  .table-text {
+    @apply text-sm font-semibold text-dark-400;
+  }
+  .button-approve {
+    @apply rounded-lg bg-dashboard-approve-100 px-3 py-2 font-semibold text-dashboard-approve-800;
+  }
 }

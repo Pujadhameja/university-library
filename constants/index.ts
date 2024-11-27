@@ -137,6 +137,7 @@ export const mockBorrowRequests = [
       email: "johndoe@gmail.com",
     },
     requestDate: "12/11/2024",
+    approved: true,
   },
   {
     book: {
@@ -157,6 +158,7 @@ export const mockBorrowRequests = [
       email: "janedoe@gmail.com",
     },
     requestDate: "15/11/2024",
+    approved: false,
   },
   {
     book: {
@@ -177,6 +179,7 @@ export const mockBorrowRequests = [
       email: "marcine@gmail.com",
     },
     requestDate: "01/11/2024",
+    approved: true,
   },
   {
     book: {
@@ -197,6 +200,7 @@ export const mockBorrowRequests = [
       email: "contact@susandrake.com",
     },
     requestDate: "20/11/2024",
+    approved: false,
   },
   {
     book: {
@@ -217,6 +221,7 @@ export const mockBorrowRequests = [
       email: "ronaldrichard@gmail.com",
     },
     requestDate: "13/11/2024",
+    approved: false,
   },
 ];
 
