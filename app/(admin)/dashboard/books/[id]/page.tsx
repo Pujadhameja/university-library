@@ -19,7 +19,7 @@ const recommendation = {
 };
 
 const BookPage = () => {
-  const bookBGColor = `bg-[${recommendation.color}]/[.1]`;
+  const bookBGColor = `bg-[${recommendation.color}]/[.2]`;
   console.log(bookBGColor);
   return (
     <div className="mt-8 flex w-full flex-col">
@@ -36,7 +36,7 @@ const BookPage = () => {
         <p className="font-semibold text-dark-200">Go back</p>
       </Link>
       <div className="mt-8 flex flex-row gap-8">
-        <div className={`${bookBGColor} rounded-lg px-20 py-6`}>
+        <div className={`${bookBGColor} rounded-lg  px-20 py-6`}>
           <Book
             color={recommendation.color}
             cover={recommendation.cover}
@@ -62,7 +62,10 @@ const BookPage = () => {
             By {recommendation.author}
           </p>
           <p className="text-light-100">{recommendation.genre}</p>
-          <button className="flex flex-row items-center justify-center gap-2 rounded-lg bg-dashboard-primary px-8 py-2">
+          <Link
+            href="/dashboard/books/edit/1"
+            className="flex w-full flex-row items-center justify-center gap-2 rounded-lg bg-dashboard-primary px-8 py-2"
+          >
             <Image
               src="/assets/icons/dashboard/edit.svg"
               width={16}
@@ -70,7 +73,7 @@ const BookPage = () => {
               alt="edit"
             />
             <p className="font-bold text-white">Edit Book</p>
-          </button>
+          </Link>
         </div>
       </div>
       <div className="mt-8 flex flex-row gap-12  max-sm:flex-col-reverse">
