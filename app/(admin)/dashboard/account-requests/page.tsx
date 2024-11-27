@@ -1,9 +1,52 @@
+"use client";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
+import DashboardDialog from "@/components/dashboard/DashboardDialog";
 import { mockUsers } from "@/constants";
 
 const AccountRequests = () => {
+  const [dialog, setDialog] = useState({
+    title: "Approve Account Request",
+    description:
+      "Approve the student’s account request and grant access. A confirmation email will be sent upon approval.",
+    buttonText: "Approve & Send Confirmation",
+    actionType: "accept",
+    action: () => {},
+    actionParam: "",
+  });
+  const [open, setOpen] = useState(false);
+
+  const approve = (id: string) => {
+    setOpen(true);
+    setDialog({
+      title: "Approve Account Request",
+      description:
+        "Approve the student’s account request and grant access. A confirmation email will be sent upon approval.",
+      buttonText: "Approve & Send Confirmation",
+      actionType: "accept",
+      action: () => {
+        console.log("Approve account: " + id);
+      },
+      actionParam: id,
+    });
+  };
+
+  const deny = (id: string) => {
+    setOpen(true);
+    setDialog({
+      title: "Deny Account Request",
+      description:
+        "Denying this request will notify the student they’re not eligible due to unsuccessful ID card verification.",
+      buttonText: "Deny & Notify Student",
+      actionType: "deny",
+      action: () => {
+        console.log("Deny account: " + id);
+      },
+      actionParam: id,
+    });
+  };
+
   return (
     <div className="mt-8 w-full rounded-lg bg-white p-4">
       <div className="flex flex-row justify-between px-4">
@@ -66,8 +109,18 @@ const AccountRequests = () => {
                   </p>
                 </td>
                 <td className="table-row">
-                  <button className="button-approve">Approve Account</button>
-                  <button>
+                  <button
+                    className="button-approve"
+                    onClick={() => approve(user.universityID)}
+                  >
+                    Approve Account
+                  </button>
+
+                  <button
+                    onClick={() => {
+                      deny(user.universityID);
+                    }}
+                  >
                     <Image
                       src="/assets/icons/dashboard/close-circle.svg"
                       height={20}
@@ -81,6 +134,16 @@ const AccountRequests = () => {
           </tbody>
         </table>
       </div>
+      <DashboardDialog
+        open={open}
+        setOpen={setOpen}
+        title={dialog.title}
+        description={dialog.description}
+        buttonText={dialog.buttonText}
+        actionType={dialog.actionType}
+        action={dialog.action}
+        actionParam={dialog.actionParam}
+      />
     </div>
   );
 };

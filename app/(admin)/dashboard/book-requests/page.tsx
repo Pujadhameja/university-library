@@ -1,11 +1,54 @@
+"use client";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 
 import Book from "@/components/Book";
+import DashboardDialog from "@/components/dashboard/DashboardDialog";
 import { mockBorrowRequests } from "@/constants";
 
 const BookRequests = () => {
+  const [dialog, setDialog] = useState({
+    title: "Approve Account Request",
+    description:
+      "Approve the student’s account request and grant access. A confirmation email will be sent upon approval.",
+    buttonText: "Approve & Send Confirmation",
+    actionType: "accept",
+    action: () => {},
+    actionParam: "",
+  });
+  const [open, setOpen] = useState(false);
+
+  const approve = (id: string) => {
+    setOpen(true);
+    setDialog({
+      title: "Approve Book Request",
+      description:
+        "Approve the request to grant the student access to the book. A receipt with approval details and return date will be sent.",
+      buttonText: "Approve & Send Receipt",
+      actionType: "accept",
+      action: () => {
+        console.log("Approve book: " + id);
+      },
+      actionParam: id,
+    });
+  };
+
+  const deny = (id: string) => {
+    setOpen(true);
+    setDialog({
+      title: "Deny Book Request",
+      description:
+        "Denying this request will notify the student that the book is unavailable at the moment.",
+      buttonText: "Deny & Notify Student",
+      actionType: "deny",
+      action: () => {
+        console.log("Deny account: " + id);
+      },
+      actionParam: id,
+    });
+  };
+
   return (
     <div className="mt-8 w-full rounded-lg bg-white p-4">
       <div className="flex flex-row justify-between px-4">
@@ -65,10 +108,11 @@ const BookRequests = () => {
 
                 <td className="table-row">
                   <div className="flex flex-row gap-2">
-                    {request.approved ? (
+                    {!request.approved ? (
                       <button
                         disabled={request.approved}
                         className="button-approve"
+                        onClick={() => approve(index.toString())}
                       >
                         Approve
                       </button>
@@ -86,8 +130,9 @@ const BookRequests = () => {
                       </div>
                     )}
                     <button
-                      disabled={!request.approved}
+                      disabled={request.approved}
                       className="disabled:opacity-20"
+                      onClick={() => deny(index.toString())}
                     >
                       <Image
                         src="/assets/icons/dashboard/close-circle.svg"
@@ -120,6 +165,16 @@ const BookRequests = () => {
           </tbody>
         </table>
       </div>
+      <DashboardDialog
+        open={open}
+        setOpen={setOpen}
+        title={dialog.title}
+        description={dialog.description}
+        buttonText={dialog.buttonText}
+        actionType={dialog.actionType}
+        action={dialog.action}
+        actionParam={dialog.actionParam}
+      />
     </div>
   );
 };
