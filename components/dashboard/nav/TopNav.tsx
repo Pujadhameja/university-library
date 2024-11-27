@@ -4,7 +4,7 @@ import Search from "@/components/dashboard/Search";
 
 const TopNav = () => {
   return (
-    <section className="mt-6 flex w-full flex-row justify-between">
+    <section className="mt-6 flex w-full flex-row justify-between max-lg:flex-col">
       <div className="flex flex-col">
         <h1 className="text-3xl font-semibold text-dark-400">
           Welcome, Adrian

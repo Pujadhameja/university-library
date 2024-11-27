@@ -9,7 +9,7 @@ const Search = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="relative flex min-h-[52px] w-full min-w-[450px] grow items-center rounded-xl border border-gray-300 px-4">
+    <div className="relative flex min-h-[52px] w-full  grow items-center rounded-xl border border-gray-300 px-4 xl:min-w-[450px]">
       <Image
         src="/assets/icons/dashboard/search-normal.svg"
         alt="search"
