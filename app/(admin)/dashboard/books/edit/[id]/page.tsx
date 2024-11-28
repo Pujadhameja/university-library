@@ -3,7 +3,7 @@ import Link from "next/link";
 import React from "react";
 
 import BookForm from "@/components/dashboard/forms/BookForm";
-const BookEdit = async ({ params }: { params: { id: string } }) => {
+const BookEdit = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   console.log(id);
   return (

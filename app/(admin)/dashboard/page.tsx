@@ -10,15 +10,15 @@ const Dashbaord = () => {
 
   return (
     <div className="mt-8 flex w-full flex-col">
-      {/* Stat cards in this div should possibly be extracted to a component */}
-      <div className="flex flex-row items-center gap-8">
-        <div className="w-full rounded-xl bg-white p-4">
+      {/* Stat cards in this div should probably be extracted to a component */}
+      <div className="flex flex-row items-center gap-8 max-sm:w-full max-sm:flex-col max-sm:justify-center">
+        <div className="stat-card">
           <p className="font-semibold text-light-100">
             Borrowed Books <span className="text-orange-500">▾ 2</span>
           </p>
           <p className="pt-4 text-4xl font-bold text-dark-800">145</p>
         </div>
-        <div className="w-full rounded-xl bg-white p-4">
+        <div className="stat-card">
           <p className="font-semibold text-light-100">
             Total Users <span className="text-green-700">▴ 4</span>
           </p>
@@ -26,15 +26,15 @@ const Dashbaord = () => {
             317
           </p>
         </div>
-        <div className="w-full bg-white p-4">
+        <div className="stat-card">
           <p className="font-semibold text-light-100">
             Total Books <span className="text-green-700">▴ 2</span>
           </p>
           <p className="pt-4 text-4xl font-bold text-dark-800">163</p>
         </div>
       </div>
-      <div className="mt-8 flex flex-row gap-4">
-        <div className="flex max-w-[50%] flex-col gap-6">
+      <div className="mt-8 flex flex-row gap-4 max-lg:flex-col">
+        <div className="flex w-1/2 flex-col gap-6 max-lg:w-full">
           {/* Book Requests */}
           <div className="w-full rounded-lg bg-white p-4">
             <div className="flex flex-row justify-between">
@@ -170,7 +170,7 @@ const Dashbaord = () => {
           </div>
         </div>
         {/* Recently Addedd Books */}
-        <div className="relative max-h-[700px] w-full max-w-[50%] overflow-hidden rounded-lg bg-white p-4">
+        <div className="relative max-h-[700px] w-1/2 overflow-hidden rounded-lg bg-white p-4 max-lg:w-full">
           {/* hide effect from the design - we could make the max-h in the div above dependent on viewport size for example, not sure how to handle it */}
           {mockBooks.length > 5 && (
             <div className="bg-gradient-hide absolute bottom-0 z-50 min-h-[70px] w-full" />
