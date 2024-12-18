@@ -6,4 +6,41 @@
   :root {
     --radius: 0.5rem;
   }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    border-radius: 0px;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 0px;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+}
+
+@layer utilities {
+  .gradient-input {
+    background: linear-gradient(270deg, #2e2e2f 0%, #28292a 100%);
+  }
+
+  .gradient-horizontal {
+    background: linear-gradient(284.6deg, #32353e -10.01%, #14171c 114.89%);
+  }
+
+  .gradient-vertical {
+    background: linear-gradient(180deg, #14171c 0%, #1c2025 100%);
+  }
+
+  .input {
+    @apply w-full min-h-14 border-none text-base font-bold placeholder:font-normal text-light-900 placeholder:text-light-200 focus-visible:ring-0 focus-visible:shadow-none !important;
+  }
 }
