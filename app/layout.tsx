@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import React from "react";
+
 import "./globals.css";
 
 const ibmPlexSans = localFont({
@@ -43,6 +43,8 @@ export const metadata: Metadata = {
   title: "BookWise",
   description: "A book library app",
 };
+
+const urlEndpoint = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT;
 
 export default function RootLayout({
   children,

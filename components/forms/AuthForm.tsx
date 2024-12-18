@@ -15,6 +15,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
+import ImageUpload from "../ImageUpload";
 
 type FormType = "sign-in" | "sign-up";
 
@@ -26,7 +27,9 @@ const authFormSchema = (type: FormType) => {
     email: z.string().email(),
     idNumber: !isSignIn ? z.string().min(8) : z.string().optional(),
     password: z.string().min(8),
-    idFile: !isSignIn ? z.any() : z.any().optional(),
+    file: !isSignIn
+      ? z.string().nonempty("Uploading a university ID card is required")
+      : z.string().optional(),
   });
 };
 
@@ -41,7 +44,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
       email: "",
       idNumber: "",
       password: "",
-      idFile: "",
+      file: "",
     },
   });
 
@@ -147,16 +150,12 @@ const AuthForm = ({ type }: { type: FormType }) => {
           {!isSignIn && (
             <FormField
               control={form.control}
-              name="idFile"
+              name="file"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Upload University ID Card</FormLabel>
                   <FormControl>
-                    <Input
-                      type="file"
-                      {...field}
-                      className="gradient-input input file:text-white"
-                    />
+                    <ImageUpload onFileChange={field.onChange} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

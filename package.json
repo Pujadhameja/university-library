@@ -18,6 +18,8 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-tailwindcss": "^3.17.5",
+    "imagekit": "^6.0.0",
+    "imagekitio-next": "^1.0.1",
     "lucide-react": "^0.468.0",
     "next": "15.1.0",
     "prettier": "^3.4.2",
