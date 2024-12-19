@@ -97,7 +97,6 @@ const ImageUpload = ({
       {file && (
         <div>
           <IKImage
-            urlEndpoint={urlEndpoint}
             path={file?.filePath}
             alt="default-image"
             width={500}

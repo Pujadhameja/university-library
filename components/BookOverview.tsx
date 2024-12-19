@@ -56,7 +56,7 @@ const BookOverview = ({ book }: BookProps) => {
 
         <div className="flex flex-row gap-6 max-md:flex-col max-sm:items-center">
           <Button
-            className="text-dark-800 bg-primary min-h-14 hover:bg-primary/90"
+            className="text-dark-800 bg-primary min-h-14 hover:bg-primary/90 max-md:w-full"
             onClick={() => {
               setIsDialogOpen(true);
             }}
@@ -67,7 +67,7 @@ const BookOverview = ({ book }: BookProps) => {
             </p>
           </Button>
 
-          <Button className="gradient-gray min-h-14">
+          <Button className="gradient-gray min-h-14 max-md:w-full">
             <Image src="/icons/heart.svg" alt="book" width={20} height={20} />
             <p className="font-bebas-neue text-xl text-primary">
               Add to wishlist
