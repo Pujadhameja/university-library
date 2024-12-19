@@ -40,7 +40,15 @@
     background: linear-gradient(180deg, #14171c 0%, #1c2025 100%);
   }
 
+  .gradient-gray {
+    background: linear-gradient(270deg, #37363a 0%, #353637 100%);
+  }
+
   .input {
     @apply w-full min-h-14 border-none text-base font-bold placeholder:font-normal text-light-900 placeholder:text-light-200 focus-visible:ring-0 focus-visible:shadow-none !important;
+  }
+
+  .search-input {
+    @apply w-full border-none font-bold placeholder:font-normal text-light-900 placeholder:text-light-200 focus-visible:ring-0 focus-visible:shadow-none !important;
   }
 }
