@@ -2,7 +2,7 @@ import Image from "next/image";
 import React from "react";
 import { cn } from "@/lib/utils";
 
-type BookCoverVariant = "default" | "wide";
+type BookCoverVariant = "small" | "default" | "wide";
 
 interface Props {
   coverColor?: string;
@@ -12,6 +12,7 @@ interface Props {
 }
 
 const variantStyles: Record<BookCoverVariant, string> = {
+  small: "w-[28.95px] h-10",
   default: "xs:w-[144px] w-[114px] xs:h-[199px] h-[169px]",
   wide: "w-[276px] h-[384px]",
 };

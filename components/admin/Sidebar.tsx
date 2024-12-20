@@ -27,7 +27,7 @@ const Sidebar = () => {
         <div className="flex flex-col gap-5 mt-10">
           {adminSideBarLinks.map((link) => {
             const isSelected =
-              (link.route !== "/dashboard" &&
+              (link.route !== "/admin" &&
                 pathname.includes(link.route) &&
                 link.route.length > 1) ||
               pathname === link.route;
