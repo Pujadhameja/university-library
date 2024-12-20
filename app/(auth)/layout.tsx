@@ -6,8 +6,8 @@ function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex h-screen max-h-screen flex-row text-light-200">
-      <section className="flex-1 h-full gradient-horizontal px-5 py-10 overflow-y-auto hide-scrollbar my-auto">
+    <main className="flex sm:flex-row flex-col-reverse text-light-200 relative">
+      <section className="flex-1 h-full gradient-horizontal px-5 py-10 my-auto flex items-center min-h-screen">
         <div className="gradient-vertical p-10 max-w-xl rounded-lg flex flex-col gap-6 mx-auto">
           <div className="flex flex-row gap-2">
             <Image src="/icons/logo.svg" alt="logo" width={37} height={37} />
@@ -18,13 +18,15 @@ function AuthLayout({
         </div>
       </section>
 
-      <Image
-        src="/images/auth-illustration.png"
-        alt="auth-illustration"
-        height={1000}
-        width={1000}
-        className="max-w-[50%]"
-      />
+      <section className="sm:flex-1 w-full h-40 sticky sm:h-screen sm:top-0">
+        <Image
+          src="/images/auth-illustration.png"
+          alt="auth-illustration"
+          height={1000}
+          width={1000}
+          className="object-cover size-full"
+        />
+      </section>
     </main>
   );
 }
