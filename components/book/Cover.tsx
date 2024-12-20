@@ -12,7 +12,7 @@ interface Props {
 }
 
 const variantStyles: Record<BookCoverVariant, string> = {
-  default: "w-[144px] h-[199px]",
+  default: "xs:w-[144px] w-[114px] xs:h-[199px] h-[169px]",
   wide: "w-[276px] h-[384px]",
 };
 

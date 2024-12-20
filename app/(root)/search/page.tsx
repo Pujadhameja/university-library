@@ -9,7 +9,7 @@ const Page = () => {
           Find Books to Borrow
         </p>
 
-        <h2 className="font-semibold text-5xl text-white mt-2">
+        <h2 className="font-semibold xs:text-5xl text-3xl text-white mt-2">
           Discover Your Next Great Read: Search for Any Book in Our Library
         </h2>
 
@@ -21,7 +21,7 @@ const Page = () => {
           Search Result
         </h2>
 
-        <ul className="flex gap-10 flex-wrap mt-10">
+        <ul className="flex xs:gap-10 gap-5 max-xs:justify-between flex-wrap mt-10">
           {[1, 2, 3, 4, 5, 6, 7].map((item) => (
             <Book key={item} />
           ))}

@@ -8,7 +8,7 @@ const Page = () => {
           Borrowed Books
         </h2>
 
-        <ul className="flex gap-x-10 gap-y-20 flex-wrap mt-10">
+        <ul className="flex gap-x-10 gap-y-20 max-xs:justify-center flex-wrap mt-10">
           {[1, 2, 3, 4, 5, 6, 7].map((item) => (
             <Book key={item} isLoanedBook />
           ))}

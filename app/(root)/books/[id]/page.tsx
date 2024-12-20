@@ -69,7 +69,7 @@ const Page = () => {
             More similar books
           </h2>
 
-          <ul className="flex gap-10 flex-wrap mt-10">
+          <ul className="flex xs:gap-10 gap-5 max-xs:justify-between flex-wrap mt-10">
             {[1, 2, 3, 4].map((item) => (
               <Book key={item} />
             ))}
