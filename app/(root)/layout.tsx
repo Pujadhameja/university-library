@@ -11,7 +11,7 @@ function Layout({
       <Header />
       <Sidebar />
 
-      <div className="flex-1 flex flex-col md:px-16 px-10 xs:py-24 pt-10 pb-32 gradient-horizontal">
+      <div className="flex-1 flex flex-col md:px-16 xs:px-10 px-5 xs:py-24 pt-10 pb-32 gradient-horizontal">
         <div className="max-w-7xl mx-auto">{children}</div>
       </div>
     </main>
