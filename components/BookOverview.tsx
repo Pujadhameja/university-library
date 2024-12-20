@@ -4,6 +4,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 
 import { Button } from "./ui/button";
+import BookCase from "./BookCase";
 
 interface BookProps {
   book: {
@@ -76,13 +77,8 @@ const BookOverview = ({ book }: BookProps) => {
         </div>
       </div>
 
-      <div className="relative flex-1">
-        <Image
-          src="/images/origin.png"
-          alt="origin"
-          fill
-          className="w-full h-96 object-contain"
-        />
+      <div className="relative flex-1 flex justify-center">
+        <BookCase width={286} height={394} />
       </div>
     </section>
   );
