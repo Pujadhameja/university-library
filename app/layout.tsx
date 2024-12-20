@@ -44,8 +44,6 @@ export const metadata: Metadata = {
   description: "A book library app",
 };
 
-const urlEndpoint = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT;
-
 export default function RootLayout({
   children,
 }: Readonly<{

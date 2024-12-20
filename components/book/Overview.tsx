@@ -21,7 +21,7 @@ interface BookProps {
 }
 
 const BookOverview = ({ book }: BookProps) => {
-  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  // const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
     <section className="flex flex-row gap-8 max-xl:flex-col-reverse max-sm:items-center">
@@ -58,9 +58,9 @@ const BookOverview = ({ book }: BookProps) => {
         <div className="flex flex-row gap-6 max-md:flex-col max-sm:items-center">
           <Button
             className="text-dark-800 bg-primary min-h-14 hover:bg-primary/90 max-md:w-full"
-            onClick={() => {
-              setIsDialogOpen(true);
-            }}
+            // onClick={() => {
+            //   setIsDialogOpen(true);
+            // }}
           >
             <Image src="/icons/book.svg" alt="book" width={20} height={20} />
             <p className="font-bebas-neue text-xl text-dark-800">

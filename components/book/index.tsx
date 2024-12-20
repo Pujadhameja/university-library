@@ -12,11 +12,7 @@ interface Props {
   cover?: string;
 }
 
-const Book = ({
-  isLoanedBook = false,
-  coverColor = "#012B48",
-  cover = "/images/origin.png",
-}: Props) => {
+const Book = ({ isLoanedBook = false }: Props) => {
   return (
     <li>
       <Link
