@@ -78,7 +78,7 @@ const BookOverview = ({ book }: BookProps) => {
       </div>
 
       <div className="relative flex-1 flex justify-center">
-        <BookCase width={286} height={394} />
+        <BookCase variant="wide" />
       </div>
     </section>
   );

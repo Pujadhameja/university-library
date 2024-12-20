@@ -1,24 +1,43 @@
 import Image from "next/image";
 import React from "react";
+import { cn } from "@/lib/utils";
 
-const BookCase = ({
-  width = 144,
-  height = 199,
-  coverColor = "#012B48",
-}: {
-  width?: number;
-  height?: number;
+type BookCaseVariant = "default" | "wide";
+
+interface BookCaseProps {
   coverColor?: string;
+  variant?: BookCaseVariant;
+  className?: string;
+  coverImage?: string;
+}
+
+const variantStyles: Record<BookCaseVariant, string> = {
+  default: "w-[144px] h-[199px]",
+  wide: "w-[276px] h-[384px]",
+};
+
+const BookCase: React.FC<BookCaseProps> = ({
+  className,
+  variant = "default",
+  coverColor = "#012B48",
+  coverImage = "/images/origin.png",
 }) => {
   return (
-    <div className="relative" style={{ width, height }}>
+    <div
+      className={cn(
+        "relative transition-all duration-300",
+        variantStyles[variant],
+        className
+      )}
+    >
       <svg
         preserveAspectRatio="none"
         fill="none"
-        width={width}
-        height={height}
+        width="100%"
+        height="100%"
         viewBox="0 0 143 199"
         xmlns="http://www.w3.org/2000/svg"
+        className="absolute inset-0"
       >
         <path
           d="M141.851 196.481H140.652V174.61C141.39 173.885 141.851 172.876 141.851 171.763V4.26316C141.851 2.07107 140.068 0.277516 137.889 0.277516H16.7824C16.7824 0.277516 3.06348 -0.381156 0 11.5424V183.921C0 199.797 9.59001 198.993 9.59001 198.993H141.851C142.497 198.886 142.991 198.655 143 197.938C143.018 196.582 141.851 196.481 141.851 196.481Z"
@@ -63,17 +82,18 @@ const BookCase = ({
       </svg>
 
       <div
-        className="absolute top-0 right-0 bottom-0 z-10"
+        className="absolute z-10"
         style={{
-          width: width * 0.88,
-          height: height * 0.88,
+          left: "12%",
+          width: "87.5%",
+          height: "88%",
         }}
       >
         <Image
-          src="/images/origin.png"
-          alt="cover"
+          src={coverImage}
+          alt="Book cover"
           fill
-          className="object-cover"
+          className="object-contain rounded-sm"
         />
       </div>
     </div>
