@@ -1,27 +1,55 @@
+import Link from "next/link";
 import Image from "next/image";
 
-import { Button } from "./ui/button";
 import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { Button } from "./ui/button";
 
 interface Props {
   isLoanedBook?: boolean;
+  coverColor?: string;
+  cover?: string;
 }
 
-const Book = ({ isLoanedBook = false }: Props) => {
+const Book = ({
+  isLoanedBook = false,
+  coverColor = "#012B48",
+  cover = "/images/origin.png",
+}: Props) => {
   return (
     <li>
       <Link
         href="/books/1"
         className={cn(isLoanedBook && "w-52 flex flex-col items-center")}
       >
-        <Image
-          src="/images/origin.png"
-          alt="book-cover"
-          width={160}
-          height={240}
-          className="object-contain rounded-xl"
-        />
+        <div className="relative w-60 h-80">
+          <div
+            className="absolute inset-0 rounded-[12px_10px_8px_20px] shadow-[1px_3px_20px_0px_rgba(0,0,0,0.1)] "
+            style={{
+              transformStyle: "preserve-3d",
+              transform: "rotateY(-20deg)",
+            }}
+          >
+            {/* Cover */}
+            <div
+              className="absolute inset-0 rounded-[12px_10px_8px_20px]"
+              style={{
+                backgroundColor: coverColor,
+              }}
+            >
+              <div className="absolute left-8 top-0 right-0 bottom-8 rounded-r-[10px]">
+                <Image
+                  src={cover}
+                  alt="Book cover"
+                  layout="fill"
+                  objectFit="cover"
+                />
+              </div>
+            </div>
+
+            {/* Pages */}
+            <div className="absolute bg-white bottom-1 right-0 h-8 w-[calc(100%-8px)] rounded-[20px_2px_2px_20px] shadow-[inset_2px_3px_0px_0px_rgba(0,0,0,0.1)]" />
+          </div>
+        </div>
 
         <div className={cn("mt-4", !isLoanedBook && "max-w-40")}>
           <p className="text-xl mt-2 font-semibold text-white line-clamp-2">

@@ -51,4 +51,9 @@
   .search-input {
     @apply w-full border-none font-bold placeholder:font-normal text-light-900 placeholder:text-light-200 focus-visible:ring-0 focus-visible:shadow-none !important;
   }
+
+  .transform-3d {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+  }
 }
