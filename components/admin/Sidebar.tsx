@@ -35,15 +35,17 @@ const Sidebar = () => {
             return (
               <Link key={link.route} href={link.route}>
                 <div
-                  className={`flex flex-row items-center ${isSelected && "bg-primary-admin shadow-sm"} w-full gap-2 rounded-lg px-5 py-3.5 max-md:justify-center`}
+                  className={` flex flex-row items-center ${isSelected && "bg-primary-admin shadow-sm"} w-full gap-2 rounded-lg px-5 py-3.5 max-md:justify-center `}
                 >
-                  <Image
-                    src={link.img}
-                    width={20}
-                    height={20}
-                    alt="icon"
-                    className={isSelected ? "brightness-0 invert" : ""}
-                  />
+                  <div className="relative size-5">
+                    <Image
+                      src={link.img}
+                      alt="icon"
+                      fill
+                      className={`${isSelected ? "brightness-0 invert" : ""}  object-contain`}
+                    />
+                  </div>
+
                   <p
                     className={`text-base font-medium  ${isSelected ? "text-white" : "text-dark-200"} max-md:hidden`}
                   >
