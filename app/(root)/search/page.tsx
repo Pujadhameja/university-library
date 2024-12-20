@@ -1,4 +1,4 @@
-import Book from "@/components/Book";
+import Book from "@/components/book";
 import Search from "@/components/Search";
 
 const Page = () => {

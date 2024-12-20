@@ -2,26 +2,26 @@ import Image from "next/image";
 import React from "react";
 import { cn } from "@/lib/utils";
 
-type BookCaseVariant = "default" | "wide";
+type BookCoverVariant = "default" | "wide";
 
-interface BookCaseProps {
+interface Props {
   coverColor?: string;
-  variant?: BookCaseVariant;
+  variant?: BookCoverVariant;
   className?: string;
   coverImage?: string;
 }
 
-const variantStyles: Record<BookCaseVariant, string> = {
+const variantStyles: Record<BookCoverVariant, string> = {
   default: "w-[144px] h-[199px]",
   wide: "w-[276px] h-[384px]",
 };
 
-const BookCase: React.FC<BookCaseProps> = ({
+const BookCover = ({
   className,
   variant = "default",
   coverColor = "#012B48",
   coverImage = "/images/origin.png",
-}) => {
+}: Props) => {
   return (
     <div
       className={cn(
@@ -100,4 +100,4 @@ const BookCase: React.FC<BookCaseProps> = ({
   );
 };
 
-export default BookCase;
+export default BookCover;

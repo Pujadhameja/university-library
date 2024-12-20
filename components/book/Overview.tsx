@@ -3,8 +3,8 @@
 import Image from "next/image";
 import React, { useState } from "react";
 
-import { Button } from "./ui/button";
-import BookCase from "./BookCase";
+import BookCover from "./Cover";
+import { Button } from "../ui/button";
 
 interface BookProps {
   book: {
@@ -78,7 +78,7 @@ const BookOverview = ({ book }: BookProps) => {
       </div>
 
       <div className="relative flex-1 flex justify-center">
-        <BookCase variant="wide" />
+        <BookCover variant="wide" />
       </div>
     </section>
   );

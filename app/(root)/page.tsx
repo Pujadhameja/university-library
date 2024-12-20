@@ -1,5 +1,5 @@
-import Book from "@/components/Book";
-import BookOverview from "@/components/BookOverview";
+import Book from "@/components/book";
+import BookOverview from "@/components/book/Overview";
 
 const Home = () => {
   return (

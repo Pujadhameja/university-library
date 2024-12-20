@@ -1,8 +1,6 @@
-import { IKVideo } from "imagekitio-next";
-
-import Book from "@/components/Book";
-import BookOverview from "@/components/BookOverview";
-import BookVideo from "@/components/BookVideo";
+import Book from "@/components/book";
+import BookVideo from "@/components/book/Video";
+import BookOverview from "@/components/book/Overview";
 
 const Page = () => {
   return (

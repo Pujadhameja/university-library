@@ -2,8 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
-import BookCase from "./BookCase";
+
+import BookCover from "./Cover";
+import { Button } from "../ui/button";
 
 interface Props {
   isLoanedBook?: boolean;
@@ -22,7 +23,7 @@ const Book = ({
         href="/books/1"
         className={cn(isLoanedBook && "w-52 flex flex-col items-center")}
       >
-        <BookCase />
+        <BookCover />
 
         <div className={cn("mt-4", !isLoanedBook && "max-w-40")}>
           <p className="text-xl mt-2 font-semibold text-white line-clamp-2">
