@@ -45,6 +45,9 @@ export default {
           100: "#64748B",
         },
       },
+      screens: {
+        xs: "480px",
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
