@@ -20,3 +20,36 @@ export const sideBarLinks = [
     route: "/library",
   },
 ];
+
+export const adminSideBarLinks = [
+  {
+    img: "/icons/admin/home.svg",
+    selectedImg: "/icons/admin/home.svg",
+    route: "/admin",
+    text: "Home",
+  },
+  {
+    img: "/icons/admin/home.svg",
+    selectedImg: "/icons/admin/home.svg",
+    route: "/admin/users",
+    text: "All Users",
+  },
+  {
+    img: "/icons/admin/home.svg",
+    selectedImg: "/icons/admin/home.svg",
+    route: "/admin/books",
+    text: "All Books",
+  },
+  {
+    img: "/icons/admin/home.svg",
+    selectedImg: "/icons/admin/home.svg",
+    route: "/admin/book-requests",
+    text: "Borrow Requests",
+  },
+  {
+    img: "/icons/admin/home.svg",
+    selectedImg: "/icons/admin/home.svg",
+    route: "/admin/account-requests",
+    text: "Account Requests",
+  },
+];
