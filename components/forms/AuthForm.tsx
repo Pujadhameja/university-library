@@ -16,6 +16,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { zodResolver } from "@hookform/resolvers/zod";
 import ImageUpload from "../ImageUpload";
+import { signInWithCredentials, signUp } from "@/lib/actions/auth";
 
 type FormType = "sign-in" | "sign-up";
 
@@ -25,9 +26,9 @@ const authFormSchema = (type: FormType) => {
   return z.object({
     fullName: !isSignIn ? z.string().min(3) : z.string().optional(),
     email: z.string().email(),
-    idNumber: !isSignIn ? z.string().min(8) : z.string().optional(),
+    universityId: !isSignIn ? z.string().min(8) : z.string().optional(),
     password: z.string().min(8),
-    file: !isSignIn
+    universityCard: !isSignIn
       ? z.string().nonempty("Uploading a university ID card is required")
       : z.string().optional(),
   });
@@ -42,15 +43,43 @@ const AuthForm = ({ type }: { type: FormType }) => {
     defaultValues: {
       fullName: "",
       email: "",
-      idNumber: "",
+      universityId: "",
       password: "",
-      file: "",
+      universityCard: "",
     },
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log("Form submitted");
-    console.log(data);
+    console.log("FORM DATA", data);
+
+    if (isSignIn) {
+      const result = await signInWithCredentials({
+        email: data.email,
+        password: data.password,
+      });
+
+      if (result.success) {
+        // form.reset();
+        console.log("Sign-in successful");
+      } else {
+        console.error("Sign-in failed:", result.error);
+      }
+    } else {
+      const result = await signUp({
+        fullname: data.fullName!,
+        email: data.email,
+        universityId: +data.universityId!,
+        password: data.password,
+        universityCard: data.universityCard!,
+      });
+
+      if (result.success) {
+        // form.reset();
+        console.log("Sign-up successful");
+      } else {
+        console.error("Sign-up failed:", result.error);
+      }
+    }
   };
 
   return (
@@ -111,7 +140,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
           {!isSignIn && (
             <FormField
               control={form.control}
-              name="idNumber"
+              name="universityId"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>University ID Number</FormLabel>
@@ -150,7 +179,7 @@ const AuthForm = ({ type }: { type: FormType }) => {
           {!isSignIn && (
             <FormField
               control={form.control}
-              name="file"
+              name="universityCard"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel>Upload University ID Card</FormLabel>

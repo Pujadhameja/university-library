@@ -24,7 +24,7 @@ const Home = async () => {
           Your Borrowed Books
         </h2>
 
-        <ul className="flex gap-10 flex-wrap mt-10">
+        <ul className="flex gap-10 flex-wrap justify-between mt-10">
           {[1, 2, 3, 4, 5, 6, 7].map((item) => (
             <Book key={item} />
           ))}

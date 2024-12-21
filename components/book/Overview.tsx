@@ -24,7 +24,7 @@ const BookOverview = ({ book }: BookProps) => {
   // const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   return (
-    <section className="flex flex-row gap-8 max-xl:flex-col-reverse max-sm:items-center">
+    <section className="flex flex-row gap-8 max-xl:flex-col-reverse items-center">
       <div className="flex-1 flex flex-col gap-5">
         <h1 className="text-7xl font-semibold text-light-900">{book.title}</h1>
 
@@ -78,7 +78,12 @@ const BookOverview = ({ book }: BookProps) => {
       </div>
 
       <div className="relative flex-1 flex justify-center">
-        <BookCover variant="wide" />
+        <div className="relative">
+          <BookCover variant="wide" className="z-10" />
+          <div className="absolute top-10 left-12 opacity-60 blur-sm rotate-12">
+            <BookCover variant="wide" />
+          </div>
+        </div>
       </div>
     </section>
   );
