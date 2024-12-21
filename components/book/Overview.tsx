@@ -26,9 +26,9 @@ const BookOverview = ({ book }: BookProps) => {
   return (
     <section className="flex flex-row gap-8 max-xl:flex-col-reverse items-center">
       <div className="flex-1 flex flex-col gap-5">
-        <h1 className="text-7xl font-semibold text-light-900">{book.title}</h1>
+        <h1 className="text-7xl font-semibold text-white">{book.title}</h1>
 
-        <div className="mt-7 flex flex-row gap-4 text-light-200">
+        <div className="mt-7 flex flex-row gap-4 text-light-100">
           <p>
             By <span className="text-primary">{book.author}</span>
           </p>
@@ -37,11 +37,11 @@ const BookOverview = ({ book }: BookProps) => {
           </p>
         </div>
 
-        <p className="text-light-200">
+        <p className="text-light-100">
           Category: <span className="text-primary ml-2">{book.genre}</span>
         </p>
 
-        <div className="flex flex-row gap-4 text-light-200">
+        <div className="flex flex-row gap-4 text-light-100">
           <div className="flex flex-row gap-1">
             <Image src="/icons/star.svg" alt="star" width={22} height={22} />
             <p>{book.rating}</p>
@@ -53,7 +53,7 @@ const BookOverview = ({ book }: BookProps) => {
           </div>
         </div>
 
-        <p className="text-justify text-light-200">{book.description}</p>
+        <p className="text-justify text-light-100">{book.description}</p>
 
         <div className="flex flex-row gap-6 max-md:flex-col max-sm:items-center">
           <Button

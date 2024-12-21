@@ -6,7 +6,7 @@ function AuthLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex sm:flex-row flex-col-reverse text-light-200 relative">
+    <main className="flex sm:flex-row flex-col-reverse text-light-100 relative">
       <section className="flex-1 h-full px-5 py-10 my-auto flex items-center min-h-screen bg-pattern bg-cover bg-top">
         <div className="gradient-vertical p-10 max-w-xl rounded-lg flex flex-col gap-6 mx-auto">
           <div className="flex flex-row gap-2">

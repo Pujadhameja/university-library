@@ -85,7 +85,7 @@ const ImageUpload = ({
           alt="upload-icon"
           className="size-5 object-contain"
         />
-        <p className="text-light-200 text-base">Upload a File</p>
+        <p className="text-light-100 text-base">Upload a File</p>
 
         {file && (
           <p className="mt-1 text-light-100 text-xs text-center">

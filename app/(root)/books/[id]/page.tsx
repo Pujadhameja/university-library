@@ -31,7 +31,7 @@ const Page = () => {
           <section className="flex flex-col gap-7 mt-10">
             <h3 className="text-primary font-semibold text-xl">Summary</h3>
 
-            <div className="text-light-200 text-xl space-y-5">
+            <div className="text-light-100 text-xl space-y-5">
               <p>
                 People in Glass Houses by Jayne Castle (a pseudonym for Jayne
                 Ann Krentz) is a science fiction romance set in a future world
@@ -65,7 +65,7 @@ const Page = () => {
         </div>
 
         <section className="flex-1">
-          <h2 className="font-bebas-neue text-4xl text-light-200">
+          <h2 className="font-bebas-neue text-4xl text-light-100">
             More similar books
           </h2>
 

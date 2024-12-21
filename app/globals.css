@@ -45,11 +45,11 @@
   }
 
   .form-input {
-    @apply w-full min-h-14 border-none text-base font-bold placeholder:font-normal text-light-900 placeholder:text-light-200 focus-visible:ring-0 focus-visible:shadow-none bg-dark-300 !important;
+    @apply w-full min-h-14 border-none text-base font-bold placeholder:font-normal text-white placeholder:text-light-100 focus-visible:ring-0 focus-visible:shadow-none bg-dark-300 !important;
   }
 
   .search-input {
-    @apply w-full border-none font-bold placeholder:font-normal text-light-900 placeholder:text-light-200 focus-visible:ring-0 focus-visible:shadow-none !important;
+    @apply w-full border-none font-bold placeholder:font-normal text-white placeholder:text-light-100 focus-visible:ring-0 focus-visible:shadow-none !important;
   }
 
   .transform-3d {

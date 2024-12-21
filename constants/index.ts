@@ -1,23 +1,14 @@
-export const sideBarLinks = [
+export const navigationLinks = [
   {
-    img: "/icons/search.svg",
-    selectedImg: "/icons/search-fill.svg",
-    route: "/search",
+    href: "/library",
+    label: "Library",
   },
-  {
-    img: "/icons/home.svg",
-    selectedImg: "/icons/home-fill.svg",
-    route: "/",
-  },
+
   {
     img: "/icons/user.svg",
     selectedImg: "/icons/user-fill.svg",
-    route: "/my-profile",
-  },
-  {
-    img: "/icons/library.svg",
-    selectedImg: "/icons/library-fill.svg",
-    route: "/library",
+    href: "/my-profile",
+    label: "My Profile",
   },
 ];
 

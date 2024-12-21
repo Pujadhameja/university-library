@@ -1,5 +1,4 @@
 import Header from "@/components/Header";
-import Sidebar from "@/components/Sidebar";
 
 function Layout({
   children,
@@ -7,12 +6,11 @@ function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <main className="flex xs:flex-row flex-col">
-      <Header />
-      <Sidebar />
+    <main className="flex-1 flex flex-col md:px-16 xs:px-10 px-5  bg-pattern bg-cover bg-top min-h-screen">
+      <div className="max-w-7xl mx-auto">
+        <Header />
 
-      <div className="flex-1 flex flex-col md:px-16 xs:px-10 px-5 xs:py-24 pt-10 pb-32 gradient-horizontal">
-        <div className="max-w-7xl mx-auto">{children}</div>
+        <div className="mt-20 pb-20">{children}</div>
       </div>
     </main>
   );

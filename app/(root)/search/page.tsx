@@ -17,7 +17,7 @@ const Page = () => {
       </section>
 
       <section className="mt-20">
-        <h2 className="font-bebas-neue text-4xl text-light-200">
+        <h2 className="font-bebas-neue text-4xl text-light-100">
           Search Result
         </h2>
 

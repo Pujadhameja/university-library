@@ -68,7 +68,7 @@ const Sidebar = () => {
 
         <div className="flex flex-col max-md:hidden">
           <p className="text-lg font-semibold text-dark-200">Adrian Hajdin</p>
-          <p className="text-light-200">adrian@jsmastery.pro</p>
+          <p className="text-light-100">adrian@jsmastery.pro</p>
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ const Home = async () => {
       />
 
       <section className="mt-20">
-        <h2 className="font-bebas-neue text-4xl text-light-200">
+        <h2 className="font-bebas-neue text-4xl text-light-100">
           Your Borrowed Books
         </h2>
 

@@ -25,7 +25,7 @@ const Book = ({ isLoanedBook = false }: Props) => {
           <p className="xs:text-xl text-base mt-2 font-semibold text-white line-clamp-2">
             Origin - By Dan Brown
           </p>
-          <p className="text-light-200 mt-1 xs:text-base text-sm italic line-clamp-1">
+          <p className="text-light-100 mt-1 xs:text-base text-sm italic line-clamp-1">
             Thriller / Mystery
           </p>
         </div>
@@ -41,7 +41,7 @@ const Book = ({ isLoanedBook = false }: Props) => {
                 className="object-contain"
               />
 
-              <p className="text-bae text-light-200">11 days left to due</p>
+              <p className="text-bae text-light-100">11 days left to due</p>
             </div>
 
             <Button className="gradient-gray min-h-14 text-primary text-base font-bebas-neue w-full mt-3">

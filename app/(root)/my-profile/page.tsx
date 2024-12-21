@@ -4,7 +4,7 @@ const Page = () => {
   return (
     <>
       <section>
-        <h2 className="font-bebas-neue text-4xl text-light-200">
+        <h2 className="font-bebas-neue text-4xl text-light-100">
           Borrowed Books
         </h2>
 
