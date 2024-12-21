@@ -9,7 +9,7 @@ const Search = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="gradient-input relative flex w-full items-center rounded-xl px-4 mt-10 min-h-14">
+    <div className="bg-dark-300 relative flex w-full items-center rounded-xl px-4 mt-10 min-h-14">
       <Image
         src="/icons/search-fill.svg"
         alt="search"

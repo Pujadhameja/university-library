@@ -78,7 +78,7 @@ const ImageUpload = ({
             ikUploadRef.current?.click();
           }
         }}
-        className="gradient-input w-full min-h-14 flex justify-center items-center gap-1.5 rounded-md"
+        className="bg-dark-300 w-full min-h-14 flex justify-center items-center gap-1.5 rounded-md"
       >
         <img
           src="/icons/upload.svg"

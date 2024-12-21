@@ -7,7 +7,7 @@ function AuthLayout({
 }>) {
   return (
     <main className="flex sm:flex-row flex-col-reverse text-light-200 relative">
-      <section className="flex-1 h-full gradient-horizontal px-5 py-10 my-auto flex items-center min-h-screen">
+      <section className="flex-1 h-full px-5 py-10 my-auto flex items-center min-h-screen bg-pattern bg-cover bg-top">
         <div className="gradient-vertical p-10 max-w-xl rounded-lg flex flex-col gap-6 mx-auto">
           <div className="flex flex-row gap-2">
             <Image src="/icons/logo.svg" alt="logo" width={37} height={37} />

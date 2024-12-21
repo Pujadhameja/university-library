@@ -110,7 +110,7 @@ const AuthForm = <T extends FieldValues>({
                           FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]
                         }
                         {...field}
-                        className="gradient-input input"
+                        className="form-input"
                       />
                     )}
                   </FormControl>

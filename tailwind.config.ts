@@ -41,6 +41,7 @@ export default {
           800: "#16191E",
           500: "#1C2025",
           400: "#1E293B",
+          300: "#232839",
           200: "#3A354E",
           100: "#64748B",
         },
@@ -52,6 +53,9 @@ export default {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
+      },
+      backgroundImage: {
+        pattern: "url('/images/pattern.webp')",
       },
     },
   },
