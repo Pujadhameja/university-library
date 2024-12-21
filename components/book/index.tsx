@@ -6,27 +6,21 @@ import { cn } from "@/lib/utils";
 import BookCover from "./Cover";
 import { Button } from "../ui/button";
 
-interface Props {
-  isLoanedBook?: boolean;
-  coverColor?: string;
-  cover?: string;
-}
-
-const Book = ({ isLoanedBook = false }: Props) => {
+const Book = ({ title, genre, color, cover, isLoanedBook = false }: Book) => {
   return (
     <li className={cn(isLoanedBook && "xs:w-52 w-full")}>
       <Link
         href="/books/1"
         className={cn(isLoanedBook && "w-full flex flex-col items-center")}
       >
-        <BookCover />
+        <BookCover coverColor={color} coverImage={cover} />
 
         <div className={cn("mt-4", !isLoanedBook && "xs:max-w-40 max-w-28")}>
           <p className="xs:text-xl text-base mt-2 font-semibold text-white line-clamp-2">
-            Origin - By Dan Brown
+            {title}
           </p>
           <p className="text-light-100 mt-1 xs:text-base text-sm italic line-clamp-1">
-            Thriller / Mystery
+            {genre}
           </p>
         </div>
 

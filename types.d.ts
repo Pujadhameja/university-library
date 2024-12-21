@@ -5,3 +5,16 @@ interface AuthCredentails {
   universityId: number;
   universityCard: string;
 }
+
+interface Book {
+  title: string;
+  author: string;
+  narrator: string;
+  genre: string;
+  length: string;
+  rating: number;
+  description: string;
+  color: string;
+  cover: string;
+  isLoanedBook?: boolean;
+}

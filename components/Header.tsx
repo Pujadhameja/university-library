@@ -9,7 +9,6 @@ import { navigationLinks } from "@/constants";
 
 const Header = () => {
   const pathname = usePathname();
-  console.log("PATHNAME", pathname);
 
   return (
     <header className="my-10 flex justify-between gap-5">

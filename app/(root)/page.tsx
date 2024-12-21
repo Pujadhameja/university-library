@@ -1,32 +1,20 @@
 import Book from "@/components/book";
 import BookOverview from "@/components/book/Overview";
+import { sampleBooks } from "@/constants";
 
 const Home = async () => {
   return (
     <>
-      <BookOverview
-        book={{
-          title: "Origin",
-          author: "Dan Brown",
-          narrator: "Paul Michael",
-          genre: "Thriller / Mystery",
-          length: "18 hrs 10 mins",
-          rating: 4.5,
-          description:
-            "Origin is a 2017 mystery-thriller novel by American author Dan Brown. It is the fifth installment in the Robert Langdon series, following previous bestsellers such as The Da Vinci Code and Angels & Demons. ",
-          color: "#012B48",
-          cover: "/images/origin.png",
-        }}
-      />
+      <BookOverview {...sampleBooks[0]} />
 
-      <section className="mt-20">
+      <section className="mt-28">
         <h2 className="font-bebas-neue text-4xl text-light-100">
-          Your Borrowed Books
+          Latest Books
         </h2>
 
-        <ul className="flex gap-10 flex-wrap justify-between mt-10">
-          {[1, 2, 3, 4, 5, 6, 7].map((item) => (
-            <Book key={item} />
+        <ul className="flex gap-10 flex-wrap mt-10">
+          {sampleBooks.map((item) => (
+            <Book key={item.title} {...item} />
           ))}
         </ul>
       </section>
