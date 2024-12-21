@@ -1,24 +1,16 @@
 import Book from "@/components/book";
 import BookVideo from "@/components/book/Video";
 import BookOverview from "@/components/book/Overview";
+import { sampleBooks } from "@/constants";
 
-const Page = () => {
+const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const id = (await params).id;
+
+  const book = sampleBooks.find((item) => item.id === +id) || sampleBooks[0];
+
   return (
     <>
-      <BookOverview
-        book={{
-          title: "Origin",
-          author: "Dan Brown",
-          narrator: "Paul Michael",
-          genre: "Thriller / Mystery",
-          length: "18 hrs 10 mins",
-          rating: 4.5,
-          description:
-            "Origin is a 2017 mystery-thriller novel by American author Dan Brown. It is the fifth installment in the Robert Langdon series, following previous bestsellers such as The Da Vinci Code and Angels & Demons. ",
-          color: "#012B48",
-          cover: "/images/origin.png",
-        }}
-      />
+      <BookOverview {...book} />
 
       <div className="flex lg:flex-row flex-col my-20 gap-16">
         <div className="flex-[1.5]">
@@ -70,8 +62,8 @@ const Page = () => {
           </h2>
 
           <ul className="flex xs:gap-10 gap-5 max-xs:justify-between flex-wrap mt-10">
-            {[1, 2, 3, 4].map((item) => (
-              <Book key={item} />
+            {sampleBooks.slice(3).map((item) => (
+              <Book key={item.title} {...item} />
             ))}
           </ul>
         </section>

@@ -1,4 +1,5 @@
 import Book from "@/components/book";
+import { sampleBooks } from "@/constants";
 
 const Page = () => {
   return (
@@ -9,8 +10,8 @@ const Page = () => {
         </h2>
 
         <ul className="flex gap-x-10 gap-y-20 max-xs:justify-center flex-wrap mt-10">
-          {[1, 2, 3, 4, 5, 6, 7].map((item) => (
-            <Book key={item} isLoanedBook />
+          {sampleBooks.map((item) => (
+            <Book key={item.title} {...item} isLoanedBook />
           ))}
         </ul>
       </section>
