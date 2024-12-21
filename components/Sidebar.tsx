@@ -5,6 +5,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import { sideBarLinks } from "@/constants";
+import { signOut } from "next-auth/react";
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -43,7 +44,10 @@ const Sidebar = () => {
         })}
       </div>
 
-      <button onClick={() => {}} className="max-xs:hidden">
+      <button
+        onClick={() => signOut({ callbackUrl: "/sign-in" })}
+        className="max-xs:hidden"
+      >
         <Image src="/icons/logout.svg" alt="logout" width={40} height={40} />
       </button>
     </section>

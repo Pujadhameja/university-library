@@ -1,8 +1,16 @@
 "use client";
 
-import { z } from "zod";
+import {
+  DefaultValues,
+  FieldValues,
+  Path,
+  SubmitHandler,
+  useForm,
+  UseFormReturn,
+} from "react-hook-form";
 import Link from "next/link";
-import { useForm } from "react-hook-form";
+import { ZodType } from "zod";
+import { useRouter } from "next/navigation";
 
 import {
   Form,
@@ -12,73 +20,56 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { zodResolver } from "@hookform/resolvers/zod";
 import ImageUpload from "../ImageUpload";
-import { signInWithCredentials, signUp } from "@/lib/actions/auth";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
+import { FIELD_NAMES, FIELD_TYPES } from "@/constants";
 
-type FormType = "sign-in" | "sign-up";
+import { toast } from "@/hooks/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-const authFormSchema = (type: FormType) => {
-  const isSignIn = type === "sign-in";
+interface Props<T extends FieldValues> {
+  schema: ZodType<T>;
+  defaultValues: T;
+  onSubmit: (data: T) => Promise<{ success: boolean; error?: string }>;
+  type: "SIGN_IN" | "SIGN_UP";
+}
 
-  return z.object({
-    fullName: !isSignIn ? z.string().min(3) : z.string().optional(),
-    email: z.string().email(),
-    universityId: !isSignIn ? z.string().min(8) : z.string().optional(),
-    password: z.string().min(8),
-    universityCard: !isSignIn
-      ? z.string().nonempty("Uploading a university ID card is required")
-      : z.string().optional(),
-  });
-};
+const AuthForm = <T extends FieldValues>({
+  schema,
+  defaultValues,
+  onSubmit,
+  type,
+}: Props<T>) => {
+  const router = useRouter();
 
-const AuthForm = ({ type }: { type: FormType }) => {
-  const isSignIn = type === "sign-in";
+  const isSignIn = type === "SIGN_IN";
 
-  const formSchema = authFormSchema(type);
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      fullName: "",
-      email: "",
-      universityId: "",
-      password: "",
-      universityCard: "",
-    },
+  const form: UseFormReturn<T> = useForm<T>({
+    resolver: zodResolver(schema),
+    defaultValues: defaultValues as DefaultValues<T>,
   });
 
-  const onSubmit = async (data: z.infer<typeof formSchema>) => {
+  const handleSubmit: SubmitHandler<T> = async (data) => {
     console.log("FORM DATA", data);
 
-    if (isSignIn) {
-      const result = await signInWithCredentials({
-        email: data.email,
-        password: data.password,
+    const result = await onSubmit(data);
+
+    if (result.success) {
+      toast({
+        title: "Success",
+        description: isSignIn
+          ? "You have successfully signed in."
+          : "You have successfully signed up.",
       });
 
-      if (result.success) {
-        // form.reset();
-        console.log("Sign-in successful");
-      } else {
-        console.error("Sign-in failed:", result.error);
-      }
+      router.replace("/");
     } else {
-      const result = await signUp({
-        fullname: data.fullName!,
-        email: data.email,
-        universityId: +data.universityId!,
-        password: data.password,
-        universityCard: data.universityCard!,
+      toast({
+        title: `Error ${isSignIn ? "signing in" : "signing up"}`,
+        description: result.error,
+        variant: "destructive",
       });
-
-      if (result.success) {
-        // form.reset();
-        console.log("Sign-up successful");
-      } else {
-        console.error("Sign-up failed:", result.error);
-      }
     }
   };
 
@@ -96,107 +87,44 @@ const AuthForm = ({ type }: { type: FormType }) => {
       </p>
       <Form {...form}>
         <form
-          onSubmit={form.handleSubmit(onSubmit)}
+          onSubmit={form.handleSubmit(handleSubmit)}
           className="w-full space-y-6"
         >
-          {!isSignIn && (
+          {Object.keys(defaultValues).map((field) => (
             <FormField
+              key={field}
               control={form.control}
-              name="fullName"
+              name={field as Path<T>}
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Name</FormLabel>
+                  <FormLabel className="capitalize">
+                    {FIELD_NAMES[field.name as keyof typeof FIELD_NAMES]}
+                  </FormLabel>
                   <FormControl>
-                    <Input
-                      placeholder="Your full name"
-                      {...field}
-                      className="gradient-input input"
-                    />
+                    {field.name === "universityCard" ? (
+                      <ImageUpload onFileChange={field.onChange} />
+                    ) : (
+                      <Input
+                        required
+                        type={
+                          FIELD_TYPES[field.name as keyof typeof FIELD_TYPES]
+                        }
+                        {...field}
+                        className="gradient-input input"
+                      />
+                    )}
                   </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
             />
-          )}
-
-          <FormField
-            control={form.control}
-            name="email"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Email</FormLabel>
-                <FormControl>
-                  <Input
-                    placeholder="Email address"
-                    {...field}
-                    className="gradient-input input"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {!isSignIn && (
-            <FormField
-              control={form.control}
-              name="universityId"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>University ID Number</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder="123456789"
-                      {...field}
-                      className="gradient-input input"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          )}
-
-          <FormField
-            control={form.control}
-            name="password"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Password</FormLabel>
-                <FormControl>
-                  <Input
-                    type="password"
-                    placeholder="At least 8 characters"
-                    {...field}
-                    className="gradient-input input"
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          {!isSignIn && (
-            <FormField
-              control={form.control}
-              name="universityCard"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Upload University ID Card</FormLabel>
-                  <FormControl>
-                    <ImageUpload onFileChange={field.onChange} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          )}
+          ))}
 
           <Button
             type="submit"
             className="bg-primary text-dark-800 hover:bg-primary inline-flex min-h-14 w-full items-center justify-center rounded-md px-6 py-2 font-bold text-base"
           >
-            Sign Up
+            {isSignIn ? "Sign In" : "Sign Up"}
           </Button>
         </form>
       </Form>

@@ -4,6 +4,7 @@ import { SessionProvider } from "next-auth/react";
 
 import "./globals.css";
 import { auth } from "@/auth";
+import { Toaster } from "@/components/ui/toaster";
 
 const ibmPlexSans = localFont({
   src: [
@@ -61,6 +62,8 @@ export default async function RootLayout({
           className={`${ibmPlexSans.className} ${bebasNeue.variable} antialiased`}
         >
           {children}
+
+          <Toaster />
         </body>
       </SessionProvider>
     </html>

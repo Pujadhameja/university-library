@@ -7,13 +7,7 @@ import { signIn } from "@/auth";
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 
-export async function signUp(params: {
-  fullname: string;
-  email: string;
-  universityId: number;
-  password: string;
-  universityCard: string;
-}) {
+export async function signUp(params: AuthCredentails) {
   const { fullname, email, universityId, password, universityCard } = params;
 
   const existingUser = await db
@@ -44,10 +38,9 @@ export async function signUp(params: {
   }
 }
 
-export async function signInWithCredentials(params: {
-  email: string;
-  password: string;
-}) {
+export async function signInWithCredentials(
+  params: Pick<AuthCredentails, "email" | "password">
+) {
   const { email, password } = params;
 
   try {
