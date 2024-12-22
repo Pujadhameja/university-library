@@ -1,10 +1,15 @@
+import { auth } from "@/auth";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
-function AuthLayout({
+async function AuthLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await auth();
+  if (session) redirect("/");
+
   return (
     <main className="flex sm:flex-row flex-col-reverse text-light-100 relative">
       <section className="flex-1 h-full px-5 py-10 my-auto flex items-center min-h-screen bg-pattern bg-cover bg-top">
