@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 
 import BookCover from "./Cover";
@@ -16,7 +14,7 @@ const BookOverview = ({
   cover,
 }: Book) => {
   return (
-    <section className="flex flex-row gap-8 max-xl:flex-col-reverse items-center">
+    <section className="flex xl:flex-row xl:gap-8 sm:gap-32 gap-12 flex-col-reverse items-center">
       <div className="flex-1 flex flex-col gap-5">
         <h1 className="text-7xl font-semibold text-white">{title}</h1>
 
@@ -62,7 +60,7 @@ const BookOverview = ({
             coverImage={cover}
           />
 
-          <div className="absolute top-10 left-16 opacity-40 rotate-12">
+          <div className="absolute max-sm:hidden top-10 left-16 opacity-40 rotate-12">
             <BookCover variant="wide" coverColor={color} coverImage={cover} />
           </div>
         </div>
