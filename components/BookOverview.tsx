@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 import Image from "next/image";
 
-import BookCover from "./Cover";
+import BookCover from "./BookCover";
 import { Button } from "@/components/ui/button";
 
 const BookOverview = ({

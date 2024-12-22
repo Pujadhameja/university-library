@@ -13,7 +13,7 @@ const Header = () => {
   const { data: session } = useSession();
 
   return (
-    <header className="my-10 flex justify-between gap-5">
+    <header className="my-10 flex items-center justify-between gap-5">
       <Link href="/">
         <Image src="/icons/logo.svg" width={40} height={40} alt="site-logo" />
       </Link>
@@ -24,7 +24,7 @@ const Header = () => {
             href="/library"
             className={cn(
               "text-base cursor-pointer capitalize",
-              pathname === "/library" ? "text-light-200" : "text-light-100",
+              pathname === "/library" ? "text-light-200" : "text-light-100"
             )}
           >
             library

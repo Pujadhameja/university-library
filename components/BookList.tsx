@@ -1,4 +1,4 @@
-import BookCard from "./Card";
+import BookCard from "./BookCard";
 
 interface Props {
   title: string;

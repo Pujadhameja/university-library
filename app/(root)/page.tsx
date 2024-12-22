@@ -1,7 +1,7 @@
 import { sampleBooks } from "@/constants";
 
-import BookList from "@/components/book/List";
-import BookOverview from "@/components/book/Overview";
+import BookList from "@/components/BookList";
+import BookOverview from "@/components/BookOverview";
 
 const Home = async () => (
   <>

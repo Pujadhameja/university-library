@@ -3,8 +3,8 @@ import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 
-import BookCover from "./Cover";
-import { Button } from "../ui/button";
+import BookCover from "./BookCover";
+import { Button } from "./ui/button";
 
 const BookCard = ({
   id,

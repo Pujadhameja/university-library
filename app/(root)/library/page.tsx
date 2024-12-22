@@ -1,5 +1,5 @@
 import Search from "@/components/Search";
-import BookList from "@/components/book/List";
+import BookList from "@/components/BookList";
 
 import { sampleBooks } from "@/constants";
 

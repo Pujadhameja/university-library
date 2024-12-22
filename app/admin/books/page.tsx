@@ -1,4 +1,4 @@
-import BookCover from "@/components/book/Cover";
+import BookCover from "@/components/BookCover";
 import { Button } from "@/components/ui/button";
 import {
   Table,

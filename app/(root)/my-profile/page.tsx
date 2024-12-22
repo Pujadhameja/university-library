@@ -2,7 +2,7 @@ import { signOut } from "@/auth";
 
 import { sampleBooks } from "@/constants";
 
-import BookList from "@/components/book/List";
+import BookList from "@/components/BookList";
 import { Button } from "@/components/ui/button";
 
 const Page = () => {

@@ -1,8 +1,8 @@
 import { sampleBooks } from "@/constants";
 
-import BookList from "@/components/book/List";
-import BookVideo from "@/components/book/Video";
-import BookOverview from "@/components/book/Overview";
+import BookList from "@/components/BookList";
+import BookVideo from "@/components/BookVideo";
+import BookOverview from "@/components/BookOverview";
 
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
