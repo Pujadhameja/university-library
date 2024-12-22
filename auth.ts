@@ -1,6 +1,6 @@
-import NextAuth from "next-auth";
 import { eq } from "drizzle-orm";
 import { compare } from "bcryptjs";
+import NextAuth, { User } from "next-auth";
 import { UpstashRedisAdapter } from "@auth/upstash-redis-adapter";
 import CredentialsProvider from "next-auth/providers/credentials";
 
@@ -33,14 +33,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         if (!isPasswordValid) return null;
 
-        return {
+        const authorizedUser: User = {
           id: user[0].id.toString(),
           email: user[0].email,
           name: user[0].fullname,
           universityId: user[0].universityId,
-          status: user[0].status,
-          isActive: user[0].isActive,
+          status: user[0].status as string,
+          isActive: user[0].isActive!,
         };
+
+        return authorizedUser;
       },
     }),
   ],
