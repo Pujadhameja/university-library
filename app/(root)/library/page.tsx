@@ -10,6 +10,7 @@ const Page = () => {
           Discover Your Next Great Read
         </p>
 
+
         <h2 className="font-semibold xs:text-5xl text-3xl text-white mt-2">
           Explore and Search for{" "}
           <span className="text-primary font-semibold">Any Book</span> In Our

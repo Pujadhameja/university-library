@@ -23,17 +23,17 @@ const Book = ({
         <BookCover coverColor={color} coverImage={cover} />
 
         <div className={cn("mt-4", !isLoanedBook && "xs:max-w-40 max-w-28")}>
-          <p className="xs:text-xl text-base mt-2 font-semibold text-white line-clamp-1">
+          <p className="mt-2 line-clamp-1 text-base font-semibold text-white xs:text-xl">
             {title}
           </p>
-          <p className="text-light-100 mt-1 xs:text-base text-sm italic line-clamp-1">
+          <p className="mt-1 line-clamp-1 text-sm italic text-light-100 xs:text-base">
             {genre}
           </p>
         </div>
 
         {isLoanedBook && (
           <div className="mt-3 w-full">
-            <div className="flex flex-row gap-1 items-center max-xs:justify-center">
+            <div className="flex flex-row items-center gap-1 max-xs:justify-center">
               <Image
                 src="/icons/calendar.svg"
                 alt="calendar"
@@ -42,10 +42,10 @@ const Book = ({
                 className="object-contain"
               />
 
-              <p className="text-bae text-light-100">11 days left to due</p>
+              <p className="text-light-100">11 days left to due</p>
             </div>
 
-            <Button className="gradient-gray min-h-14 text-primary text-base font-bebas-neue w-full mt-3">
+            <Button className="gradient-gray mt-3 min-h-14 w-full font-bebas-neue text-base text-primary">
               Download receipt
             </Button>
           </div>

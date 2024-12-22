@@ -12,18 +12,18 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     <>
       <BookOverview {...book} />
 
-      <div className="flex lg:flex-row flex-col my-20 gap-16">
+      <div className="my-20 flex flex-col gap-16 lg:flex-row">
         <div className="flex-[1.5]">
           <section className="flex flex-col gap-7">
-            <h3 className="text-primary font-semibold text-xl">Video</h3>
+            <h3 className="text-xl font-semibold text-primary">Video</h3>
 
             <BookVideo />
           </section>
 
-          <section className="flex flex-col gap-7 mt-10">
-            <h3 className="text-primary font-semibold text-xl">Summary</h3>
+          <section className="mt-10 flex flex-col gap-7">
+            <h3 className="text-xl font-semibold text-primary">Summary</h3>
 
-            <div className="text-light-100 text-xl space-y-5">
+            <div className="space-y-5 text-xl text-light-100">
               <p>
                 People in Glass Houses by Jayne Castle (a pseudonym for Jayne
                 Ann Krentz) is a science fiction romance set in a future world
@@ -47,8 +47,8 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
               <p>
                 The novel combines elements of mystery, suspense, and romance,
                 with a focus on psychic abilities, futuristic technology, and
-                the complexities of relationships. The title, "People in Glass
-                Houses," symbolizes the fragile nature of the world the
+                the complexities of relationships. The title, &#34;People in
+                Glass Houses&#34; symbolizes the fragile nature of the world the
                 characters inhabit and the vulnerabilities they face in their
                 personal and professional lives.
               </p>
@@ -61,7 +61,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
             More similar books
           </h2>
 
-          <ul className="flex xs:gap-10 gap-5 max-xs:justify-between flex-wrap mt-10">
+          <ul className="mt-10 flex flex-wrap gap-5 max-xs:justify-between xs:gap-10">
             {sampleBooks.slice(3).map((item) => (
               <Book key={item.title} {...item} />
             ))}
