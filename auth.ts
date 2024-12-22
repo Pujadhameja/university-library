@@ -1,15 +1,12 @@
-import NextAuth, { User } from "next-auth";
 import { eq } from "drizzle-orm";
 import { compare } from "bcryptjs";
-import { UpstashRedisAdapter } from "@auth/upstash-redis-adapter";
+import NextAuth, { User } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-import redis from "@/database/redis";
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: UpstashRedisAdapter(redis),
   session: {
     strategy: "jwt",
   },
