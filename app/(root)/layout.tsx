@@ -1,7 +1,8 @@
-import { auth } from "@/auth";
+import { ReactNode } from "react";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
-import { ReactNode } from "react";
+
+import { auth } from "@/auth";
 
 const Layout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
@@ -9,7 +10,7 @@ const Layout = async ({ children }: { children: ReactNode }) => {
   if (!session) redirect("/sign-in");
 
   return (
-    <main className="flex min-h-screen flex-1 flex-col bg-pattern bg-cover  bg-top px-5 xs:px-10 md:px-16">
+    <main className="root-container">
       <div className="mx-auto max-w-7xl">
         <Header />
 

@@ -11,8 +11,8 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
 
   return (
     <main className="auth-container">
-      <section className="auth-container__form">
-        <div className="auth-container__form__box">
+      <section className="auth-form">
+        <div className="auth-box">
           <div className="flex flex-row gap-2">
             <Image src="/icons/logo.svg" alt="logo" width={37} height={37} />
             <h1 className="text-2xl font-semibold text-white">BookWise</h1>
@@ -22,7 +22,7 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
         </div>
       </section>
 
-      <section className="auth-container__illustration">
+      <section className="auth-illustration">
         <Image
           src="/images/auth-illustration.png"
           alt="auth-illustration"
