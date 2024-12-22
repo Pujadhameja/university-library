@@ -13,6 +13,7 @@ const Page = () => {
           "use server";
           await signOut();
         }}
+        className="mb-10"
       >
         <Button>Logout</Button>
       </form>
