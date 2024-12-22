@@ -34,9 +34,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           id: user[0].id.toString(),
           email: user[0].email,
           name: user[0].fullname,
-          universityId: user[0].universityId,
-          status: user[0].status,
-          isActive: user[0].isActive,
         } as User;
       },
     }),
@@ -49,9 +46,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (user) {
         token.id = user.id;
         token.name = user.name;
-        token.universityId = user.universityId;
-        token.status = user.status;
-        token.isActive = user.isActive;
       }
       return token;
     },
@@ -59,9 +53,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
       if (session.user) {
         session.user.id = token.id as string;
         session.user.name = token.name as string;
-        session.user.universityId = token.universityId as number;
-        session.user.status = token.status as string;
-        session.user.isActive = token.isActive as boolean;
       }
       return session;
     },
