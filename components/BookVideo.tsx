@@ -1,13 +1,14 @@
 "use client";
 
+import config from "@/lib/config";
 import { IKVideo, ImageKitProvider } from "imagekitio-next";
-
-const publicKey = process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY;
-const urlEndpoint = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT;
 
 const BookVideo = ({ videoUrl }: { videoUrl: string }) => {
   return (
-    <ImageKitProvider publicKey={publicKey} urlEndpoint={urlEndpoint}>
+    <ImageKitProvider
+      publicKey={config.env.imagekit.publicKey}
+      urlEndpoint={config.env.imagekit.urlEndpoint}
+    >
       <IKVideo
         path={videoUrl}
         controls={true}

@@ -1,18 +1,16 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import Image from "next/image";
 import { useRef, useState } from "react";
 import { IKImage, IKUpload, ImageKitProvider } from "imagekitio-next";
 
+import config from "@/lib/config";
 import { toast } from "@/hooks/use-toast";
-
-const publicKey = process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY;
-const urlEndpoint = process.env.NEXT_PUBLIC_IMAGEKIT_URL_ENDPOINT;
-const apiEndpoint = process.env.NEXT_PUBLIC_API_ENDPOINT;
 
 const authenticator = async () => {
   try {
-    const response = await fetch(`${apiEndpoint}/api/auth`);
+    const response = await fetch(`${config.env.apiEndpoint}/api/auth/imagekit`);
 
     if (!response.ok) {
       const errorText = await response.text();
@@ -60,8 +58,8 @@ const ImageUpload = ({
 
   return (
     <ImageKitProvider
-      publicKey={publicKey}
-      urlEndpoint={urlEndpoint}
+      publicKey={config.env.imagekit.publicKey}
+      urlEndpoint={config.env.imagekit.urlEndpoint}
       authenticator={authenticator}
     >
       <IKUpload
