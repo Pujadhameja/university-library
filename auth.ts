@@ -1,4 +1,4 @@
-import NextAuth from "next-auth";
+import NextAuth, { User } from "next-auth";
 import { eq } from "drizzle-orm";
 import { compare } from "bcryptjs";
 import { UpstashRedisAdapter } from "@auth/upstash-redis-adapter";
@@ -40,7 +40,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           universityId: user[0].universityId,
           status: user[0].status,
           isActive: user[0].isActive,
-        };
+        } as User;
       },
     }),
   ],

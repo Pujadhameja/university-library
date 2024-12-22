@@ -1,7 +1,9 @@
 "use client";
 
+import Image from "next/image";
 import { useRef, useState } from "react";
 import { IKImage, IKUpload, ImageKitProvider } from "imagekitio-next";
+
 import { toast } from "@/hooks/use-toast";
 
 const publicKey = process.env.NEXT_PUBLIC_IMAGEKIT_PUBLIC_KEY;
@@ -16,7 +18,7 @@ const authenticator = async () => {
       const errorText = await response.text();
 
       throw new Error(
-        `Request failed with status ${response.status}: ${errorText}`,
+        `Request failed with status ${response.status}: ${errorText}`
       );
     }
 
@@ -81,11 +83,14 @@ const ImageUpload = ({
         }}
         className="flex min-h-14 w-full items-center justify-center gap-1.5 rounded-md bg-dark-300"
       >
-        <img
+        <Image
           src="/icons/upload.svg"
           alt="upload-icon"
-          className="size-5 object-contain"
+          width={20}
+          height={20}
+          className="object-contain"
         />
+
         <p className="text-base text-light-100">Upload a File</p>
 
         {file && (
@@ -96,14 +101,12 @@ const ImageUpload = ({
       </button>
 
       {file && (
-        <div>
-          <IKImage
-            path={file?.filePath}
-            alt="default-image"
-            width={500}
-            height={500}
-          />
-        </div>
+        <IKImage
+          path={file?.filePath}
+          alt="default-image"
+          width={500}
+          height={500}
+        />
       )}
     </ImageKitProvider>
   );
