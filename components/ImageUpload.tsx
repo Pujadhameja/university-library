@@ -81,7 +81,7 @@ const ImageUpload = ({
             ikUploadRef.current?.click();
           }
         }}
-        className="flex min-h-14 w-full items-center justify-center gap-1.5 rounded-md bg-dark-300"
+        className="upload-btn"
       >
         <Image
           src="/icons/upload.svg"
@@ -93,11 +93,7 @@ const ImageUpload = ({
 
         <p className="text-base text-light-100">Upload a File</p>
 
-        {file && (
-          <p className="mt-1 text-center text-xs text-light-100">
-            {file.filePath}
-          </p>
-        )}
+        {file && <p className="upload-filename">{file.filePath}</p>}
       </button>
 
       {file && (

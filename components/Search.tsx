@@ -9,7 +9,7 @@ const Search = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="relative mt-10 flex min-h-14 w-full items-center rounded-xl bg-dark-300 px-4">
+    <div className="search">
       <Image
         src="/icons/search-fill.svg"
         alt="search"

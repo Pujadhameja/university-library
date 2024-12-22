@@ -28,10 +28,6 @@
 }
 
 @layer components {
-  .search-input {
-    @apply w-full border-none font-bold placeholder:font-normal text-white placeholder:text-light-100 focus-visible:ring-0 focus-visible:shadow-none !important;
-  }
-
   .form-btn {
     @apply bg-primary text-dark-100 hover:bg-primary inline-flex min-h-14 w-full items-center justify-center rounded-md px-6 py-2 font-bold text-base !important;
   }
@@ -93,6 +89,24 @@
 
   .book-overview_btn {
     @apply mt-4 min-h-14 w-fit bg-primary text-dark-100 hover:bg-primary/90 max-md:w-full !important;
+  }
+
+  /* Image Upload */
+  .upload-btn {
+    @apply flex min-h-14 w-full items-center justify-center gap-1.5 rounded-md bg-dark-300;
+  }
+
+  .upload-filename {
+    @apply mt-1 text-center text-xs text-light-100;
+  }
+
+  /* Search */
+  .search {
+    @apply relative mt-10 flex min-h-14 w-full items-center rounded-xl bg-dark-300 px-4;
+  }
+
+  .search-input {
+    @apply w-full border-none font-bold placeholder:font-normal text-white placeholder:text-light-100 focus-visible:ring-0 focus-visible:shadow-none !important;
   }
 }
 
