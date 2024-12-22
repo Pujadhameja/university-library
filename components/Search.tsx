@@ -9,7 +9,7 @@ const Search = () => {
   const [search, setSearch] = useState("");
 
   return (
-    <div className="bg-dark-300 relative flex w-full items-center rounded-xl px-4 mt-10 min-h-14">
+    <div className="relative mt-10 flex min-h-14 w-full items-center rounded-xl bg-dark-300 px-4">
       <Image
         src="/icons/search-fill.svg"
         alt="search"
@@ -23,7 +23,7 @@ const Search = () => {
         value={search}
         placeholder="Thriller mistery"
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full search-input"
+        className="search-input w-full"
       />
     </div>
   );

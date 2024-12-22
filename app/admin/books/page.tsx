@@ -43,16 +43,16 @@ const books = [
 
 const Page = () => {
   return (
-    <section className="bg-white p-7 rounded-2x w-full">
-      <div className="flex flex-wrap justify-between gap-2 items-center">
-        <h2 className="font-semibold text-xl">All Books</h2>
+    <section className="rounded-2x w-full bg-white p-7">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <h2 className="text-xl font-semibold">All Books</h2>
         <Button className="bg-primary-admin">+ Create a New Book</Button>
       </div>
 
       <div className="mt-7 w-full overflow-hidden">
         <Table className="overflow-hidden">
           <TableHeader>
-            <TableRow className="border-none bg-light-700 h-14">
+            <TableRow className="bg-light-700 h-14 border-none">
               <TableHead className="w-[500px]">Book Title</TableHead>
               <TableHead>Author</TableHead>
               <TableHead>Genre</TableHead>
@@ -64,19 +64,19 @@ const Page = () => {
           <TableBody>
             {books.map((book) => (
               <TableRow key={book.id} className="border-b-dark-100/5">
-                <TableCell className="font-medium py-5">
-                  <div className="flex flex-row gap-2 items-center font-semibold text-sm text-dark-400 w-96">
+                <TableCell className="py-5 font-medium">
+                  <div className="text-dark-400 flex w-96 flex-row items-center gap-2 text-sm font-semibold">
                     <BookCover variant="small" />
                     <p className="flex-1">{book.title}</p>
                   </div>
                 </TableCell>
-                <TableCell className="font-medium text-sm text-dark-200">
+                <TableCell className="text-dark-200 text-sm font-medium">
                   {book.author}
                 </TableCell>
-                <TableCell className="font-medium text-sm text-dark-200">
+                <TableCell className="text-dark-200 text-sm font-medium">
                   {book.genre}
                 </TableCell>
-                <TableCell className="font-medium text-sm text-dark-200">
+                <TableCell className="text-dark-200 text-sm font-medium">
                   {book.dateCreated}
                 </TableCell>
                 <TableCell>

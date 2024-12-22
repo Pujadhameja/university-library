@@ -10,9 +10,9 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <div className="bg-white pt-10 pb-5 sticky top-0 left-0 h-dvh px-5 flex flex-col justify-between">
+    <div className="sticky left-0 top-0 flex h-dvh flex-col justify-between bg-white px-5 pb-5 pt-10">
       <div>
-        <div className="flex flex-row items-center gap-2 max-md:justify-center pb-10 border-b border-dashed border-primary-admin/20">
+        <div className="flex flex-row items-center gap-2 border-b border-dashed border-primary-admin/20 pb-10 max-md:justify-center">
           <Image
             src="/icons/admin/logo.svg"
             height={37}
@@ -24,7 +24,7 @@ const Sidebar = () => {
           </h1>
         </div>
 
-        <div className="flex flex-col gap-5 mt-10">
+        <div className="mt-10 flex flex-col gap-5">
           {adminSideBarLinks.map((link) => {
             const isSelected =
               (link.route !== "/admin" &&
@@ -58,7 +58,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="my-8 flex w-full flex-row gap-2 rounded-full border border-light-600 px-6 py-2 shadow-sm max-md:px-2">
+      <div className="border-light-600 my-8 flex w-full flex-row gap-2 rounded-full border px-6 py-2 shadow-sm max-md:px-2">
         <Image
           src="/icons/admin/logo.svg"
           alt="auth-user"
@@ -67,7 +67,7 @@ const Sidebar = () => {
         />
 
         <div className="flex flex-col max-md:hidden">
-          <p className="text-lg font-semibold text-dark-200">Adrian Hajdin</p>
+          <p className="text-dark-200 text-lg font-semibold">Adrian Hajdin</p>
           <p className="text-light-100">adrian@jsmastery.pro</p>
         </div>
       </div>

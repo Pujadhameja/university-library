@@ -1,24 +1,22 @@
 import { auth } from "@/auth";
 import Header from "@/components/Header";
 import { redirect } from "next/navigation";
+import { ReactNode } from "react";
 
-async function Layout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const Layout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
+
   if (!session) redirect("/sign-in");
 
   return (
-    <main className="flex-1 flex flex-col md:px-16 xs:px-10 px-5  bg-pattern bg-cover bg-top min-h-screen">
-      <div className="max-w-7xl mx-auto">
+    <main className="flex min-h-screen flex-1 flex-col bg-pattern bg-cover  bg-top px-5 xs:px-10 md:px-16">
+      <div className="mx-auto max-w-7xl">
         <Header />
 
         <div className="mt-20 pb-20">{children}</div>
       </div>
     </main>
   );
-}
+};
 
 export default Layout;

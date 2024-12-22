@@ -28,7 +28,7 @@ const BookCover = ({
       className={cn(
         "relative transition-all duration-300",
         variantStyles[variant],
-        className
+        className,
       )}
     >
       <svg
@@ -94,7 +94,7 @@ const BookCover = ({
           src={coverImage}
           alt="Book cover"
           fill
-          className="object-fill rounded-sm"
+          className="rounded-sm object-fill"
         />
       </div>
     </div>

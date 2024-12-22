@@ -1,4 +1,5 @@
 import { cn, getInitials } from "@/lib/utils";
+import { FC } from "react";
 
 interface AvatarProps {
   name: string;
@@ -13,7 +14,7 @@ const sizeClasses = {
   lg: "size-20 text-base",
 };
 
-const Avatar: React.FC<AvatarProps> = ({
+const Avatar: FC<AvatarProps> = ({
   name,
   size = "md",
   bgColor = "bg-blue-500",
@@ -27,7 +28,7 @@ const Avatar: React.FC<AvatarProps> = ({
         sizeClasses[size],
         bgColor,
         textColor,
-        "rounded-full flex items-center justify-center font-semibold"
+        "rounded-full flex items-center justify-center font-semibold",
       )}
     >
       {initials}

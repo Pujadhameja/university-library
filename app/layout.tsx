@@ -5,6 +5,7 @@ import { SessionProvider } from "next-auth/react";
 import "./globals.css";
 import { auth } from "@/auth";
 import { Toaster } from "@/components/ui/toaster";
+import { ReactNode } from "react";
 
 const ibmPlexSans = localFont({
   src: [
@@ -47,11 +48,7 @@ export const metadata: Metadata = {
   description: "A book library app",
 };
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+const RootLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
   console.log("SESSION", session);
 
@@ -68,4 +65,6 @@ export default async function RootLayout({
       </SessionProvider>
     </html>
   );
-}
+};
+
+export default RootLayout;

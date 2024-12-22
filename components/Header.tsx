@@ -5,7 +5,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import { navigationLinks } from "@/constants";
 import Avatar from "./Avatar";
 import { useSession } from "next-auth/react";
 
@@ -25,7 +24,7 @@ const Header = () => {
             href="/library"
             className={cn(
               "text-base cursor-pointer capitalize",
-              pathname === "/library" ? "text-light-200" : "text-light-100"
+              pathname === "/library" ? "text-light-200" : "text-light-100",
             )}
           >
             library
@@ -35,7 +34,7 @@ const Header = () => {
         {session && (
           <li>
             <Link href="/my-profile">
-              <Avatar name={session?.user?.name!} />
+              <Avatar name={session?.user?.name || ""} />
             </Link>
           </li>
         )}

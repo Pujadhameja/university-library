@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 
 import BookCover from "./Cover";
@@ -14,13 +16,13 @@ const BookOverview = ({
   cover,
 }: Book) => {
   return (
-    <section className="flex xl:flex-row xl:gap-8 sm:gap-32 gap-12 flex-col-reverse items-center">
-      <div className="flex-1 flex flex-col gap-5">
+    <section className="flex flex-row items-center gap-8 max-xl:flex-col-reverse">
+      <div className="flex flex-1 flex-col gap-5">
         <h1 className="text-7xl font-semibold text-white">{title}</h1>
 
         <div className="mt-7 flex flex-row gap-4 text-xl text-light-100">
           <p>
-            By <span className="text-light-200 font-semibold">{author}</span>
+            By <span className="font-semibold text-light-200">{author}</span>
           </p>
 
           <div className="flex flex-row gap-1">
@@ -30,28 +32,28 @@ const BookOverview = ({
         </div>
 
         <div className="flex flex-row gap-4">
-          <p className="text-light-100 text-xl mt-1">
-            Category: <span className="text-primary ml-2">{genre}</span>
+          <p className="mt-1 text-xl text-light-100">
+            Category: <span className="ml-2 text-primary">{genre}</span>
           </p>
 
-          <p className="text-light-100 text-xl mt-1">
-            Total: <span className="text-primary ml-2">{total_books}</span>
+          <p className="mt-1 text-xl text-light-100">
+            Total: <span className="ml-2 text-primary">{total_books}</span>
           </p>
         </div>
 
-        <p className="text-justify text-light-100 text-xl mt-2">
+        <p className="mt-2 text-justify text-xl text-light-100">
           {description}
         </p>
 
-        <Button className="text-dark-800 bg-primary min-h-14 hover:bg-primary/90 max-md:w-full w-fit mt-4">
+        <Button className="text-dark-800 mt-4 min-h-14 w-fit bg-primary hover:bg-primary/90 max-md:w-full">
           <Image src="/icons/book.svg" alt="book" width={20} height={20} />
-          <p className="font-bebas-neue text-xl text-dark-800">
+          <p className="text-dark-800 font-bebas-neue text-xl">
             Borrow Book Request
           </p>
         </Button>
       </div>
 
-      <div className="relative flex-1 flex justify-center">
+      <div className="relative flex flex-1 justify-center">
         <div className="relative">
           <BookCover
             variant="wide"
@@ -60,7 +62,7 @@ const BookOverview = ({
             coverImage={cover}
           />
 
-          <div className="absolute max-sm:hidden top-10 left-16 opacity-40 rotate-12">
+          <div className="absolute left-16 top-10 rotate-12 opacity-40">
             <BookCover variant="wide" coverColor={color} coverImage={cover} />
           </div>
         </div>

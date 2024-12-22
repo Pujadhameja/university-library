@@ -5,21 +5,19 @@ import { signUpSchema } from "@/lib/validations";
 
 import AuthForm from "@/components/forms/AuthForm";
 
-const Page = () => {
-  return (
-    <AuthForm
-      type="SIGN_UP"
-      schema={signUpSchema}
-      defaultValues={{
-        fullname: "",
-        email: "",
-        universityId: 0,
-        password: "",
-        universityCard: "",
-      }}
-      onSubmit={signUp}
-    />
-  );
-};
+const Page = () => (
+  <AuthForm
+    type="SIGN_UP"
+    schema={signUpSchema}
+    defaultValues={{
+      fullname: "",
+      email: "",
+      universityId: 0,
+      password: "",
+      universityCard: "",
+    }}
+    onSubmit={signUp}
+  />
+);
 
 export default Page;
