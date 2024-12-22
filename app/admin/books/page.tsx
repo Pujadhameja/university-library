@@ -43,7 +43,7 @@ const books = [
 
 const Page = () => {
   return (
-    <section className="rounded-2x w-full bg-white p-7">
+    <section className="w-full rounded-2xl bg-white p-7">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-xl font-semibold">All Books</h2>
         <Button className="bg-primary-admin">+ Create a New Book</Button>
@@ -52,7 +52,7 @@ const Page = () => {
       <div className="mt-7 w-full overflow-hidden">
         <Table className="overflow-hidden">
           <TableHeader>
-            <TableRow className="bg-light-700 h-14 border-none">
+            <TableRow className="h-14 border-none bg-light-300">
               <TableHead className="w-[500px]">Book Title</TableHead>
               <TableHead>Author</TableHead>
               <TableHead>Genre</TableHead>
@@ -65,18 +65,18 @@ const Page = () => {
             {books.map((book) => (
               <TableRow key={book.id} className="border-b-dark-100/5">
                 <TableCell className="py-5 font-medium">
-                  <div className="text-dark-400 flex w-96 flex-row items-center gap-2 text-sm font-semibold">
+                  <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
                     <BookCover variant="small" />
                     <p className="flex-1">{book.title}</p>
                   </div>
                 </TableCell>
-                <TableCell className="text-dark-200 text-sm font-medium">
+                <TableCell className="text-sm font-medium text-dark-200">
                   {book.author}
                 </TableCell>
-                <TableCell className="text-dark-200 text-sm font-medium">
+                <TableCell className="text-sm font-medium text-dark-200">
                   {book.genre}
                 </TableCell>
-                <TableCell className="text-dark-200 text-sm font-medium">
+                <TableCell className="text-sm font-medium text-dark-200">
                   {book.dateCreated}
                 </TableCell>
                 <TableCell>

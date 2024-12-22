@@ -62,7 +62,8 @@ export const sampleBooks = [
     author: "Matt Haig",
     genre: "Fantasy / Fiction",
     rating: 4.6,
-    total_books: 20,
+    total_copies: 20,
+    available_copies: 10,
     description:
       "A dazzling novel about all the choices that go into a life well lived, The Midnight Library tells the story of Nora Seed as she finds herself between life and death.",
     color: "#1c1f40",
@@ -77,7 +78,8 @@ export const sampleBooks = [
     author: "James Clear",
     genre: "Self-Help / Productivity",
     rating: 4.9,
-    total_books: 99,
+    total_copies: 99,
+    available_copies: 50,
     description:
       "A revolutionary guide to making good habits, breaking bad ones, and getting 1% better every day.",
     color: "#fffdf6",
@@ -92,7 +94,8 @@ export const sampleBooks = [
     author: "Kyle Simpson",
     genre: "Computer Science / JavaScript",
     rating: 4.7,
-    total_books: 9,
+    total_copies: 9,
+    available_copies: 5,
     description:
       "An essential guide to understanding the core mechanisms of JavaScript, focusing on scope and closures.",
     color: "#f8e036",
@@ -108,7 +111,8 @@ export const sampleBooks = [
     author: "Paulo Coelho",
     genre: "Philosophy / Adventure",
     rating: 4.5,
-    total_books: 78,
+    total_copies: 78,
+    available_copies: 50,
     description:
       "A magical tale of Santiago, an Andalusian shepherd boy, who embarks on a journey to find a worldly treasure.",
     color: "#ed6322",
@@ -124,7 +128,8 @@ export const sampleBooks = [
     author: "Cal Newport",
     genre: "Self-Help / Productivity",
     rating: 4.7,
-    total_books: 23,
+    total_copies: 23,
+    available_copies: 23,
     description:
       "Rules for focused success in a distracted world, teaching how to cultivate deep focus to achieve peak productivity.",
     color: "#ffffff",
@@ -139,7 +144,8 @@ export const sampleBooks = [
     author: "Robert C. Martin",
     genre: "Computer Science / Programming",
     rating: 4.8,
-    total_books: 56,
+    total_copies: 56,
+    available_copies: 56,
     description:
       "A handbook of agile software craftsmanship, offering best practices and principles for writing clean and maintainable code.",
     color: "#080c0d",
@@ -155,7 +161,8 @@ export const sampleBooks = [
     author: "Andrew Hunt, David Thomas",
     genre: "Computer Science / Programming",
     rating: 4.8,
-    total_books: 25,
+    total_copies: 25,
+    available_copies: 3,
     description:
       "A timeless guide for developers to hone their skills and improve their programming practices.",
     color: "#100f15",
@@ -171,7 +178,8 @@ export const sampleBooks = [
     author: "Morgan Housel",
     genre: "Finance / Self-Help",
     rating: 4.8,
-    total_books: 10,
+    total_copies: 10,
+    available_copies: 5,
     description:
       "Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.",
     color: "#ffffff",

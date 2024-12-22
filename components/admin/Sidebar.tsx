@@ -58,7 +58,7 @@ const Sidebar = () => {
         </div>
       </div>
 
-      <div className="border-light-600 my-8 flex w-full flex-row gap-2 rounded-full border px-6 py-2 shadow-sm max-md:px-2">
+      <div className="my-8 flex w-full flex-row gap-2 rounded-full border border-light-400 px-6 py-2 shadow-sm max-md:px-2">
         <Image
           src="/icons/admin/logo.svg"
           alt="auth-user"
@@ -67,8 +67,8 @@ const Sidebar = () => {
         />
 
         <div className="flex flex-col max-md:hidden">
-          <p className="text-dark-200 text-lg font-semibold">Adrian Hajdin</p>
-          <p className="text-light-100">adrian@jsmastery.pro</p>
+          <p className="text-lg font-semibold text-dark-200">Adrian Hajdin</p>
+          <p className="text-light-500">adrian@jsmastery.pro</p>
         </div>
       </div>
     </div>

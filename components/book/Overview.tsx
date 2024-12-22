@@ -9,7 +9,8 @@ const BookOverview = ({
   author,
   genre,
   rating,
-  total_books,
+  total_copies,
+  available_copies,
   description,
   color,
   cover,
@@ -40,14 +41,14 @@ const BookOverview = ({
           <p className="mt-1 text-xl text-light-100">
             Total Books:{" "}
             <span className="ml-2 font-semibold text-primary">
-              {total_books}
+              {total_copies}
             </span>
           </p>
 
           <p className="mt-1 text-xl text-light-100">
             Available Books:{" "}
             <span className="ml-2 font-semibold text-primary">
-              {total_books}
+              {available_copies}
             </span>
           </p>
         </div>

@@ -27,23 +27,7 @@
   }
 }
 
-@layer utilities {
-  .gradient-input {
-    background: linear-gradient(270deg, #2e2e2f 0%, #28292a 100%);
-  }
-
-  .gradient-horizontal {
-    background: linear-gradient(284.6deg, #32353e -10.01%, #14171c 114.89%);
-  }
-
-  .gradient-vertical {
-    background: linear-gradient(180deg, #12141d 0%, #12151f 100%);
-  }
-
-  .gradient-gray {
-    background: linear-gradient(270deg, #37363a 0%, #353637 100%);
-  }
-
+@layer components {
   .search-input {
     @apply w-full border-none font-bold placeholder:font-normal text-white placeholder:text-light-100 focus-visible:ring-0 focus-visible:shadow-none !important;
   }
@@ -54,5 +38,32 @@
 
   .form-input {
     @apply w-full min-h-14 border-none text-base font-bold placeholder:font-normal text-white placeholder:text-light-100 focus-visible:ring-0 focus-visible:shadow-none bg-dark-300 !important;
+  }
+}
+
+@layer utilities {
+  .gradient-vertical {
+    background: linear-gradient(180deg, #12141d 0%, #12151f 100%);
+  }
+
+  .gradient-gray {
+    background: linear-gradient(270deg, #37363a 0%, #353637 100%);
+  }
+
+  /* Auth */
+  .auth-container {
+    @apply relative flex flex-col-reverse text-light-100 sm:flex-row;
+  }
+
+  .auth-container__form {
+    @apply my-auto flex h-full min-h-screen flex-1 items-center bg-pattern bg-cover bg-top px-5 py-10;
+  }
+
+  .auth-container__form__box {
+    @apply gradient-vertical mx-auto flex max-w-xl flex-col gap-6 rounded-lg p-10;
+  }
+
+  .auth-container__illustration {
+    @apply sticky h-40 w-full sm:top-0 sm:h-screen sm:flex-1;
   }
 }

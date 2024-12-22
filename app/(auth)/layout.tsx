@@ -1,7 +1,8 @@
-import { auth } from "@/auth";
 import Image from "next/image";
-import { redirect } from "next/navigation";
 import { ReactNode } from "react";
+import { redirect } from "next/navigation";
+
+import { auth } from "@/auth";
 
 const AuthLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
@@ -9,9 +10,9 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
   if (session) redirect("/");
 
   return (
-    <main className="relative flex flex-col-reverse text-light-100 sm:flex-row">
-      <section className="my-auto flex h-full min-h-screen flex-1 items-center bg-pattern bg-cover bg-top px-5 py-10">
-        <div className="gradient-vertical mx-auto flex max-w-xl flex-col gap-6 rounded-lg p-10">
+    <main className="auth-container">
+      <section className="auth-container__form">
+        <div className="auth-container__form__box">
           <div className="flex flex-row gap-2">
             <Image src="/icons/logo.svg" alt="logo" width={37} height={37} />
             <h1 className="text-2xl font-semibold text-white">BookWise</h1>
@@ -21,7 +22,7 @@ const AuthLayout = async ({ children }: { children: ReactNode }) => {
         </div>
       </section>
 
-      <section className="sticky h-40 w-full sm:top-0 sm:h-screen sm:flex-1">
+      <section className="auth-container__illustration">
         <Image
           src="/images/auth-illustration.png"
           alt="auth-illustration"
