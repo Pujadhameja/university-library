@@ -1,5 +1,4 @@
 import Image from "next/image";
-import React from "react";
 import { cn } from "@/lib/utils";
 
 type BookCoverVariant = "small" | "default" | "wide";
@@ -28,7 +27,7 @@ const BookCover = ({
       className={cn(
         "relative transition-all duration-300",
         variantStyles[variant],
-        className,
+        className
       )}
     >
       <svg

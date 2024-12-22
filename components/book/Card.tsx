@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import BookCover from "./Cover";
 import { Button } from "../ui/button";
 
-const Book = ({
+const BookCard = ({
   id,
   title,
   genre,
@@ -55,4 +55,4 @@ const Book = ({
   );
 };
 
-export default Book;
+export default BookCard;

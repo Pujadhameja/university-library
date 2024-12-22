@@ -1,5 +1,6 @@
-import Book from "@/components/book";
 import Search from "@/components/Search";
+import BookList from "@/components/book/List";
+
 import { sampleBooks } from "@/constants";
 
 const Page = () => (
@@ -18,17 +19,11 @@ const Page = () => (
       <Search />
     </section>
 
-    <section className="mt-16">
-      <h2 className="font-bebas-neue text-4xl text-light-100">
-        All Library Books
-      </h2>
-
-      <ul className="mt-10 flex flex-wrap gap-10">
-        {sampleBooks.map((item) => (
-          <Book key={item.title} {...item} />
-        ))}
-      </ul>
-    </section>
+    <BookList
+      title="All Library Books"
+      books={sampleBooks}
+      containerClassName="mt-16"
+    />
   </>
 );
 

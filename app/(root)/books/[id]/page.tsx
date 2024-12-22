@@ -1,6 +1,6 @@
 import { sampleBooks } from "@/constants";
 
-import Book from "@/components/book";
+import BookList from "@/components/book/List";
 import BookVideo from "@/components/book/Video";
 import BookOverview from "@/components/book/Overview";
 
@@ -30,17 +30,11 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           </section>
         </div>
 
-        <section className="flex-1">
-          <h2 className="font-bebas-neue text-4xl text-light-100">
-            More similar books
-          </h2>
-
-          <ul className="mt-10 flex flex-wrap gap-5 max-xs:justify-between xs:gap-10">
-            {sampleBooks.slice(3).map((item) => (
-              <Book key={item.title} {...item} />
-            ))}
-          </ul>
-        </section>
+        <BookList
+          title="More Similar Books"
+          books={sampleBooks.slice(4)}
+          containerClassName="flex-1"
+        />
       </div>
     </>
   );
