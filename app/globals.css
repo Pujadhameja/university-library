@@ -53,6 +53,19 @@
     @apply gradient-gray mt-3 min-h-14 w-full font-bebas-neue text-base text-primary;
   }
 
+  /* Book Cover */
+  .book-cover_small {
+    @apply w-[28.95px] h-10;
+  }
+
+  .book-cover {
+    @apply xs:w-[174px] w-[114px] xs:h-[239px] h-[169px];
+  }
+
+  .book-cover_wide {
+    @apply xs:w-[296px] w-[256px] xs:h-[404px] h-[354px];
+  }
+
   /* Book List */
   .book-list {
     @apply mt-10 flex flex-wrap gap-5 max-xs:justify-between xs:gap-10;
@@ -143,7 +156,7 @@
 
   /* Book Details */
   .book-details {
-    @apply my-20 flex flex-col gap-16 lg:flex-row;
+    @apply lg:mt-36 mt-16 mb-20 flex flex-col gap-16 lg:flex-row;
   }
 
   .book-details h3 {

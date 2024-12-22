@@ -11,16 +11,16 @@ interface Props {
 }
 
 const variantStyles: Record<BookCoverVariant, string> = {
-  small: "w-[28.95px] h-10",
-  default: "xs:w-[144px] w-[114px] xs:h-[199px] h-[169px]",
-  wide: "w-[276px] h-[384px]",
+  small: "book-cover_small",
+  default: "book-cover",
+  wide: "book-cover_wide",
 };
 
 const BookCover = ({
   className,
   variant = "default",
   coverColor = "#012B48",
-  coverImage = "/images/origin.png",
+  coverImage = "https://placehold.co/400x600.png",
 }: Props) => {
   return (
     <div
