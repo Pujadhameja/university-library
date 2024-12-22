@@ -5,7 +5,8 @@ type InitialData = {
 };
 
 export const { POST } = serve<InitialData>(async (context) => {
-  const { email } = context.requestPayload;
+  //   const { email } = context.requestPayload;
+  const email = "a@b.com";
 
   await context.run("new-signup", async () => {
     await sendEmail("Welcome to the platform", email);
