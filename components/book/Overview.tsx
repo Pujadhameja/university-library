@@ -16,13 +16,11 @@ const BookOverview = ({
   cover,
 }: Book) => {
   return (
-    <section className="flex flex-col-reverse items-center gap-12 sm:gap-32 xl:flex-row xl:gap-8">
+    <section className="book-overview">
       <div className="flex flex-1 flex-col gap-5">
-        <h1 className="text-5xl font-semibold text-white md:text-7xl">
-          {title}
-        </h1>
+        <h1>{title}</h1>
 
-        <div className="mt-7 flex flex-row flex-wrap gap-4 text-xl text-light-100">
+        <div className="book-info">
           <p>
             By <span className="font-semibold text-light-200">{author}</span>
           </p>
@@ -37,27 +35,19 @@ const BookOverview = ({
           </div>
         </div>
 
-        <div className="flex flex-row flex-wrap gap-4">
-          <p className="mt-1 text-xl text-light-100">
-            Total Books:{" "}
-            <span className="ml-2 font-semibold text-primary">
-              {total_copies}
-            </span>
+        <div className="book-copies">
+          <p>
+            Total Books: <span>{total_copies}</span>
           </p>
 
-          <p className="mt-1 text-xl text-light-100">
-            Available Books:{" "}
-            <span className="ml-2 font-semibold text-primary">
-              {available_copies}
-            </span>
+          <p>
+            Available Books: <span>{available_copies}</span>
           </p>
         </div>
 
-        <p className="mt-2 text-justify text-xl text-light-100">
-          {description}
-        </p>
+        <p className="book-description">{description}</p>
 
-        <Button className="mt-4 min-h-14 w-fit bg-primary text-dark-100 hover:bg-primary/90 max-md:w-full">
+        <Button className="book-overview_btn">
           <Image src="/icons/book.svg" alt="book" width={20} height={20} />
           <p className="font-bebas-neue text-xl text-dark-100">
             Borrow Book Request
