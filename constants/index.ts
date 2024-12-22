@@ -67,8 +67,7 @@ export const sampleBooks = [
       "A dazzling novel about all the choices that go into a life well lived, The Midnight Library tells the story of Nora Seed as she finds herself between life and death.",
     color: "#1c1f40",
     cover: "https://m.media-amazon.com/images/I/81J6APjwxlL.jpg",
-    video:
-      "https://ik.imagekit.io/pwd17k26p/sample-video.mp4?updatedAt=1722593504152",
+    video: "/sample-video.mp4?updatedAt=1722593504152",
     summary:
       "A dazzling novel about all the choices that go into a life well lived, The Midnight Library tells the story of Nora Seed as she finds herself between life and death. A dazzling novel about all the choices that go into a life well lived, The Midnight Library tells the story of Nora Seed as she finds herself between life and death.",
   },
@@ -83,8 +82,7 @@ export const sampleBooks = [
       "A revolutionary guide to making good habits, breaking bad ones, and getting 1% better every day.",
     color: "#fffdf6",
     cover: "https://m.media-amazon.com/images/I/81F90H7hnML.jpg",
-    video:
-      "https://ik.imagekit.io/pwd17k26p/sample-video.mp4?updatedAt=1722593504152",
+    video: "/sample-video.mp4?updatedAt=1722593504152",
     summary:
       "A revolutionary guide to making good habits, breaking bad ones, and getting 1% better every day.",
   },
@@ -100,8 +98,7 @@ export const sampleBooks = [
     color: "#f8e036",
     cover:
       "https://m.media-amazon.com/images/I/7186YfjgHHL._AC_UF1000,1000_QL80_.jpg",
-    video:
-      "https://ik.imagekit.io/pwd17k26p/sample-video.mp4?updatedAt=1722593504152",
+    video: "/sample-video.mp4?updatedAt=1722593504152",
     summary:
       "An essential guide to understanding the core mechanisms of JavaScript, focusing on scope and closures.",
   },
@@ -117,8 +114,7 @@ export const sampleBooks = [
     color: "#ed6322",
     cover:
       "https://m.media-amazon.com/images/I/61HAE8zahLL._AC_UF1000,1000_QL80_.jpg",
-    video:
-      "https://ik.imagekit.io/pwd17k26p/sample-video.mp4?updatedAt=1722593504152",
+    video: "/sample-video.mp4?updatedAt=1722593504152",
     summary:
       "A magical tale of Santiago, an Andalusian shepherd boy, who embarks on a journey to find a worldly treasure.",
   },
@@ -133,8 +129,7 @@ export const sampleBooks = [
       "Rules for focused success in a distracted world, teaching how to cultivate deep focus to achieve peak productivity.",
     color: "#ffffff",
     cover: "https://m.media-amazon.com/images/I/81JJ7fyyKyS.jpg",
-    video:
-      "https://ik.imagekit.io/pwd17k26p/sample-video.mp4?updatedAt=1722593504152",
+    video: "/sample-video.mp4?updatedAt=1722593504152",
     summary:
       "Rules for focused success in a distracted world, teaching how to cultivate deep focus to achieve peak productivity.",
   },
@@ -150,8 +145,7 @@ export const sampleBooks = [
     color: "#080c0d",
     cover:
       "https://m.media-amazon.com/images/I/71T7aD3EOTL._UF1000,1000_QL80_.jpg",
-    video:
-      "https://ik.imagekit.io/pwd17k26p/sample-video.mp4?updatedAt=1722593504152",
+    video: "/sample-video.mp4?updatedAt=1722593504152",
     summary:
       "A handbook of agile software craftsmanship, offering best practices and principles for writing clean and maintainable code.",
   },
@@ -167,8 +161,7 @@ export const sampleBooks = [
     color: "#100f15",
     cover:
       "https://m.media-amazon.com/images/I/71VStSjZmpL._AC_UF1000,1000_QL80_.jpg",
-    video:
-      "https://ik.imagekit.io/pwd17k26p/sample-video.mp4?updatedAt=1722593504152",
+    video: "/sample-video.mp4?updatedAt=1722593504152",
     summary:
       "A timeless guide for developers to hone their skills and improve their programming practices.",
   },
@@ -184,8 +177,7 @@ export const sampleBooks = [
     color: "#ffffff",
     cover:
       "https://m.media-amazon.com/images/I/81Dky+tD+pL._AC_UF1000,1000_QL80_.jpg",
-    video:
-      "https://ik.imagekit.io/pwd17k26p/sample-video.mp4?updatedAt=1722593504152",
+    video: "/sample-video.mp4?updatedAt=1722593504152",
     summary:
       "Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.",
   },
