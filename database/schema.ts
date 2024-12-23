@@ -4,7 +4,6 @@ import {
   pgTable,
   varchar,
   pgEnum,
-  boolean,
   date,
   timestamp,
   uuid,
@@ -20,7 +19,6 @@ export const users = pgTable("users", {
   password: text("password").notNull(),
   universityCard: text("university_card").notNull(),
   status: STATUS_ENUM("status").default("PENDING"),
-  isActive: boolean("is_active").default(false),
   lastActivityDate: date("last_activity_date").defaultNow(),
   createdAt: timestamp("created_at", {
     withTimezone: true,
