@@ -10,6 +10,8 @@ import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 
 import ratelimit from "../ratelimit";
+import client from "../workflow";
+import config from "../config";
 
 export async function signUp(params: AuthCredentails) {
   const { fullname, email, universityId, password, universityCard } = params;
@@ -65,6 +67,17 @@ export async function signInWithCredentials(
     if (result?.error) {
       return { success: false, error: "Invalid email or password" };
     }
+
+    await client.trigger({
+      url: `${config.env.prodApiEndpoint}/api/workflow/onboarding`,
+      body: {
+        email,
+        fullname,
+      },
+      headers: {
+        test: "value",
+      },
+    });
 
     return { success: true };
   } catch (error) {
