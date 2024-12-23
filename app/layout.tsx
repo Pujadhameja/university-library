@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import { after } from "next/server";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { SessionProvider } from "next-auth/react";
@@ -7,9 +6,6 @@ import { SessionProvider } from "next-auth/react";
 import "./globals.css";
 import { auth } from "@/auth";
 import { Toaster } from "@/components/ui/toaster";
-import { db } from "@/database/drizzle";
-import { users } from "@/database/schema";
-import { eq } from "drizzle-orm";
 
 const ibmPlexSans = localFont({
   src: [
@@ -54,15 +50,6 @@ export const metadata: Metadata = {
 
 const RootLayout = async ({ children }: { children: ReactNode }) => {
   const session = await auth();
-
-  after(async () => {
-    if (!session?.user?.id) return;
-
-    await db
-      .update(users)
-      .set({ lastActivityDate: new Date().toISOString().slice(0, 10) })
-      .where(eq(users.id, session?.user?.id));
-  });
 
   return (
     <html lang="en">
