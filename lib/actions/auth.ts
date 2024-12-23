@@ -9,9 +9,9 @@ import { signIn } from "@/auth";
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 
-import ratelimit from "../ratelimit";
-import client from "../workflow";
 import config from "../config";
+import ratelimit from "../ratelimit";
+import { workflowClient } from "../workflow";
 
 export async function signUp(params: AuthCredentails) {
   const { fullname, email, universityId, password, universityCard } = params;
@@ -41,13 +41,16 @@ export async function signUp(params: AuthCredentails) {
       universityCard,
     });
 
-    await client.trigger({
+    await workflowClient.trigger({
       url: `${config.env.prodApiEndpoint}/api/workflow/onboarding`,
       body: {
         email,
         fullname,
       },
     });
+
+    // sign in on behalf of the new user
+    await signInWithCredentials({ email, password });
 
     return { success: true };
   } catch (error) {
