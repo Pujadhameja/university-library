@@ -41,6 +41,14 @@ export async function signUp(params: AuthCredentails) {
       universityCard,
     });
 
+    await client.trigger({
+      url: `${config.env.prodApiEndpoint}/api/workflow/onboarding`,
+      body: {
+        email,
+        fullname,
+      },
+    });
+
     return { success: true };
   } catch (error) {
     console.error("Error in signup:", error);
@@ -67,17 +75,6 @@ export async function signInWithCredentials(
     if (result?.error) {
       return { success: false, error: "Invalid email or password" };
     }
-
-    await client.trigger({
-      url: `${config.env.prodApiEndpoint}/api/workflow/onboarding`,
-      body: {
-        email,
-        fullname,
-      },
-      headers: {
-        test: "value",
-      },
-    });
 
     return { success: true };
   } catch (error) {
