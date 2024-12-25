@@ -1,5 +1,5 @@
-import BookCover from "@/components/BookCover";
-import { Button } from "@/components/ui/button";
+import Image from "next/image";
+
 import {
   Table,
   TableBody,
@@ -8,45 +8,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Image from "next/image";
-
-const books = [
-  {
-    id: 1,
-    title: "The Great Reclamation: A Novel",
-    author: "Rachel Heng",
-    genre: "Strategic, Fantasy",
-    dateCreated: "Dec 19 2023",
-  },
-  {
-    id: 2,
-    title: "Atomic Habits",
-    author: "James Clear",
-    genre: "Self-help, Productivity",
-    dateCreated: "Jan 5 2024",
-  },
-  {
-    id: 3,
-    title: "The Silent Patient",
-    author: "Alex Michaelides",
-    genre: "Thriller, Mystery",
-    dateCreated: "Feb 12 2023",
-  },
-  {
-    id: 4,
-    title: "Sapiens: A Brief History of Humankind",
-    author: "Yuval Noah Harari",
-    genre: "History, Non-fiction",
-    dateCreated: "Mar 9 2023",
-  },
-];
+import { sampleBooks } from "@/constants";
+import BookCover from "@/components/BookCover";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const Page = () => {
   return (
     <section className="w-full rounded-2xl bg-white p-7">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h2 className="text-xl font-semibold">All Books</h2>
-        <Button className="bg-primary-admin">+ Create a New Book</Button>
+        <Button className="bg-primary-admin" asChild>
+          <Link href="/admin/books/new">+ Create a New Book</Link>
+        </Button>
       </div>
 
       <div className="mt-7 w-full overflow-hidden">
@@ -62,11 +36,15 @@ const Page = () => {
           </TableHeader>
 
           <TableBody>
-            {books.map((book) => (
+            {sampleBooks.map((book) => (
               <TableRow key={book.id} className="border-b-dark-100/5">
                 <TableCell className="py-5 font-medium">
                   <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
-                    <BookCover variant="small" />
+                    <BookCover
+                      variant="small"
+                      coverImage={book.cover}
+                      coverColor={book.color}
+                    />
                     <p className="flex-1">{book.title}</p>
                   </div>
                 </TableCell>
@@ -77,7 +55,7 @@ const Page = () => {
                   {book.genre}
                 </TableCell>
                 <TableCell className="text-sm font-medium text-dark-200">
-                  {book.dateCreated}
+                  Dec 19 2023
                 </TableCell>
                 <TableCell>
                   <div className="flex flex-row gap-5">
