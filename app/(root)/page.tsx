@@ -1,18 +1,23 @@
-import { sampleBooks } from "@/constants";
-
 import BookList from "@/components/BookList";
 import BookOverview from "@/components/BookOverview";
 
-const Home = async () => (
-  <>
-    <BookOverview {...sampleBooks[0]} />
+import { db } from "@/database/drizzle";
+import { books } from "@/database/schema";
 
-    <BookList
-      title="Latest Books"
-      books={sampleBooks}
-      containerClassName="mt-28"
-    />
-  </>
-);
+const Home = async () => {
+  const latestBooks = (await db.select().from(books).limit(10)) as Book[];
+
+  return (
+    <>
+      <BookOverview {...latestBooks[0]} />
+
+      <BookList
+        title="Latest Books"
+        books={latestBooks}
+        containerClassName="mt-28"
+      />
+    </>
+  );
+};
 
 export default Home;

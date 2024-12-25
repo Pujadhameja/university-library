@@ -2,6 +2,7 @@
 
 import { z } from "zod";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 import {
   Form,
@@ -14,19 +15,23 @@ import {
 import ColorPicker from "../ColorPicker";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea";
 import FileUpload from "@/components/FileUpload";
+import { Textarea } from "@/components/ui/textarea";
 
+import { toast } from "@/hooks/use-toast";
 import { bookSchema } from "@/lib/validations";
+import { createBook } from "@/lib/actions/book";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const BookForm = () => {
+  const router = useRouter();
   const form = useForm<z.infer<typeof bookSchema>>({
     resolver: zodResolver(bookSchema),
     defaultValues: {
       title: "",
       author: "",
-      genre: "",
+      category: "",
+      rating: 1,
       totalQuantity: 1,
       coverImage: "",
       coverColor: "",
@@ -35,8 +40,24 @@ const BookForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof bookSchema>) {
-    console.log(values);
+  async function onSubmit(values: z.infer<typeof bookSchema>) {
+    const result = await createBook(values);
+    console.log("RESULT", JSON.stringify(result, null, 2));
+
+    if (result.success) {
+      toast({
+        title: "Success",
+        description: "Book created successfully.",
+      });
+
+      router.push(`/admin/books/${result.data.id}`);
+    } else {
+      toast({
+        title: "Error",
+        description: result.error,
+        variant: "destructive",
+      });
+    }
   }
 
   return (
@@ -84,15 +105,15 @@ const BookForm = () => {
 
         <FormField
           control={form.control}
-          name="genre"
+          name="category"
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal text-dark-500">
-                Genre
+                Category
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Enter the genre of the book"
+                  placeholder="Enter the category of the book"
                   {...field}
                   className="min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
                 />
@@ -102,26 +123,49 @@ const BookForm = () => {
           )}
         />
 
-        <FormField
-          control={form.control}
-          name="totalQuantity"
-          render={({ field }) => (
-            <FormItem className="flex flex-col gap-1">
-              <FormLabel className="text-base font-normal text-dark-500">
-                Total number of books
-              </FormLabel>
-              <FormControl>
-                <Input
-                  type="number"
-                  placeholder="Enter the total number of books"
-                  {...field}
-                  className="min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+        <div className="flex flex-col gap-8 lg:flex-row">
+          <FormField
+            control={form.control}
+            name="rating"
+            render={({ field }) => (
+              <FormItem className="flex flex-1 flex-col gap-1">
+                <FormLabel className="text-base font-normal text-dark-500">
+                  Rating
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    type="number"
+                    placeholder="Enter the rating of the book"
+                    {...field}
+                    className="min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name="totalQuantity"
+            render={({ field }) => (
+              <FormItem className="flex flex-1 flex-col gap-1">
+                <FormLabel className="text-base font-normal text-dark-500">
+                  Total number of books
+                </FormLabel>
+                <FormControl>
+                  <Input
+                    type="number"
+                    placeholder="Enter the total number of books"
+                    {...field}
+                    className="min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <FormField
           control={form.control}
@@ -210,7 +254,7 @@ const BookForm = () => {
           type="submit"
           className="min-h-14 w-full bg-primary-admin hover:bg-primary-admin/95"
         >
-          Update Book
+          Add Book
         </Button>
       </form>
     </Form>

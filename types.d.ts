@@ -7,17 +7,29 @@ interface AuthCredentails {
 }
 
 interface Book {
-  id: number;
+  id: string;
   title: string;
   author: string;
-  genre: string;
+  category: string;
   rating: number;
-  total_copies: number;
-  available_copies: number;
-  description: string;
-  color: string;
-  cover: string;
-  video: string;
+  totalQuantity: number;
+  availableQuantity: number;
+  coverColor: string;
+  coverImage: string;
+  videoUrl: string;
   summary: string;
   isLoanedBook?: boolean;
+  createdAt: Date;
+}
+
+interface BookParams {
+  title: string;
+  author: string;
+  category: string;
+  rating: number;
+  coverImage: string;
+  coverColor: string;
+  summary: string;
+  totalQuantity: number;
+  videoUrl: string;
 }

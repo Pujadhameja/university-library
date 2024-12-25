@@ -2,14 +2,15 @@ import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import BookCoverSvg from "./BookCoverSvg";
+import config from "@/lib/config";
 
 type BookCoverVariant = "small" | "default" | "wide";
 
 interface Props {
-  coverColor?: string;
+  coverColor: string;
   variant?: BookCoverVariant;
   className?: string;
-  coverImage?: string;
+  coverImage: string;
 }
 
 const variantStyles: Record<BookCoverVariant, string> = {
@@ -43,7 +44,7 @@ const BookCover = async ({
         }}
       >
         <Image
-          src={coverImage}
+          src={`${config.env.imagekit.urlEndpoint}/${coverImage}`}
           alt="Book cover"
           fill
           className="rounded-sm object-fill"

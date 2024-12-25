@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 import Image from "next/image";
 
 import BookCover from "./BookCover";
@@ -7,13 +6,13 @@ import { Button } from "@/components/ui/button";
 const BookOverview = ({
   title,
   author,
-  genre,
+  category,
   rating,
-  total_copies,
-  available_copies,
-  description,
-  color,
-  cover,
+  totalQuantity,
+  availableQuantity,
+  summary,
+  coverColor,
+  coverImage,
 }: Book) => {
   return (
     <section className="book-overview">
@@ -26,7 +25,7 @@ const BookOverview = ({
           </p>
 
           <p>
-            Category: <span className="ml-2 text-primary">{genre}</span>
+            Category: <span className="ml-2 text-primary">{category}</span>
           </p>
 
           <div className="flex flex-row gap-1">
@@ -37,15 +36,15 @@ const BookOverview = ({
 
         <div className="book-copies">
           <p>
-            Total Books: <span>{total_copies}</span>
+            Total Books: <span>{totalQuantity}</span>
           </p>
 
           <p>
-            Available Books: <span>{available_copies}</span>
+            Available Books: <span>{availableQuantity}</span>
           </p>
         </div>
 
-        <p className="book-description">{description}</p>
+        <p className="book-description">{summary.slice(0, 300)}</p>
 
         <Button className="book-overview_btn">
           <Image src="/icons/book.svg" alt="book" width={20} height={20} />
@@ -60,12 +59,16 @@ const BookOverview = ({
           <BookCover
             variant="wide"
             className="z-10"
-            coverColor={color}
-            coverImage={cover}
+            coverColor={coverColor}
+            coverImage={coverImage}
           />
 
           <div className="absolute left-16 top-10 rotate-12 opacity-40 max-sm:hidden">
-            <BookCover variant="wide" coverColor={color} coverImage={cover} />
+            <BookCover
+              variant="wide"
+              coverColor={coverColor}
+              coverImage={coverImage}
+            />
           </div>
         </div>
       </div>
