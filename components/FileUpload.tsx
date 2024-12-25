@@ -85,6 +85,31 @@ const FileUpload = ({
     });
   };
 
+  const onValidate = (file: File) => {
+    if (type === "image") {
+      if (file.size > 20 * 1024 * 1024) {
+        toast({
+          title: "Max Image Size Exceeded",
+          description: "Your Image is too large. Maximum size is 20MB.",
+          variant: "destructive",
+        });
+        return false;
+      }
+    } else if (type === "video") {
+      if (file.size > 1 * 1024 * 1024) {
+        toast({
+          title: "Max Video Size Exceeded",
+          description: "Your Video is too large. Maximum size is 50MB.",
+          variant: "destructive",
+        });
+
+        return false;
+      }
+    }
+
+    return true;
+  };
+
   return (
     <ImageKitProvider
       publicKey={config.env.imagekit.publicKey}
@@ -93,9 +118,15 @@ const FileUpload = ({
     >
       <IKUpload
         ref={ikUploadRef}
-        fileName="test-upload.png"
+        fileName="file.png"
         useUniqueFileName={true}
-        validateFile={(file) => file.size < 2000000}
+        validateFile={onValidate}
+        onUploadStart={() => {
+          console.log("Upload started");
+        }}
+        onUploadProgress={() => {
+          console.log("Upload in progress");
+        }}
         folder={folder}
         accept={accept}
         onError={onError}
