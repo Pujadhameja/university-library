@@ -8,9 +8,9 @@ import {
 } from "imagekitio-next/dist/types/components/IKUpload/props";
 import { IKImage, IKUpload, IKVideo, ImageKitProvider } from "imagekitio-next";
 
+import { cn } from "@/lib/utils";
 import config from "@/lib/config";
 import { toast } from "@/hooks/use-toast";
-import { cn } from "@/lib/utils";
 
 const authenticator = async () => {
   try {
@@ -55,6 +55,7 @@ const FileUpload = ({
 }: Props) => {
   const ikUploadRef = useRef(null);
   const [file, setFile] = useState<{ filePath: string } | null>(null);
+  const [progress, setProgress] = useState<number>(0); // Track upload progress
 
   const styles = {
     button:
@@ -73,6 +74,7 @@ const FileUpload = ({
       description: `Your ${type} could not be uploaded. Please try again.`,
       variant: "destructive",
     });
+    setProgress(0);
   };
 
   const onSuccess = (res: IKUploadResponse) => {
@@ -83,6 +85,7 @@ const FileUpload = ({
       title: `${type} uploaded successfully`,
       description: `Your ${type} has been uploaded successfully.`,
     });
+    setProgress(0);
   };
 
   const onValidate = (file: File) => {
@@ -96,7 +99,7 @@ const FileUpload = ({
         return false;
       }
     } else if (type === "video") {
-      if (file.size > 1 * 1024 * 1024) {
+      if (file.size > 50 * 1024 * 1024) {
         toast({
           title: "Max Video Size Exceeded",
           description: "Your Video is too large. Maximum size is 50MB.",
@@ -121,11 +124,10 @@ const FileUpload = ({
         fileName="file.png"
         useUniqueFileName={true}
         validateFile={onValidate}
-        onUploadStart={() => {
-          console.log("Upload started");
-        }}
-        onUploadProgress={() => {
-          console.log("Upload in progress");
+        onUploadStart={() => setProgress(0)}
+        onUploadProgress={({ loaded, total }) => {
+          const percent = Math.round((loaded / total) * 100);
+          setProgress(percent);
         }}
         folder={folder}
         accept={accept}
@@ -139,7 +141,7 @@ const FileUpload = ({
           e.preventDefault();
 
           if (ikUploadRef.current) {
-            (ikUploadRef.current as HTMLElement)?.click();
+            (ikUploadRef?.current as HTMLElement)?.click();
           }
         }}
         className={cn("upload-btn", styles.button)}
@@ -158,6 +160,17 @@ const FileUpload = ({
           <p className={cn("upload-filename", styles.text)}>{file.filePath}</p>
         )}
       </button>
+
+      {progress > 0 && (
+        <div className="w-full rounded-full bg-green-200">
+          <div
+            className="rounded-full bg-green-800 p-0.5 text-center font-bebas-neue text-[8px] font-bold leading-none text-light-100"
+            style={{ width: `${progress}%` }}
+          >
+            {progress}%
+          </div>
+        </div>
+      )}
 
       {file &&
         (type === "image" ? (
