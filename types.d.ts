@@ -35,7 +35,7 @@ interface Book {
 
 interface BorrowedBook {
   id: string;
-  user: User;
+  userId: string;
   book: Book;
   borrowDate: Date;
   dueDate: string;

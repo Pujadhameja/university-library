@@ -80,7 +80,7 @@ export async function getBorrowedBooks(userId: string) {
       .select({
         id: borrowRecords.id,
         book: books,
-        user: users,
+        user: borrowRecords.userId,
         borrowDate: borrowRecords.borrowDate,
         dueDate: borrowRecords.dueDate,
         returnDate: borrowRecords.returnDate,

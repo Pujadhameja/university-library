@@ -50,7 +50,7 @@
   }
 
   .book-btn {
-    @apply gradient-gray mt-3 min-h-14 w-full font-bebas-neue text-base text-primary;
+    @apply bg-dark-600 mt-3 min-h-14 w-full font-bebas-neue text-base text-primary;
   }
 
   /* Book Cover */
@@ -130,6 +130,10 @@
 
   .gradient-gray {
     background: linear-gradient(270deg, #37363a 0%, #353637 100%);
+  }
+
+  .gradient-blue {
+    background: linear-gradient(180deg, #232839 0%, #12141d 100%);
   }
 
   /* Auth */

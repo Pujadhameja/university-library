@@ -11,7 +11,7 @@ interface AvatarProps {
 const sizeClasses = {
   sm: "size-8 text-xs",
   md: "size-10 text-sm",
-  lg: "size-20 text-base",
+  lg: "size-20 text-3xl",
 };
 
 const Avatar: FC<AvatarProps> = ({
@@ -28,7 +28,7 @@ const Avatar: FC<AvatarProps> = ({
         sizeClasses[size],
         bgColor,
         textColor,
-        "rounded-full flex items-center justify-center font-semibold",
+        "rounded-full flex items-center justify-center font-semibold"
       )}
     >
       {initials}
