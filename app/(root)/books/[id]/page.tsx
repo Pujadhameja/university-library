@@ -1,13 +1,23 @@
-import { sampleBooks } from "@/constants";
+import { eq, ne } from "drizzle-orm";
+import { redirect } from "next/navigation";
 
 import BookList from "@/components/BookList";
 import BookVideo from "@/components/BookVideo";
 import BookOverview from "@/components/BookOverview";
 
+import { db } from "@/database/drizzle";
+import { books } from "@/database/schema";
+
 const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const id = (await params).id;
 
-  const book = sampleBooks.find((item) => item.id === +id) || sampleBooks[0];
+  const [[book], similarBooks] = await Promise.all([
+    db.select().from(books).where(eq(books.id, id)).limit(1) as Promise<Book[]>,
+
+    db.select().from(books).where(ne(books.id, id)).limit(5) as Promise<Book[]>,
+  ]);
+
+  if (!book) redirect("/404");
 
   return (
     <>
@@ -17,24 +27,26 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
         <div className="flex-[1.5]">
           <section className="flex flex-col gap-7">
             <h3>Video</h3>
-
-            <BookVideo videoUrl={book.video} />
+            <BookVideo videoUrl={book.videoUrl} />
           </section>
 
           <section className="mt-10 flex flex-col gap-7">
             <h3>Summary</h3>
-
             <div className="space-y-5 text-xl text-light-100">
-              <p>{book.summary}</p>
+              {book.summary
+                ?.split("\n")
+                .map((line, index) => <p key={index}>{line}</p>)}
             </div>
           </section>
         </div>
 
-        <BookList
-          title="More Similar Books"
-          books={sampleBooks.slice(4)}
-          containerClassName="flex-1"
-        />
+        {similarBooks.length > 0 && (
+          <BookList
+            title="More Similar Books"
+            books={similarBooks}
+            containerClassName="flex-1"
+          />
+        )}
       </div>
     </>
   );

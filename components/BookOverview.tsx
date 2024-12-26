@@ -44,7 +44,7 @@ const BookOverview = ({
           </p>
         </div>
 
-        <p className="book-description">{summary.slice(0, 300)}</p>
+        <p className="book-description">{summary?.slice(0, 300)}</p>
 
         <Button className="book-overview_btn">
           <Image src="/icons/book.svg" alt="book" width={20} height={20} />
