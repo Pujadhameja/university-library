@@ -16,7 +16,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const [[book], similarBooks] = await Promise.all([
     db.select().from(books).where(eq(books.id, id)).limit(1) as Promise<Book[]>,
 
-    db.select().from(books).where(ne(books.id, id)).limit(5) as Promise<Book[]>,
+    db.select().from(books).where(ne(books.id, id)).limit(4) as Promise<Book[]>,
   ]);
 
   if (!book) redirect("/404");
@@ -42,13 +42,11 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
           </section>
         </div>
 
-        {similarBooks.length > 0 && (
-          <BookList
-            title="More Similar Books"
-            books={similarBooks}
-            containerClassName="flex-1"
-          />
-        )}
+        <section className="sticky top-5 h-fit flex-1">
+          {similarBooks.length > 0 && (
+            <BookList title="More Similar Books" books={similarBooks} />
+          )}
+        </section>
       </div>
     </>
   );

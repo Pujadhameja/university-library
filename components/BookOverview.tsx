@@ -50,7 +50,7 @@ const BookOverview = ({
           </p>
         </div>
 
-        <p className="book-description">{summary?.slice(0, 300)}</p>
+        <p className="book-description">{summary?.slice(0, 200)}...</p>
 
         <BorrowBook bookId={id} userId={userId} />
       </div>
