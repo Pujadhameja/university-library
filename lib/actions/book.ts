@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { desc, eq } from "drizzle-orm";
 
 import { db } from "@/database/drizzle";
-import { books, borrowRecords } from "@/database/schema";
+import { books, borrowRecords, users } from "@/database/schema";
 
 export async function createBook(params: BookParams) {
   try {
@@ -77,9 +77,18 @@ export async function borrowBook(params: BorrowBookParams) {
 export async function getBorrowedBooks(userId: string) {
   try {
     const borrowedBooks = await db
-      .select()
+      .select({
+        id: borrowRecords.id,
+        book: books,
+        user: users,
+        borrowDate: borrowRecords.borrowDate,
+        dueDate: borrowRecords.dueDate,
+        returnDate: borrowRecords.returnDate,
+        status: borrowRecords.status,
+      })
       .from(borrowRecords)
       .innerJoin(books, eq(borrowRecords.bookId, books.id))
+      .innerJoin(users, eq(borrowRecords.userId, users.id))
       .where(eq(borrowRecords.userId, userId))
       .orderBy(desc(borrowRecords.borrowDate));
 

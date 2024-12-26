@@ -6,6 +6,18 @@ interface AuthCredentails {
   universityCard: string;
 }
 
+interface User {
+  id: string;
+  fullname: string;
+  email: string;
+  universityId: number;
+  universityCard: string;
+  status: string;
+  role: string;
+  lastActivityDate: Date;
+  createdAt: Date;
+}
+
 interface Book {
   id: string;
   title: string;
@@ -19,6 +31,16 @@ interface Book {
   videoUrl: string;
   summary: string;
   createdAt: Date;
+}
+
+interface BorrowedBook {
+  id: string;
+  user: User;
+  book: Book;
+  borrowDate: Date;
+  dueDate: string;
+  returnDate: string;
+  status: string;
 }
 
 interface BookParams {
