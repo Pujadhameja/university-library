@@ -8,10 +8,13 @@ import { books, borrowRecords, users } from "@/database/schema";
 
 export async function createBook(params: BookParams) {
   try {
-    const newBook = await db.insert(books).values({
-      ...params,
-      availableQuantity: params.totalQuantity,
-    });
+    const newBook = await db
+      .insert(books)
+      .values({
+        ...params,
+        availableQuantity: params.totalQuantity,
+      })
+      .returning();
 
     return {
       success: true,
