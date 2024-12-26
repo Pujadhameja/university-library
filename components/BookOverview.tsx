@@ -1,9 +1,14 @@
 import Image from "next/image";
 
 import BookCover from "./BookCover";
-import { Button } from "@/components/ui/button";
+import BorrowBook from "./BorrowBook";
+
+interface Props extends Book {
+  userId: string;
+}
 
 const BookOverview = ({
+  id,
   title,
   author,
   category,
@@ -13,7 +18,8 @@ const BookOverview = ({
   summary,
   coverColor,
   coverImage,
-}: Book) => {
+  userId,
+}: Props) => {
   return (
     <section className="book-overview">
       <div className="flex flex-1 flex-col gap-5">
@@ -46,12 +52,7 @@ const BookOverview = ({
 
         <p className="book-description">{summary?.slice(0, 300)}</p>
 
-        <Button className="book-overview_btn">
-          <Image src="/icons/book.svg" alt="book" width={20} height={20} />
-          <p className="font-bebas-neue text-xl text-dark-100">
-            Borrow Book Request
-          </p>
-        </Button>
+        <BorrowBook bookId={id} userId={userId} />
       </div>
 
       <div className="relative flex flex-1 justify-center">

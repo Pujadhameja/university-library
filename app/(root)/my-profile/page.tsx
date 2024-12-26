@@ -1,11 +1,19 @@
-import { signOut } from "@/auth";
+import { auth, signOut } from "@/auth";
 
-import { sampleBooks } from "@/constants";
-
-import BookList from "@/components/BookList";
 import { Button } from "@/components/ui/button";
+import { getBorrowedBooks } from "@/lib/actions/book";
 
-const Page = () => {
+const Page = async () => {
+  const session = await auth();
+  if (!session?.user?.id) return;
+
+  const { data: borrowedBooks, success } = await getBorrowedBooks(
+    session?.user?.id
+  );
+  if (!success) return;
+
+  console.log("BORROWED BOOKS", borrowedBooks);
+
   return (
     <>
       <form
@@ -18,7 +26,7 @@ const Page = () => {
         <Button>Logout</Button>
       </form>
 
-      <BookList title="Borrowed Books" books={sampleBooks} />
+      {/* <BookList title="Borrowed Books" books={sampleBooks} /> */}
     </>
   );
 };

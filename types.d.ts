@@ -18,7 +18,6 @@ interface Book {
   coverImage: string;
   videoUrl: string;
   summary: string;
-  isLoanedBook?: boolean;
   createdAt: Date;
 }
 
@@ -32,4 +31,9 @@ interface BookParams {
   summary: string;
   totalQuantity: number;
   videoUrl: string;
+}
+
+interface BorrowBookParams {
+  bookId: string;
+  userId: string;
 }
