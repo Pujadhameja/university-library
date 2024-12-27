@@ -11,6 +11,7 @@ interface Props {
   isBorrowed?: boolean;
   containerClassName?: string;
   showSorts?: boolean;
+  showNoResultBtn?: boolean;
 }
 
 const BookList = ({
@@ -19,6 +20,7 @@ const BookList = ({
   isBorrowed,
   containerClassName,
   showSorts = false,
+  showNoResultBtn = false,
 }: Props) => {
   return (
     <section className={containerClassName}>
@@ -50,12 +52,15 @@ const BookList = ({
               We couldn’t find any books matching your search. Try using
               different keywords or check for typos.
             </p>
-            <Button
-              asChild
-              className="bg-primary font-bebas-neue min-w-[360px] mt-6 text-dark-100 text-xl hover:bg-primary/90 min-h-12"
-            >
-              <Link href="/library">Clear Search</Link>
-            </Button>
+
+            {showNoResultBtn && (
+              <Button
+                asChild
+                className="bg-primary font-bebas-neue min-w-[360px] mt-6 text-dark-100 text-xl hover:bg-primary/90 min-h-12"
+              >
+                <Link href="/library">Clear Search</Link>
+              </Button>
+            )}
           </div>
         )}
       </ul>

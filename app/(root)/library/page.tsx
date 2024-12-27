@@ -42,6 +42,7 @@ const Page = async ({ searchParams }: PageProps) => {
         books={allBooks}
         containerClassName="mt-16"
         showSorts
+        showNoResultBtn
       />
 
       <div className="mt-12 border-t border-dark-300/50 pt-12">
