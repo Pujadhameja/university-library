@@ -1,12 +1,29 @@
 "use client";
 
 import Image from "next/image";
+import { useDebounce } from "react-use";
 import React, { useState } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 import { Input } from "./ui/input";
 
 const Search = () => {
-  const [search, setSearch] = useState("");
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const [search, setSearch] = useState(searchParams.get("query") || "");
+
+  useDebounce(
+    () => {
+      if (search) {
+        router.push(`${pathname}?query=${search}`);
+      } else {
+        router.push(pathname);
+      }
+    },
+    500,
+    [search]
+  );
 
   return (
     <div className="search">
@@ -21,7 +38,7 @@ const Search = () => {
       <Input
         type="text"
         value={search}
-        placeholder="Thriller mistery"
+        placeholder="Thriller mystery"
         onChange={(e) => setSearch(e.target.value)}
         className="search-input w-full"
       />
