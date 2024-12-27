@@ -15,11 +15,13 @@ const Search = () => {
 
   useDebounce(
     () => {
+      const params = new URLSearchParams(searchParams);
       if (search) {
-        router.push(`${pathname}?query=${search}`);
+        params.set("query", search);
       } else {
-        router.push(pathname);
+        params.delete("query");
       }
+      router.push(`${pathname}?${params.toString()}`);
     },
     500,
     [search]

@@ -5,6 +5,7 @@ import BookList from "@/components/BookList";
 
 import { db } from "@/database/drizzle";
 import { books } from "@/database/schema";
+import Pagination from "@/components/Pagination";
 
 const Page = async ({
   searchParams,
@@ -42,6 +43,10 @@ const Page = async ({
         books={allBooks}
         containerClassName="mt-16"
       />
+
+      <div className="mt-12 border-t border-dark-300/50 pt-12">
+        <Pagination />
+      </div>
     </>
   );
 };
