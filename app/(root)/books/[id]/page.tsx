@@ -15,7 +15,6 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
 
   const [[book], similarBooks] = await Promise.all([
     db.select().from(books).where(eq(books.id, id)).limit(1) as Promise<Book[]>,
-
     db.select().from(books).where(ne(books.id, id)).limit(4) as Promise<Book[]>,
   ]);
 
