@@ -1,28 +1,27 @@
-import { like, or } from "drizzle-orm";
-
 import Search from "@/components/Search";
 import BookList from "@/components/BookList";
 
-import { db } from "@/database/drizzle";
-import { books } from "@/database/schema";
 import Pagination from "@/components/Pagination";
+import { searchBooks } from "@/lib/actions/book";
 
-const Page = async ({
-  searchParams,
-}: {
-  searchParams: Promise<{ query?: string }>;
-}) => {
+interface PageProps {
+  searchParams: Promise<{
+    query?: string;
+    sort?: string;
+    page?: number;
+  }>;
+}
+
+const Page = async ({ searchParams }: PageProps) => {
   const query = (await searchParams).query;
+  const sort = (await searchParams).sort;
+  const page = (await searchParams).page;
 
-  const conditions = query
-    ? or(
-        like(books.title, `%${query}%`),
-        like(books.category, `%${query}%`),
-        like(books.author, `%${query}%`)
-      )
-    : undefined;
-
-  const allBooks = (await db.select().from(books).where(conditions)) as Book[];
+  const { data: allBooks } = await searchBooks({
+    query,
+    sort,
+    page: page,
+  });
 
   return (
     <>

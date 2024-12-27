@@ -1,7 +1,7 @@
 "use server";
 
 import dayjs from "dayjs";
-import { desc, eq } from "drizzle-orm";
+import { and, asc, desc, eq, like, or } from "drizzle-orm";
 
 import { db } from "@/database/drizzle";
 import { books, borrowRecords, users } from "@/database/schema";
@@ -118,6 +118,57 @@ export async function getBorrowedBooks(userId: string) {
     return {
       success: false,
       error: "Error getting borrowed books",
+    };
+  }
+}
+
+export async function searchBooks({
+  query,
+  sort = "available",
+  page = 1,
+}: {
+  query?: string;
+  sort?: string;
+  page?: number;
+}) {
+  try {
+    let buildConditions;
+    if (query) {
+      buildConditions = or(
+        like(books.title, `%${query}%`),
+        like(books.category, `%${query}%`),
+        like(books.author, `%${query}%`)
+      );
+    }
+
+    let buildSort = desc(books.createdAt);
+    if (sort === "newest") {
+      buildSort = desc(books.createdAt);
+    } else if (sort === "oldest") {
+      buildSort = asc(books.createdAt);
+    } else if (sort === "highestRated") {
+      buildSort = desc(books.rating);
+    } else if (sort === "available") {
+      buildSort = desc(books.totalQuantity);
+    }
+
+    const allBooks = await db
+      .select()
+      .from(books)
+      .where(buildConditions)
+      .orderBy(buildSort)
+      .limit(10)
+      .offset((page - 1) * 10);
+
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(allBooks)),
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      error: "Error searching books",
     };
   }
 }
