@@ -190,3 +190,22 @@ export const sampleBooks = [
       "Morgan Housel explores the unique behaviors and mindsets that shape financial success and decision-making.",
   },
 ];
+
+export const sorts = [
+  {
+    value: "oldest",
+    label: "Oldest",
+  },
+  {
+    value: "newest",
+    label: "Newest",
+  },
+  {
+    value: "available",
+    label: "Available",
+  },
+  {
+    value: "highestRated",
+    label: "Highest Rated",
+  },
+];

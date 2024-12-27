@@ -1,3 +1,4 @@
+import Sort from "./Sort";
 import BookCard from "./BookCard";
 
 interface Props {
@@ -5,12 +6,23 @@ interface Props {
   books: Book[] | BorrowedBook[];
   isBorrowed?: boolean;
   containerClassName?: string;
+  showSorts?: boolean;
 }
 
-const BookList = ({ title, books, isBorrowed, containerClassName }: Props) => {
+const BookList = ({
+  title,
+  books,
+  isBorrowed,
+  containerClassName,
+  showSorts = false,
+}: Props) => {
   return (
     <section className={containerClassName}>
-      <h2 className="font-bebas-neue text-4xl text-light-100">{title}</h2>
+      <div className="flex flex-row items-center justify-between">
+        <h2 className="font-bebas-neue text-4xl text-light-100">{title}</h2>
+
+        {showSorts && <Sort />}
+      </div>
 
       <ul className="book-list">
         {books.map((item: Book) => (
