@@ -23,8 +23,7 @@ const BookCard = <T extends Book | BorrowedBook>(
           <p className="book-genre">{category}</p>
         </div>
 
-        {/* @ts-ignore */}
-        {isBorrowed && <BookReceipt {...props} />}
+        {isBorrowed && <BookReceipt {...(props as BorrowedBook)} />}
       </Link>
     </li>
   );

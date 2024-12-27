@@ -1,24 +1,24 @@
-/* eslint-disable new-cap */
 "use client";
 
-import jsPDF from "jspdf";
+import { jsPDF as JsPDF } from "jspdf";
 import dayjs from "dayjs";
 import Image from "next/image";
 import html2canvas from "html2canvas";
 
 import { Button } from "./ui/button";
 
-const BookReceipt = <T extends BorrowedBook>({
+const BookReceipt = ({
   borrow: { id, borrowDate, dueDate },
   title,
   author,
   category,
-}: T) => {
-  const formattedBorrowDate = dayjs(borrowDate).format("MMM DD, YYYY");
+}: BorrowedBook) => {
   const formattedDueDate = dayjs(dueDate).format("MMM DD, YYYY");
+  const formattedBorrowDate = dayjs(borrowDate).format("MMM DD, YYYY");
 
   const daysLeft = dayjs(dueDate).diff(dayjs(), "day");
   const totalDays = dayjs(dueDate).diff(dayjs(borrowDate), "day");
+
   const handleDownload = async (e: React.MouseEvent) => {
     e.preventDefault();
 
@@ -37,7 +37,7 @@ const BookReceipt = <T extends BorrowedBook>({
 
       // Convert canvas to PDF
       const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF({
+      const pdf = new JsPDF({
         orientation: "portrait",
         unit: "px",
         format: [canvas.width, canvas.height],
