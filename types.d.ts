@@ -33,14 +33,18 @@ interface Book {
   createdAt: Date;
 }
 
-interface BorrowedBook {
+interface BorrowRecord {
   id: string;
   userId: string;
-  book: Book;
+  bookId: string;
   borrowDate: Date;
   dueDate: string;
   returnDate: string;
   status: string;
+}
+
+interface BorrowedBook extends Book {
+  borrow: BorrowRecord;
 }
 
 interface BookParams {

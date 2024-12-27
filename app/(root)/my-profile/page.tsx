@@ -36,7 +36,7 @@ const Page = async () => {
   return (
     <>
       <section className="flex flex-col gap-16 lg:flex-row">
-        <div className="sticky top-10 flex h-fit max-lg:items-center max-lg:justify-center">
+        <div className="flex h-fit max-lg:items-center max-lg:justify-center lg:sticky lg:top-10">
           <div className="gradient-blue relative w-full rounded-[20px] border border-dark-600 p-5 sm:w-[512px]">
             <div className="absolute -top-10 left-1/2 z-10 h-28 w-20 -translate-x-1/2 rounded-b-full bg-dark-700 shadow-lg">
               <div className="absolute bottom-3.5 left-1/2 h-3 w-10 -translate-x-1/2 rounded-full bg-dark-800" />
@@ -100,8 +100,8 @@ const Page = async () => {
             (borrowedBooks.length > 0 ? (
               <BookList
                 title="Borrowed Books"
-                books={borrowedBooks.map((b) => b.book)}
-                isLoaned={true}
+                books={borrowedBooks}
+                isBorrowed={true}
               />
             ) : (
               <p className="text-2xl text-light-100">

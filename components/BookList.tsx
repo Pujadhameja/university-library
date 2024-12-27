@@ -2,19 +2,19 @@ import BookCard from "./BookCard";
 
 interface Props {
   title: string;
-  books: Book[];
-  isLoaned?: boolean;
+  books: Book[] | BorrowedBook[];
+  isBorrowed?: boolean;
   containerClassName?: string;
 }
 
-const BookList = ({ title, books, isLoaned, containerClassName }: Props) => {
+const BookList = ({ title, books, isBorrowed, containerClassName }: Props) => {
   return (
     <section className={containerClassName}>
       <h2 className="font-bebas-neue text-4xl text-light-100">{title}</h2>
 
       <ul className="book-list">
-        {books.map((item) => (
-          <BookCard key={item.title} {...item} isLoaned={isLoaned} />
+        {books.map((item: Book) => (
+          <BookCard key={item.title} {...item} isBorrowed={isBorrowed} />
         ))}
       </ul>
     </section>
