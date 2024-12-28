@@ -58,12 +58,21 @@ const Page = async ({ searchParams }: PageProps) => {
                     {record.universityId}
                   </TableCell>
                   <TableCell className="text-sm font-medium text-blue-100">
-                    <Link
-                      href={`${config.env.imagekit.urlEndpoint}${record.universityCard}`}
-                      target="_blank"
-                    >
-                      View ID Card
-                    </Link>
+                    <div className="flex items-center gap-1.5">
+                      <Link
+                        href={`${config.env.imagekit.urlEndpoint}${record.universityCard}`}
+                        target="_blank"
+                      >
+                        View ID Card
+                      </Link>
+                      <Image
+                        src="/icons/admin/link.svg"
+                        width={14}
+                        height={14}
+                        className="object-contain"
+                        alt="delete"
+                      />
+                    </div>
                   </TableCell>
                   <TableCell className="flex justify-center">
                     <Image

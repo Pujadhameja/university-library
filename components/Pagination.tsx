@@ -30,10 +30,10 @@ const Pagination = ({ variant, hasNextPage }: Props) => {
       <Button
         disabled={page === 1}
         className={cn(
-          "min-h-10",
+          "min-h-10 font-semibold text-sm",
           variant === "dark"
             ? "bg-dark-300 hover:bg-dark-100"
-            : "bg-dark-100 hover:bg-dark-100/90"
+            : "bg-light-300 text-dark-300 hover:bg-dark-100/90"
         )}
         onClick={() => handlePageNavigation("previous")}
       >
@@ -42,8 +42,10 @@ const Pagination = ({ variant, hasNextPage }: Props) => {
 
       <p
         className={cn(
-          "text-lg text-black font-semibold px-4 py-1.5 rounded-md text-center",
-          variant === "dark" ? "bg-light-200" : "bg-light-400"
+          "text-sm inline-flex items-center font-semibold px-4 py-1.5 rounded-md text-center",
+          variant === "dark"
+            ? "bg-light-200 text-black"
+            : "bg-primary-admin text-white"
         )}
       >
         {page}
@@ -52,10 +54,10 @@ const Pagination = ({ variant, hasNextPage }: Props) => {
       <Button
         disabled={!hasNextPage}
         className={cn(
-          "min-h-10",
+          "min-h-10 font-semibold text-sm",
           variant === "dark"
             ? "bg-dark-300 hover:bg-dark-100"
-            : "bg-dark-100 hover:bg-dark-100/90"
+            : "bg-light-300 text-dark-300 hover:bg-dark-100/90"
         )}
         onClick={() => handlePageNavigation("next")}
       >

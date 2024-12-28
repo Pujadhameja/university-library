@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 
 import Pagination from "@/components/Pagination";
 import { getBorrowRecords } from "@/lib/admin/actions/book";
+import Image from "next/image";
 
 const Page = async ({ searchParams }: PageProps) => {
   const { query, sort, page } = await searchParams;
@@ -69,7 +70,16 @@ const Page = async ({ searchParams }: PageProps) => {
                     {dayjs(record.dueDate).format("MMM DD, YYYY")}
                   </TableCell>
                   <TableCell>
-                    <Button>Generate</Button>
+                    <Button className="bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80">
+                      <Image
+                        src="/icons/admin/receipt.svg"
+                        width={16}
+                        height={16}
+                        className="object-contain"
+                        alt="receipt"
+                      />
+                      Generate
+                    </Button>
                   </TableCell>
                 </TableRow>
               ))
