@@ -6,10 +6,21 @@ import html2canvas from "html2canvas";
 import { jsPDF as JsPDF } from "jspdf";
 
 import { Button } from "./ui/button";
-import BorrowBook from "./BorrowBook";
 
-const BookReceipt = (props: BorrowedBook) => {
-  const { id, title, author, category, coverColor, borrow } = props;
+interface Props extends BorrowedBook {
+  btnVariant?: "user" | "admin";
+}
+
+const BookReceipt = (props: Props) => {
+  const {
+    id,
+    title,
+    author,
+    category,
+    coverColor,
+    borrow,
+    btnVariant = "user",
+  } = props;
   const { borrowDate, dueDate } = borrow;
 
   const formattedDueDate = dayjs(dueDate).format("MMM DD, YYYY");
@@ -54,19 +65,35 @@ const BookReceipt = (props: BorrowedBook) => {
 
   return (
     <>
-      <Button
-        className="p-2 rounded-md flex justify-center items-center"
-        style={{ backgroundColor: `${coverColor}4d` }}
-        onClick={handleDownload}
-      >
-        <Image
-          src="/icons/receipt.svg"
-          alt="receipt"
-          width={16}
-          height={16}
-          className="object-contain"
-        />
-      </Button>
+      {btnVariant === "user" ? (
+        <Button
+          className="p-2 rounded-md flex justify-center items-center"
+          style={{ backgroundColor: `${coverColor}4d` }}
+          onClick={handleDownload}
+        >
+          <Image
+            src="/icons/receipt.svg"
+            alt="receipt"
+            width={16}
+            height={16}
+            className="object-contain"
+          />
+        </Button>
+      ) : (
+        <Button
+          className="bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80"
+          onClick={handleDownload}
+        >
+          <Image
+            src="/icons/admin/receipt.svg"
+            width={16}
+            height={16}
+            className="object-contain"
+            alt="receipt"
+          />
+          Generate
+        </Button>
+      )}
 
       <section
         id="book-ticket"

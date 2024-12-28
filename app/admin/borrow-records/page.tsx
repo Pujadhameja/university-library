@@ -9,11 +9,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import BookCover from "@/components/BookCover";
-import { Button } from "@/components/ui/button";
-
 import Pagination from "@/components/Pagination";
+import BookReceipt from "@/components/BookReceipt";
+
 import { getBorrowRecords } from "@/lib/admin/actions/book";
-import Image from "next/image";
+import Avatar from "@/components/Avatar";
 
 const Page = async ({ searchParams }: PageProps) => {
   const { query, sort, page } = await searchParams;
@@ -44,42 +44,44 @@ const Page = async ({ searchParams }: PageProps) => {
           <TableBody>
             {allRecords!?.length > 0 ? (
               allRecords!.map((record) => (
-                <TableRow key={record.id} className="border-b-dark-100/5">
+                <TableRow
+                  key={record.borrow.id}
+                  className="border-b-dark-100/5"
+                >
                   <TableCell className="py-5 font-medium">
                     <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
                       <BookCover
                         variant="small"
-                        coverImage={record.book.coverImage!}
-                        coverColor={record.book.coverColor!}
+                        coverImage={record.coverImage!}
+                        coverColor={record.coverColor!}
                       />
-                      <p className="flex-1">{record.book.title}</p>
+                      <p className="flex-1">{record.title}</p>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-sm">
+                    <div className="flex flex-row items-center gap-2">
+                      <Avatar name={record.user} size="md" />
+                      <div>
+                        <p className="font-semibold text-dark-400">
+                          {record.user}
+                        </p>
+                        <p className="text-dark-100">someone@gmail.com</p>
+                      </div>
                     </div>
                   </TableCell>
                   <TableCell className="text-sm font-medium text-dark-200">
-                    {record.user}
+                    {dayjs(record.borrow.borrowDate).format("MMM DD, YYYY")}
                   </TableCell>
                   <TableCell className="text-sm font-medium text-dark-200">
-                    {dayjs(record.borrowDate).format("MMM DD, YYYY")}
-                  </TableCell>
-                  <TableCell className="text-sm font-medium text-dark-200">
-                    {record.returnDate
-                      ? dayjs(record.returnDate).format("MMM DD, YYYY")
+                    {record.borrow.returnDate
+                      ? dayjs(record.borrow.returnDate).format("MMM DD, YYYY")
                       : "---"}
                   </TableCell>
                   <TableCell className="text-sm font-medium text-dark-200">
-                    {dayjs(record.dueDate).format("MMM DD, YYYY")}
+                    {dayjs(record.borrow.dueDate).format("MMM DD, YYYY")}
                   </TableCell>
                   <TableCell>
-                    <Button className="bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80">
-                      <Image
-                        src="/icons/admin/receipt.svg"
-                        width={16}
-                        height={16}
-                        className="object-contain"
-                        alt="receipt"
-                      />
-                      Generate
-                    </Button>
+                    <BookReceipt btnVariant="admin" {...record} />
                   </TableCell>
                 </TableRow>
               ))

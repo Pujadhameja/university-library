@@ -90,17 +90,28 @@ export async function getBorrowRecords({
 
     const borrowRecordsData = await db
       .select({
-        id: borrowRecords.id,
-        book: {
-          id: books.id,
-          title: books.title,
-          coverImage: books.coverImage,
-          coverColor: books.coverColor,
+        id: books.id,
+        title: books.title,
+        author: books.author,
+        category: books.category,
+        rating: books.rating,
+        totalQuantity: books.totalQuantity,
+        availableQuantity: books.availableQuantity,
+        coverColor: books.coverColor,
+        coverImage: books.coverImage,
+        videoUrl: books.videoUrl,
+        summary: books.summary,
+        createdAt: books.createdAt,
+        borrow: {
+          id: borrowRecords.id,
+          userId: borrowRecords.userId,
+          bookId: borrowRecords.bookId,
+          borrowDate: borrowRecords.borrowDate,
+          dueDate: borrowRecords.dueDate,
+          returnDate: borrowRecords.returnDate,
+          status: borrowRecords.status,
         },
         user: users.fullname,
-        borrowDate: borrowRecords.borrowDate,
-        returnDate: borrowRecords.returnDate,
-        dueDate: borrowRecords.dueDate,
       })
       .from(borrowRecords)
       .innerJoin(books, eq(borrowRecords.bookId, books.id))
