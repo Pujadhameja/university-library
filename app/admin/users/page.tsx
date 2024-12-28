@@ -13,7 +13,7 @@ import {
 
 import config from "@/lib/config";
 import Pagination from "@/components/Pagination";
-import { getUsers } from "@/lib/admin/actions/book";
+import { getUsers } from "@/lib/admin/actions/user";
 
 const Page = async ({ searchParams }: PageProps) => {
   const { query, sort, page } = await searchParams;
@@ -43,24 +43,24 @@ const Page = async ({ searchParams }: PageProps) => {
 
           <TableBody>
             {allRecords!?.length > 0 ? (
-              allRecords!.map((record) => (
-                <TableRow key={record.id} className="border-b-dark-100/5">
+              allRecords!.map(({ user, totalBorrowedBooks }) => (
+                <TableRow key={user.id} className="border-b-dark-100/5">
                   <TableCell className="text-sm font-medium text-dark-200">
-                    {record.fullname}
+                    {user.fullname}
                   </TableCell>
                   <TableCell className="text-sm font-medium text-dark-200">
-                    {dayjs(record.createdAt).format("MMM DD, YYYY")}
+                    {dayjs(user.createdAt).format("MMM DD, YYYY")}
                   </TableCell>
                   <TableCell className="text-sm font-medium text-dark-200">
-                    20
+                    {totalBorrowedBooks}
                   </TableCell>
                   <TableCell className="text-sm font-medium text-dark-200">
-                    {record.universityId}
+                    {user.universityId}
                   </TableCell>
                   <TableCell className="text-sm font-medium text-blue-100">
                     <div className="flex items-center gap-1.5">
                       <Link
-                        href={`${config.env.imagekit.urlEndpoint}${record.universityCard}`}
+                        href={`${config.env.imagekit.urlEndpoint}${user.universityCard}`}
                         target="_blank"
                       >
                         View ID Card
