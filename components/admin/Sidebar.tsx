@@ -2,11 +2,13 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { Session } from "next-auth";
 import { usePathname } from "next/navigation";
 
+import Avatar from "../Avatar";
 import { adminSideBarLinks } from "@/constants";
 
-const Sidebar = () => {
+const Sidebar = ({ session }: { session: Session }) => {
   const pathname = usePathname();
 
   return (
@@ -59,16 +61,11 @@ const Sidebar = () => {
       </div>
 
       <div className="my-8 flex w-full flex-row gap-2 rounded-full border border-light-400 px-6 py-2 shadow-sm max-md:px-2">
-        <Image
-          src="/icons/admin/logo.svg"
-          alt="auth-user"
-          width={48}
-          height={48}
-        />
+        <Avatar name={session?.user?.name || ""} size="md" />
 
         <div className="flex flex-col max-md:hidden">
-          <p className="text-lg font-semibold text-dark-200">Adrian Hajdin</p>
-          <p className="text-light-500">adrian@jsmastery.pro</p>
+          <p className="font-semibold text-dark-200">{session?.user?.name}</p>
+          <p className="text-light-500 text-xs">{session?.user?.email}</p>
         </div>
       </div>
     </div>

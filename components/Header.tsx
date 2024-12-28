@@ -2,15 +2,14 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { Session } from "next-auth";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import Avatar from "./Avatar";
-import { useSession } from "next-auth/react";
 
-const Header = () => {
+const Header = ({ session }: { session: Session }) => {
   const pathname = usePathname();
-  const { data: session } = useSession();
 
   return (
     <header className="my-10 flex items-center justify-between gap-5">
@@ -31,13 +30,11 @@ const Header = () => {
           </Link>
         </li>
 
-        {session && (
-          <li>
-            <Link href="/my-profile">
-              <Avatar name={session?.user?.name || ""} />
-            </Link>
-          </li>
-        )}
+        <li>
+          <Link href="/my-profile">
+            <Avatar name={session?.user?.name || ""} />
+          </Link>
+        </li>
       </ul>
     </header>
   );

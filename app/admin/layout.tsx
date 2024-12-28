@@ -24,7 +24,7 @@ const AdminLayout = async ({ children }: { children: ReactNode }) => {
 
   return (
     <main className="flex min-h-screen w-full flex-row">
-      <Sidebar />
+      <Sidebar session={session} />
 
       <div className="flex w-[calc(100%-264px)] flex-1 flex-col bg-light-300 p-5 xs:p-10">
         {children}
