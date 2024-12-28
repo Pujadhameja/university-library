@@ -2,9 +2,14 @@
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 
+import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 
-const Pagination = () => {
+interface Props {
+  variant: "dark" | "light";
+}
+
+const Pagination = ({ variant }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -23,16 +28,33 @@ const Pagination = () => {
     <div className="flex flex-row justify-end gap-3">
       <Button
         disabled={page === 1}
-        className="bg-dark-300 hover:bg-dark-100 min-h-10"
+        className={cn(
+          "min-h-10",
+          variant === "dark"
+            ? "bg-dark-300 hover:bg-dark-100"
+            : "bg-dark-100 hover:bg-dark-100/90"
+        )}
         onClick={() => handlePageNavigation("previous")}
       >
         Previous
       </Button>
-      <p className="bg-light-200 text-lg text-black font-semibold px-4 py-1.5 rounded-md text-center">
+
+      <p
+        className={cn(
+          "text-lg text-black font-semibold px-4 py-1.5 rounded-md text-center",
+          variant === "dark" ? "bg-light-200" : "bg-light-400"
+        )}
+      >
         {page}
       </p>
+
       <Button
-        className="bg-dark-300 hover:bg-dark-100 min-h-10"
+        className={cn(
+          "min-h-10",
+          variant === "dark"
+            ? "bg-dark-300 hover:bg-dark-100"
+            : "bg-dark-100 hover:bg-dark-100/90"
+        )}
         onClick={() => handlePageNavigation("next")}
       >
         Next

@@ -4,23 +4,13 @@ import BookList from "@/components/BookList";
 import Pagination from "@/components/Pagination";
 import { searchBooks } from "@/lib/actions/book";
 
-interface PageProps {
-  searchParams: Promise<{
-    query?: string;
-    sort?: string;
-    page?: number;
-  }>;
-}
-
 const Page = async ({ searchParams }: PageProps) => {
-  const query = (await searchParams).query;
-  const sort = (await searchParams).sort;
-  const page = (await searchParams).page;
+  const { query, sort, page } = await searchParams;
 
   const { data: allBooks } = await searchBooks({
     query,
     sort,
-    page: page,
+    page,
   });
 
   return (
@@ -46,7 +36,7 @@ const Page = async ({ searchParams }: PageProps) => {
       />
 
       <div className="mt-12 border-t border-dark-300/50 pt-12">
-        <Pagination />
+        <Pagination variant="dark" />
       </div>
     </>
   );

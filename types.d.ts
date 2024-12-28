@@ -63,3 +63,11 @@ interface BorrowBookParams {
   bookId: string;
   userId: string;
 }
+
+interface PageProps {
+  searchParams: Promise<{
+    query?: string;
+    sort?: string;
+    page?: number;
+  }>;
+}

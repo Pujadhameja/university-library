@@ -14,26 +14,17 @@ import { Button } from "@/components/ui/button";
 
 import { db } from "@/database/drizzle";
 import { books, borrowRecords, users } from "@/database/schema";
+import Pagination from "@/components/Pagination";
+import { getBorrowRecords } from "@/lib/admin/actions/book";
 
-const Page = async () => {
-  const allRecords = await db
-    .select({
-      id: borrowRecords.id,
-      book: {
-        id: books.id,
-        title: books.title,
-        coverImage: books.coverImage,
-        coverColor: books.coverColor,
-      },
-      user: users.fullname,
-      borrowDate: borrowRecords.borrowDate,
-      returnDate: borrowRecords.returnDate,
-      dueDate: borrowRecords.dueDate,
-    })
-    .from(borrowRecords)
-    .innerJoin(books, eq(borrowRecords.bookId, books.id))
-    .innerJoin(users, eq(borrowRecords.userId, users.id))
-    .orderBy(desc(borrowRecords.borrowDate));
+const Page = async ({ searchParams }: PageProps) => {
+  const { query, sort, page } = await searchParams;
+
+  const { data: allRecords } = await getBorrowRecords({
+    query,
+    sort,
+    page,
+  });
 
   return (
     <section className="w-full rounded-2xl bg-white p-7">
@@ -53,39 +44,51 @@ const Page = async () => {
           </TableHeader>
 
           <TableBody>
-            {allRecords.map((record) => (
-              <TableRow key={record.id} className="border-b-dark-100/5">
-                <TableCell className="py-5 font-medium">
-                  <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
-                    <BookCover
-                      variant="small"
-                      coverImage={record.book.coverImage!}
-                      coverColor={record.book.coverColor!}
-                    />
-                    <p className="flex-1">{record.book.title}</p>
-                  </div>
-                </TableCell>
-                <TableCell className="text-sm font-medium text-dark-200">
-                  {record.user}
-                </TableCell>
-                <TableCell className="text-sm font-medium text-dark-200">
-                  {dayjs(record.borrowDate).format("MMM DD, YYYY")}
-                </TableCell>
-                <TableCell className="text-sm font-medium text-dark-200">
-                  {record.returnDate
-                    ? dayjs(record.returnDate).format("MMM DD, YYYY")
-                    : "---"}
-                </TableCell>
-                <TableCell className="text-sm font-medium text-dark-200">
-                  {dayjs(record.dueDate).format("MMM DD, YYYY")}
-                </TableCell>
-                <TableCell>
-                  <Button>Generate</Button>
+            {allRecords!?.length > 0 ? (
+              allRecords!.map((record) => (
+                <TableRow key={record.id} className="border-b-dark-100/5">
+                  <TableCell className="py-5 font-medium">
+                    <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
+                      <BookCover
+                        variant="small"
+                        coverImage={record.book.coverImage!}
+                        coverColor={record.book.coverColor!}
+                      />
+                      <p className="flex-1">{record.book.title}</p>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-sm font-medium text-dark-200">
+                    {record.user}
+                  </TableCell>
+                  <TableCell className="text-sm font-medium text-dark-200">
+                    {dayjs(record.borrowDate).format("MMM DD, YYYY")}
+                  </TableCell>
+                  <TableCell className="text-sm font-medium text-dark-200">
+                    {record.returnDate
+                      ? dayjs(record.returnDate).format("MMM DD, YYYY")
+                      : "---"}
+                  </TableCell>
+                  <TableCell className="text-sm font-medium text-dark-200">
+                    {dayjs(record.dueDate).format("MMM DD, YYYY")}
+                  </TableCell>
+                  <TableCell>
+                    <Button>Generate</Button>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={6} className="text-center pt-10">
+                  No records found
                 </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
+      </div>
+
+      <div className="mt-8">
+        <Pagination variant="light" />
       </div>
     </section>
   );
