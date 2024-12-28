@@ -1,11 +1,11 @@
 "use server";
 
-import { or, like, desc, asc, eq } from "drizzle-orm";
+import { or, like, desc, asc, eq, count } from "drizzle-orm";
 
 import { db } from "@/database/drizzle";
 import { books, borrowRecords, users } from "@/database/schema";
 
-const BOOK_PER_PAGE = 20;
+const ITEMS_PER_PAGE = 20;
 
 export async function getBorrowRecords({
   query,
@@ -17,27 +17,24 @@ export async function getBorrowRecords({
   page?: number;
 }) {
   try {
-    let buildConditions;
-    if (query) {
-      buildConditions = or(
-        like(books.title, `%${query}%`),
-        like(books.category, `%${query}%`),
-        like(books.author, `%${query}%`)
-      );
-    }
+    const searchConditions = query
+      ? or(
+          like(books.title, `%${query}%`),
+          like(books.category, `%${query}%`),
+          like(books.author, `%${query}%`)
+        )
+      : undefined;
 
-    let buildSort = desc(books.createdAt);
-    if (sort === "newest") {
-      buildSort = desc(books.createdAt);
-    } else if (sort === "oldest") {
-      buildSort = asc(books.createdAt);
-    } else if (sort === "highestRated") {
-      buildSort = desc(books.rating);
-    } else if (sort === "available") {
-      buildSort = desc(books.totalQuantity);
-    }
+    const sortOptions: Record<string, any> = {
+      newest: desc(books.createdAt),
+      oldest: asc(books.createdAt),
+      highestRated: desc(books.rating),
+      available: desc(books.totalQuantity),
+    };
 
-    const allRecords = await db
+    const sortingCondition = sortOptions[sort] || desc(books.createdAt);
+
+    const borrowRecordsData = await db
       .select({
         id: borrowRecords.id,
         book: {
@@ -54,19 +51,32 @@ export async function getBorrowRecords({
       .from(borrowRecords)
       .innerJoin(books, eq(borrowRecords.bookId, books.id))
       .innerJoin(users, eq(borrowRecords.userId, users.id))
-      .where(buildConditions)
-      .orderBy(buildSort)
-      .limit(BOOK_PER_PAGE)
-      .offset((page - 1) * BOOK_PER_PAGE);
+      .where(searchConditions)
+      .orderBy(sortingCondition)
+      .limit(ITEMS_PER_PAGE)
+      .offset((page - 1) * ITEMS_PER_PAGE);
+
+    const totalRecords = await db
+      .select({ count: count() })
+      .from(borrowRecords)
+      .where(searchConditions);
+
+    const totalPage = Math.ceil(totalRecords[0].count / ITEMS_PER_PAGE);
+    const hasNextPage = page < totalPage;
 
     return {
       success: true,
-      data: allRecords,
+      data: borrowRecordsData,
+      metadata: {
+        totalPage,
+        hasNextPage,
+      },
     };
   } catch (error) {
+    console.error("Error fetching borrow records:", error);
     return {
       success: false,
-      error: "Something went wrong",
+      error: "Something went wrong while fetching borrow records.",
     };
   }
 }

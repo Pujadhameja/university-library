@@ -20,7 +20,7 @@ import { getBorrowRecords } from "@/lib/admin/actions/book";
 const Page = async ({ searchParams }: PageProps) => {
   const { query, sort, page } = await searchParams;
 
-  const { data: allRecords } = await getBorrowRecords({
+  const { data: allRecords, metadata } = await getBorrowRecords({
     query,
     sort,
     page,
@@ -88,7 +88,7 @@ const Page = async ({ searchParams }: PageProps) => {
       </div>
 
       <div className="mt-8">
-        <Pagination variant="light" />
+        <Pagination variant="light" hasNextPage={metadata?.hasNextPage} />
       </div>
     </section>
   );

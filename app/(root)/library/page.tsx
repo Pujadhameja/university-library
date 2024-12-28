@@ -7,7 +7,7 @@ import { searchBooks } from "@/lib/actions/book";
 const Page = async ({ searchParams }: PageProps) => {
   const { query, sort, page } = await searchParams;
 
-  const { data: allBooks } = await searchBooks({
+  const { data: allBooks, metadata } = await searchBooks({
     query,
     sort,
     page,
@@ -36,7 +36,7 @@ const Page = async ({ searchParams }: PageProps) => {
       />
 
       <div className="mt-12 border-t border-dark-300/50 pt-12">
-        <Pagination variant="dark" />
+        <Pagination variant="dark" hasNextPage={metadata?.hasNextPage} />
       </div>
     </>
   );

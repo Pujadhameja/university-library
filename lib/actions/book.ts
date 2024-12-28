@@ -1,10 +1,12 @@
 "use server";
 
 import dayjs from "dayjs";
-import { and, asc, desc, eq, like, or } from "drizzle-orm";
+import { and, asc, count, desc, eq, like, or } from "drizzle-orm";
 
 import { db } from "@/database/drizzle";
 import { books, borrowRecords, users } from "@/database/schema";
+
+const ITEMS_PER_PAGE = 20;
 
 export async function createBook(params: BookParams) {
   try {
@@ -157,12 +159,26 @@ export async function searchBooks({
       .from(books)
       .where(buildConditions)
       .orderBy(buildSort)
-      .limit(10)
-      .offset((page - 1) * 10);
+      .limit(ITEMS_PER_PAGE)
+      .offset((page - 1) * ITEMS_PER_PAGE);
+
+    const totalBooks = await db
+      .select({
+        count: count(),
+      })
+      .from(books)
+      .where(buildConditions);
+
+    const totalPage = Math.ceil(totalBooks[0].count / ITEMS_PER_PAGE);
+    const hasNextPage = page < totalPage;
 
     return {
       success: true,
       data: JSON.parse(JSON.stringify(allBooks)),
+      metadata: {
+        totalPage,
+        hasNextPage,
+      },
     };
   } catch (error) {
     console.log(error);

@@ -7,9 +7,10 @@ import { Button } from "./ui/button";
 
 interface Props {
   variant: "dark" | "light";
+  hasNextPage?: boolean;
 }
 
-const Pagination = ({ variant }: Props) => {
+const Pagination = ({ variant, hasNextPage }: Props) => {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
@@ -49,6 +50,7 @@ const Pagination = ({ variant }: Props) => {
       </p>
 
       <Button
+        disabled={!hasNextPage}
         className={cn(
           "min-h-10",
           variant === "dark"
