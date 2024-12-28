@@ -33,7 +33,7 @@ const Pagination = ({ variant, hasNextPage }: Props) => {
           "min-h-10 font-semibold text-sm",
           variant === "dark"
             ? "bg-dark-300 hover:bg-dark-100"
-            : "bg-light-300 text-dark-300 hover:bg-dark-100/90"
+            : "bg-light-300 text-dark-300 hover:bg-light-300/70"
         )}
         onClick={() => handlePageNavigation("previous")}
       >
@@ -57,7 +57,7 @@ const Pagination = ({ variant, hasNextPage }: Props) => {
           "min-h-10 font-semibold text-sm",
           variant === "dark"
             ? "bg-dark-300 hover:bg-dark-100"
-            : "bg-light-300 text-dark-300 hover:bg-dark-100/90"
+            : "bg-light-300 text-dark-300 hover:bg-light-300/70"
         )}
         onClick={() => handlePageNavigation("next")}
       >
