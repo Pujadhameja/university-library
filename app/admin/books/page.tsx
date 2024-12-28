@@ -12,11 +12,17 @@ import {
 import BookCover from "@/components/BookCover";
 import { Button } from "@/components/ui/button";
 
-import { db } from "@/database/drizzle";
-import { books } from "@/database/schema";
+import { getBooks } from "@/lib/admin/actions/book";
+import Pagination from "@/components/Pagination";
 
-const Page = async () => {
-  const allBooks = (await db.select().from(books)) as Book[];
+const Page = async ({ searchParams }: PageProps) => {
+  const { query, sort, page } = await searchParams;
+
+  const { data: allBooks, metadata } = await getBooks({
+    query,
+    sort,
+    page,
+  });
 
   return (
     <section className="w-full rounded-2xl bg-white p-7">
@@ -40,14 +46,14 @@ const Page = async () => {
           </TableHeader>
 
           <TableBody>
-            {allBooks.map((book) => (
+            {allBooks?.map((book) => (
               <TableRow key={book.id} className="border-b-dark-100/5">
                 <TableCell className="py-5 font-medium">
                   <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
                     <BookCover
                       variant="small"
-                      coverImage={book.coverImage}
-                      coverColor={book.coverColor}
+                      coverImage={book.coverImage!}
+                      coverColor={book.coverColor!}
                     />
                     <p className="flex-1">{book.title}</p>
                   </div>
@@ -83,6 +89,10 @@ const Page = async () => {
             ))}
           </TableBody>
         </Table>
+      </div>
+
+      <div className="mt-8">
+        <Pagination variant="light" hasNextPage={metadata?.hasNextPage} />
       </div>
     </section>
   );

@@ -71,3 +71,14 @@ interface PageProps {
     page?: number;
   }>;
 }
+
+interface QueryParams {
+  query?: string;
+  sort?: string;
+  page?: number;
+}
+
+interface Metdata {
+  totalPages?: number;
+  hasNextPage?: boolean;
+}

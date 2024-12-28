@@ -1,4 +1,6 @@
 import dayjs from "dayjs";
+import Link from "next/link";
+import Image from "next/image";
 
 import {
   Table,
@@ -8,16 +10,15 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import BookCover from "@/components/BookCover";
-import { Button } from "@/components/ui/button";
 
+import config from "@/lib/config";
 import Pagination from "@/components/Pagination";
-import { getBorrowRecords } from "@/lib/admin/actions/book";
+import { getUsers } from "@/lib/admin/actions/book";
 
 const Page = async ({ searchParams }: PageProps) => {
   const { query, sort, page } = await searchParams;
 
-  const { data: allRecords, metadata } = await getBorrowRecords({
+  const { data: allRecords, metadata } = await getUsers({
     query,
     sort,
     page,
@@ -25,18 +26,18 @@ const Page = async ({ searchParams }: PageProps) => {
 
   return (
     <section className="w-full rounded-2xl bg-white p-7">
-      <h2 className="text-xl font-semibold">Borrow Book Requests</h2>
+      <h2 className="text-xl font-semibold">All Users</h2>
 
       <div className="mt-7 w-full overflow-hidden">
         <Table className="overflow-hidden">
           <TableHeader>
             <TableRow className="h-14 border-none bg-light-300">
-              <TableHead className="w-96">Book Title</TableHead>
-              <TableHead>User Requested</TableHead>
-              <TableHead>Borrowed Date</TableHead>
-              <TableHead>Return Date</TableHead>
-              <TableHead>Due Date</TableHead>
-              <TableHead>Receipt</TableHead>
+              <TableHead className="w-96">Name</TableHead>
+              <TableHead>Date Joined</TableHead>
+              <TableHead>Books Borrowed</TableHead>
+              <TableHead>University ID No</TableHead>
+              <TableHead>University ID Card</TableHead>
+              <TableHead>Action</TableHead>
             </TableRow>
           </TableHeader>
 
@@ -44,32 +45,34 @@ const Page = async ({ searchParams }: PageProps) => {
             {allRecords!?.length > 0 ? (
               allRecords!.map((record) => (
                 <TableRow key={record.id} className="border-b-dark-100/5">
-                  <TableCell className="py-5 font-medium">
-                    <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
-                      <BookCover
-                        variant="small"
-                        coverImage={record.book.coverImage!}
-                        coverColor={record.book.coverColor!}
-                      />
-                      <p className="flex-1">{record.book.title}</p>
-                    </div>
+                  <TableCell className="text-sm font-medium text-dark-200">
+                    {record.fullname}
                   </TableCell>
                   <TableCell className="text-sm font-medium text-dark-200">
-                    {record.user}
+                    {dayjs(record.createdAt).format("MMM DD, YYYY")}
                   </TableCell>
                   <TableCell className="text-sm font-medium text-dark-200">
-                    {dayjs(record.borrowDate).format("MMM DD, YYYY")}
+                    20
                   </TableCell>
                   <TableCell className="text-sm font-medium text-dark-200">
-                    {record.returnDate
-                      ? dayjs(record.returnDate).format("MMM DD, YYYY")
-                      : "---"}
+                    {record.universityId}
                   </TableCell>
-                  <TableCell className="text-sm font-medium text-dark-200">
-                    {dayjs(record.dueDate).format("MMM DD, YYYY")}
+                  <TableCell className="text-sm font-medium text-blue-100">
+                    <Link
+                      href={`${config.env.imagekit.urlEndpoint}${record.universityCard}`}
+                      target="_blank"
+                    >
+                      View ID Card
+                    </Link>
                   </TableCell>
-                  <TableCell>
-                    <Button>Generate</Button>
+                  <TableCell className="flex justify-center">
+                    <Image
+                      src="/icons/admin/trash.svg"
+                      width={20}
+                      height={20}
+                      className="object-contain"
+                      alt="delete"
+                    />
                   </TableCell>
                 </TableRow>
               ))
