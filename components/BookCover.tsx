@@ -1,10 +1,10 @@
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
-import BookCoverSvg from "./BookCoverSvg";
 import config from "@/lib/config";
+import BookCoverSvg from "./BookCoverSvg";
 
-type BookCoverVariant = "small" | "default" | "wide";
+type BookCoverVariant = "small" | "medium" | "default" | "wide";
 
 interface Props {
   coverColor: string;
@@ -15,6 +15,7 @@ interface Props {
 
 const variantStyles: Record<BookCoverVariant, string> = {
   small: "book-cover_small",
+  medium: "book-cover_medium",
   default: "book-cover",
   wide: "book-cover_wide",
 };

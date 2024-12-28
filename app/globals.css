@@ -58,6 +58,10 @@
     @apply w-[28.95px] h-10;
   }
 
+  .book-cover_medium {
+    @apply w-[144px] h-[199px];
+  }
+
   .book-cover {
     @apply xs:w-[174px] w-[114px] xs:h-[239px] h-[169px];
   }

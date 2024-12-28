@@ -1,22 +1,20 @@
 "use client";
 
-import { jsPDF as JsPDF } from "jspdf";
 import dayjs from "dayjs";
 import Image from "next/image";
 import html2canvas from "html2canvas";
+import { jsPDF as JsPDF } from "jspdf";
 
 import { Button } from "./ui/button";
+import BorrowBook from "./BorrowBook";
 
-const BookReceipt = ({
-  borrow: { id, borrowDate, dueDate },
-  title,
-  author,
-  category,
-}: BorrowedBook) => {
+const BookReceipt = (props: BorrowedBook) => {
+  const { id, title, author, category, coverColor, borrow } = props;
+  const { borrowDate, dueDate } = borrow;
+
   const formattedDueDate = dayjs(dueDate).format("MMM DD, YYYY");
   const formattedBorrowDate = dayjs(borrowDate).format("MMM DD, YYYY");
 
-  const daysLeft = dayjs(dueDate).diff(dayjs(), "day");
   const totalDays = dayjs(dueDate).diff(dayjs(borrowDate), "day");
 
   const handleDownload = async (e: React.MouseEvent) => {
@@ -56,25 +54,19 @@ const BookReceipt = ({
 
   return (
     <>
-      <div className="mt-7 w-full px-4">
-        <div className="book-loaned">
-          <Image
-            src="/icons/calendar.svg"
-            alt="calendar"
-            width={18}
-            height={18}
-            className="object-contain"
-          />
-
-          <p className="text-light-100" onClick={handleDownload}>
-            {daysLeft} days left to due
-          </p>
-        </div>
-
-        <Button className="book-btn" onClick={handleDownload}>
-          Download receipt
-        </Button>
-      </div>
+      <Button
+        className="p-2 rounded-md flex justify-center items-center"
+        style={{ backgroundColor: `${coverColor}4d` }}
+        onClick={handleDownload}
+      >
+        <Image
+          src="/icons/receipt.svg"
+          alt="receipt"
+          width={16}
+          height={16}
+          className="object-contain"
+        />
+      </Button>
 
       <section
         id="book-ticket"

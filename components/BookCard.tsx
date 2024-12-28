@@ -1,32 +1,111 @@
+import dayjs from "dayjs";
 import Link from "next/link";
-
-import { cn } from "@/lib/utils";
+import Image from "next/image";
 
 import BookCover from "./BookCover";
 import BookReceipt from "./BookReceipt";
 
-const BookCard = <T extends Book | BorrowedBook>(
-  props: T & { isBorrowed?: boolean }
-) => {
-  const { id, title, category, coverColor, coverImage, isBorrowed } = props;
-
+export const NormalBook = ({
+  id,
+  title,
+  category,
+  coverColor,
+  coverImage,
+}: Book) => {
   return (
-    <li className={cn(isBorrowed && "xs:w-52 w-full")}>
-      <Link
-        href={`/books/${id}`}
-        className={cn(isBorrowed && "w-full flex flex-col items-center")}
-      >
+    <li className="xs:w-52 w-full">
+      <Link href={`/books/${id}`} className="w-full flex flex-col items-center">
         <BookCover coverColor={coverColor} coverImage={coverImage} />
 
         <div className="mt-4 w-full xs:w-44">
           <p className="book-title">{title}</p>
           <p className="book-genre">{category}</p>
         </div>
-
-        {isBorrowed && <BookReceipt {...(props as BorrowedBook)} />}
       </Link>
     </li>
   );
 };
 
-export default BookCard;
+export const BorrowedBook = (props: BorrowedBook) => {
+  const { id, title, author, category, coverColor, coverImage, borrow } = props;
+  const { borrowDate, dueDate, returnDate, status } = borrow;
+
+  const daysLeft = dayjs(dueDate).diff(dayjs(), "day");
+
+  const isReturned = status === "RETURNED";
+  const isOverDue = daysLeft < 0 && status === "BORROWED";
+
+  return (
+    <li className="gradient-vertical p-5 rounded-2xl xs:w-min w-full relative">
+      {isOverDue && (
+        <Image
+          src="/icons/warning.svg"
+          alt="warning"
+          width={30}
+          height={30}
+          className="absolute -top-3 left-0 object-contain"
+        />
+      )}
+
+      <Link href={`/books/${id}`} className="w-full flex flex-col items-center">
+        <div
+          className="py-4 lg:px-16 px-10 flex justify-center items-center w-full rounded-lg"
+          style={{
+            background: `${coverColor}4d`,
+          }}
+        >
+          <BookCover
+            coverColor={coverColor}
+            coverImage={coverImage}
+            variant="medium"
+          />
+        </div>
+
+        <div className="mt-2 w-full">
+          <p className="book-title">{title}</p>
+          <p className="book-genre">{category}</p>
+
+          <div className="mt-5 space-y-1.5">
+            <div className="flex flex-row gap-1 items-center">
+              <Image
+                src="/icons/book-2.svg"
+                alt="calendar"
+                width={18}
+                height={18}
+              />
+              <p className="text-light-100">
+                Borrowed on {dayjs(borrowDate).format("MMM DD")}
+              </p>
+            </div>
+
+            <div className="flex justify-between items-center gap-2">
+              <div className="flex-1 flex flex-row gap-1 items-center">
+                <Image
+                  src={
+                    isReturned
+                      ? "/icons/tick.svg"
+                      : isOverDue
+                        ? "/icons/warning.svg"
+                        : "/icons/calendar.svg"
+                  }
+                  alt="calendar"
+                  width={18}
+                  height={18}
+                />
+                <p className="text-light-100">
+                  {isReturned
+                    ? "Returned on " + dayjs(returnDate).format("MMM DD")
+                    : isOverDue
+                      ? "Overdue by " + Math.abs(daysLeft) + " days"
+                      : `${daysLeft} days left to due`}
+                </p>
+              </div>
+
+              <BookReceipt {...props} />
+            </div>
+          </div>
+        </div>
+      </Link>
+    </li>
+  );
+};

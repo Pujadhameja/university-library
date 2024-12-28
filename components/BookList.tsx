@@ -2,8 +2,9 @@ import Link from "next/link";
 import Image from "next/image";
 
 import Sort from "./Sort";
-import BookCard from "./BookCard";
+import BookCover from "./BookCover";
 import { Button } from "./ui/button";
+import { BorrowedBook, NormalBook } from "./BookCard";
 
 interface Props {
   title: string;
@@ -32,9 +33,13 @@ const BookList = ({
 
       <ul className="book-list">
         {books.length > 0 ? (
-          books.map((item: Book) => (
-            <BookCard key={item.title} {...item} isBorrowed={isBorrowed} />
-          ))
+          books.map((item) =>
+            !isBorrowed ? (
+              <NormalBook key={item.id} {...(item as Book)} />
+            ) : (
+              <BorrowedBook key={item.id} {...(item as BorrowedBook)} />
+            )
+          )
         ) : (
           <div className="flex justify-center items-center flex-col text-center w-full">
             <Image
