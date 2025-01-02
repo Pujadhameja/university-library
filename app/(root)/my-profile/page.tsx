@@ -11,6 +11,7 @@ import BookList from "@/components/BookList";
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 import { getBorrowedBooks } from "@/lib/actions/book";
+import NotFound from "@/components/NotFound";
 
 interface BorrowedBookProps {
   data: BorrowedBook[];
@@ -104,9 +105,10 @@ const Page = async () => {
                 isBorrowed={true}
               />
             ) : (
-              <p className="text-2xl text-light-100">
-                You have not borrowed any book
-              </p>
+              <NotFound
+                title="No Borrowed Books"
+                description="You haven't borrowed any books yet. Go to the library to borrow books."
+              />
             ))}
         </div>
       </section>
