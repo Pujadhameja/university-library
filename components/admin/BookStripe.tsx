@@ -27,7 +27,7 @@ const BookStripe = ({
   return (
     <div className="flex flex-row gap-4 bg-light-300 p-4 rounded-lg">
       <BookCover
-        variant="thin"
+        variant="small"
         coverColor="#012B48"
         coverUrl="books/covers/file_-ik4mAydL.png?updatedAt=1735233398192"
       />

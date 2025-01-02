@@ -51,7 +51,7 @@ const Page = async ({ searchParams }: PageProps) => {
                 <TableCell className="py-5 font-medium">
                   <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
                     <BookCover
-                      variant="small"
+                      variant="extraSmall"
                       coverUrl={book.coverUrl}
                       coverColor={book.coverColor}
                     />

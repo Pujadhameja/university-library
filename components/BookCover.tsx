@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import config from "@/lib/config";
 import BookCoverSvg from "./BookCoverSvg";
 
-type BookCoverVariant = "small" | "thin" | "medium" | "default" | "wide";
+type BookCoverVariant = "extraSmall" | "small" | "medium" | "regular" | "wide";
 
 interface Props {
   coverUrl: string;
@@ -14,16 +14,16 @@ interface Props {
 }
 
 const variantStyles: Record<BookCoverVariant, string> = {
+  extraSmall: "book-cover_extra_small",
   small: "book-cover_small",
-  thin: "w-[55px] h-[76px]",
   medium: "book-cover_medium",
-  default: "book-cover",
+  regular: "book-cover_regular",
   wide: "book-cover_wide",
 };
 
 const BookCover = async ({
   className,
-  variant = "default",
+  variant = "regular",
   coverColor = "#012B48",
   coverUrl = "https://placehold.co/400x600.png",
 }: Props) => {
