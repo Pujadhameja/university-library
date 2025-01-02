@@ -46,47 +46,55 @@ const Page = async ({ searchParams }: PageProps) => {
           </TableHeader>
 
           <TableBody>
-            {allBooks?.map((book) => (
-              <TableRow key={book.id} className="border-b-dark-100/5">
-                <TableCell className="py-5 font-medium">
-                  <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
-                    <BookCover
-                      variant="extraSmall"
-                      coverUrl={book.coverUrl}
-                      coverColor={book.coverColor}
-                    />
-                    <p className="flex-1">{book.title}</p>
-                  </div>
-                </TableCell>
-                <TableCell className="text-sm font-medium text-dark-200">
-                  {book.author}
-                </TableCell>
-                <TableCell className="text-sm font-medium text-dark-200">
-                  {book.genre}
-                </TableCell>
-                <TableCell className="text-sm font-medium text-dark-200">
-                  Dec 19 2023
-                </TableCell>
-                <TableCell>
-                  <div className="flex flex-row gap-5">
-                    <Image
-                      src="/icons/admin/edit.svg"
-                      width={20}
-                      height={20}
-                      className="object-contain"
-                      alt="edit"
-                    />
-                    <Image
-                      src="/icons/admin/trash.svg"
-                      width={20}
-                      height={20}
-                      className="object-contain"
-                      alt="delete"
-                    />
-                  </div>
+            {allBooks!?.length > 0 ? (
+              allBooks?.map((book) => (
+                <TableRow key={book.id} className="border-b-dark-100/5">
+                  <TableCell className="py-5 font-medium">
+                    <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
+                      <BookCover
+                        variant="extraSmall"
+                        coverUrl={book.coverUrl}
+                        coverColor={book.coverColor}
+                      />
+                      <p className="flex-1">{book.title}</p>
+                    </div>
+                  </TableCell>
+                  <TableCell className="text-sm font-medium text-dark-200">
+                    {book.author}
+                  </TableCell>
+                  <TableCell className="text-sm font-medium text-dark-200">
+                    {book.genre}
+                  </TableCell>
+                  <TableCell className="text-sm font-medium text-dark-200">
+                    Dec 19 2023
+                  </TableCell>
+                  <TableCell>
+                    <div className="flex flex-row gap-5">
+                      <Image
+                        src="/icons/admin/edit.svg"
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                        alt="edit"
+                      />
+                      <Image
+                        src="/icons/admin/trash.svg"
+                        width={20}
+                        height={20}
+                        className="object-contain"
+                        alt="delete"
+                      />
+                    </div>
+                  </TableCell>
+                </TableRow>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell colSpan={6} className="text-center pt-10">
+                  No records found
                 </TableCell>
               </TableRow>
-            ))}
+            )}
           </TableBody>
         </Table>
       </div>

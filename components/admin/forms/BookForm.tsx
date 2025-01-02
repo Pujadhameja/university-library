@@ -20,8 +20,8 @@ import { Textarea } from "@/components/ui/textarea";
 
 import { toast } from "@/hooks/use-toast";
 import { bookSchema } from "@/lib/validations";
-import { createBook } from "@/lib/actions/book";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { createBook } from "@/lib/admin/actions/book";
 
 const BookForm = () => {
   const router = useRouter();

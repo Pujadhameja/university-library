@@ -19,7 +19,7 @@ const BookOverview = async ({
   rating,
   totalCopies,
   availableCopies,
-  summary,
+  description,
   coverColor,
   coverUrl,
   userId,
@@ -69,7 +69,7 @@ const BookOverview = async ({
           </p>
         </div>
 
-        <p className="book-description">{summary?.slice(0, 200)}...</p>
+        <p className="book-description">{description}</p>
 
         <BorrowBook
           bookId={id}

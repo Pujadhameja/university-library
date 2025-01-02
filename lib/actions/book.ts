@@ -8,29 +8,6 @@ import { books, borrowRecords, users } from "@/database/schema";
 
 const ITEMS_PER_PAGE = 20;
 
-export async function createBook(params: BookParams) {
-  try {
-    const newBook = await db
-      .insert(books)
-      .values({
-        ...params,
-        availableCopies: params.totalCopies,
-      })
-      .returning();
-
-    return {
-      success: true,
-      data: JSON.parse(JSON.stringify(newBook)),
-    };
-  } catch (error) {
-    console.log(error);
-    return {
-      success: false,
-      error: "Error creating book",
-    };
-  }
-}
-
 export async function borrowBook(params: BorrowBookParams) {
   const { userId, bookId } = params;
 
