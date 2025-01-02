@@ -22,11 +22,13 @@ export default {
           DEFAULT: "#027A48",
           100: "#ECFDF3",
           400: "#4C7B62",
+          500: "#2CC171",
           800: "#027A48",
         },
         red: {
           DEFAULT: "#EF3A4B",
           400: "#F46F70",
+          500: "#E27233",
           800: "#EF3A4B",
         },
         blue: {
