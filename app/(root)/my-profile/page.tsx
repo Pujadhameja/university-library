@@ -2,7 +2,7 @@ import Image from "next/image";
 import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 
-import { auth } from "@/auth";
+import { auth, signOut } from "@/auth";
 import config from "@/lib/config";
 
 import Avatar from "@/components/Avatar";
@@ -12,6 +12,7 @@ import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 import { getBorrowedBooks } from "@/lib/actions/book";
 import NotFound from "@/components/NotFound";
+import { Button } from "@/components/ui/button";
 
 interface BorrowedBookProps {
   data: BorrowedBook[];
@@ -37,7 +38,7 @@ const Page = async () => {
   return (
     <>
       <section className="flex flex-col gap-16 lg:flex-row">
-        <div className="flex h-fit max-lg:items-center max-lg:justify-center lg:sticky lg:top-10">
+        <div className="flex flex-col h-fit max-lg:items-center max-lg:justify-center lg:sticky lg:top-10">
           <div className="gradient-blue relative w-full rounded-[20px] border border-dark-600 p-5 sm:w-[512px]">
             <div className="absolute -top-10 left-1/2 z-10 h-28 w-20 -translate-x-1/2 rounded-b-full bg-dark-700 shadow-lg">
               <div className="absolute bottom-3.5 left-1/2 h-3 w-10 -translate-x-1/2 rounded-full bg-dark-800" />
@@ -94,6 +95,22 @@ const Page = async () => {
               </p>
             </div>
           </div>
+
+          <form
+            action={async () => {
+              "use server";
+              await signOut();
+              redirect("/sign-in");
+            }}
+          >
+            <Button
+              type="submit"
+              variant="destructive"
+              className="w-full mt-2 bg-red-100 text-red font-bold hover:bg-red-100"
+            >
+              Logout
+            </Button>
+          </form>
         </div>
 
         <div className="flex-1">
