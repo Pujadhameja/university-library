@@ -1,1 +1,0 @@
-ALTER TABLE "books" ALTER COLUMN "summary" SET DATA TYPE varchar;

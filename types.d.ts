@@ -22,12 +22,13 @@ interface Book {
   id: string;
   title: string;
   author: string;
-  category: string;
+  genre: string;
   rating: number;
-  totalQuantity: number;
-  availableQuantity: number;
+  totalCopies: number;
+  availableCopies: number;
   coverColor: string;
-  coverImage: string;
+  description: string;
+  coverUrl: string;
   videoUrl: string;
   summary: string;
   createdAt: Date;
@@ -50,13 +51,14 @@ interface BorrowedBook extends Book {
 interface BookParams {
   title: string;
   author: string;
-  category: string;
+  genre: string;
   rating: number;
-  coverImage: string;
+  coverUrl: string;
   coverColor: string;
-  summary: string;
-  totalQuantity: number;
+  description: string;
+  totalCopies: number;
   videoUrl: string;
+  summary: string;
 }
 
 interface BorrowBookParams {
