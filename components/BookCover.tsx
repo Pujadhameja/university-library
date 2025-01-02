@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import config from "@/lib/config";
 import BookCoverSvg from "./BookCoverSvg";
 
-type BookCoverVariant = "small" | "medium" | "default" | "wide";
+type BookCoverVariant = "small" | "thin" | "medium" | "default" | "wide";
 
 interface Props {
   coverColor: string;
@@ -15,6 +15,8 @@ interface Props {
 
 const variantStyles: Record<BookCoverVariant, string> = {
   small: "book-cover_small",
+  // create a new class for the another variant which is between small and medium
+  thin: "w-[55px] h-[76px]",
   medium: "book-cover_medium",
   default: "book-cover",
   wide: "book-cover_wide",
