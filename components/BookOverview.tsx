@@ -15,13 +15,13 @@ const BookOverview = async ({
   id,
   title,
   author,
-  category,
+  genre,
   rating,
-  totalQuantity,
-  availableQuantity,
+  totalCopies,
+  availableCopies,
   summary,
   coverColor,
-  coverImage,
+  coverUrl,
   userId,
 }: Props) => {
   const [user] = await db
@@ -32,9 +32,9 @@ const BookOverview = async ({
   if (!user) return null;
 
   const borrowingEligibility = {
-    isEligible: availableQuantity > 0 && user.status === "APPROVED",
+    isEligible: availableCopies > 0 && user.status === "APPROVED",
     message:
-      availableQuantity <= 0
+      availableCopies <= 0
         ? "Book is not available"
         : "You are not allowed to borrow this book until your account is approved",
   };
@@ -50,7 +50,7 @@ const BookOverview = async ({
           </p>
 
           <p>
-            Category: <span className="ml-2 text-primary">{category}</span>
+            Category: <span className="ml-2 text-primary">{genre}</span>
           </p>
 
           <div className="flex flex-row gap-1">
@@ -61,11 +61,11 @@ const BookOverview = async ({
 
         <div className="book-copies">
           <p>
-            Total Books: <span>{totalQuantity}</span>
+            Total Books: <span>{totalCopies}</span>
           </p>
 
           <p>
-            Available Books: <span>{availableQuantity}</span>
+            Available Books: <span>{availableCopies}</span>
           </p>
         </div>
 
@@ -84,14 +84,14 @@ const BookOverview = async ({
             variant="wide"
             className="z-10"
             coverColor={coverColor}
-            coverImage={coverImage}
+            coverUrl={coverUrl}
           />
 
           <div className="absolute left-16 top-10 rotate-12 opacity-40 max-sm:hidden">
             <BookCover
               variant="wide"
               coverColor={coverColor}
-              coverImage={coverImage}
+              coverUrl={coverUrl}
             />
           </div>
         </div>

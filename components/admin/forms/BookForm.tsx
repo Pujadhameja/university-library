@@ -30,11 +30,12 @@ const BookForm = () => {
     defaultValues: {
       title: "",
       author: "",
-      category: "",
+      genre: "",
       rating: 1,
-      totalQuantity: 1,
-      coverImage: "",
+      totalCopies: 1,
+      coverUrl: "",
       coverColor: "",
+      description: "",
       videoUrl: "",
       summary: "",
     },
@@ -104,15 +105,15 @@ const BookForm = () => {
 
         <FormField
           control={form.control}
-          name="category"
+          name="genre"
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal text-dark-500">
-                Category
+                Genre
               </FormLabel>
               <FormControl>
                 <Input
-                  placeholder="Enter the category of the book"
+                  placeholder="Enter the genre of the book"
                   {...field}
                   className="min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
                 />
@@ -146,7 +147,7 @@ const BookForm = () => {
 
           <FormField
             control={form.control}
-            name="totalQuantity"
+            name="totalCopies"
             render={({ field }) => (
               <FormItem className="flex flex-1 flex-col gap-1">
                 <FormLabel className="text-base font-normal text-dark-500">
@@ -168,7 +169,7 @@ const BookForm = () => {
 
         <FormField
           control={form.control}
-          name="coverImage"
+          name="coverUrl"
           render={({ field }) => (
             <FormItem className="flex flex-col gap-1">
               <FormLabel className="text-base font-normal text-dark-500">
@@ -199,6 +200,27 @@ const BookForm = () => {
               </FormLabel>
               <FormControl>
                 <ColorPicker onPickerChange={field.onChange} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="description"
+          render={({ field }) => (
+            <FormItem className="flex flex-col gap-1">
+              <FormLabel className="text-base font-normal text-dark-500">
+                Book Description
+              </FormLabel>
+              <FormControl>
+                <Textarea
+                  placeholder="Write a brief description of the book"
+                  {...field}
+                  rows={10}
+                  className="min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

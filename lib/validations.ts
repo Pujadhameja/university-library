@@ -26,7 +26,7 @@ export const bookSchema = z.object({
     .trim()
     .min(2, { message: "Author must be at least 2 characters." })
     .max(100, { message: "Author must be at most 100 characters." }),
-  category: z
+  genre: z
     .string()
     .trim()
     .min(2, { message: "Category must be at least 2 characters." })
@@ -35,14 +35,19 @@ export const bookSchema = z.object({
     .number()
     .min(1, { message: "Rating must be at least 1." })
     .max(5, { message: "Rating must be at most 5." }),
-  totalQuantity: z.coerce
+  totalCopies: z.coerce
     .number({
       invalid_type_error: "Quantity must be a number.",
     })
     .int({ message: "Quantity must be an integer." })
     .positive({ message: "Quantity must be at least 1." })
     .lte(10000, { message: "Quantity cannot exceed 10,000." }),
-  coverImage: z.string().nonempty("Uploading a cover image is required"),
+  description: z
+    .string()
+    .trim()
+    .min(10, { message: "Description must be at least 10 characters." })
+    .max(500, { message: "Description must be at most 1000 characters." }),
+  coverUrl: z.string().nonempty("Uploading a cover image is required"),
   coverColor: z
     .string()
     .trim()

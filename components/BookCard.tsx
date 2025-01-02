@@ -8,18 +8,18 @@ import BookReceipt from "./BookReceipt";
 export const NormalBook = ({
   id,
   title,
-  category,
+  genre,
   coverColor,
-  coverImage,
+  coverUrl,
 }: Book) => {
   return (
     <li className="xs:w-52 w-full">
       <Link href={`/books/${id}`} className="w-full flex flex-col items-center">
-        <BookCover coverColor={coverColor} coverImage={coverImage} />
+        <BookCover coverColor={coverColor} coverUrl={coverUrl} />
 
         <div className="mt-4 w-full xs:w-44">
           <p className="book-title">{title}</p>
-          <p className="book-genre">{category}</p>
+          <p className="book-genre">{genre}</p>
         </div>
       </Link>
     </li>
@@ -27,7 +27,7 @@ export const NormalBook = ({
 };
 
 export const BorrowedBook = (props: BorrowedBook) => {
-  const { id, title, author, category, coverColor, coverImage, borrow } = props;
+  const { id, title, author, genre, coverColor, coverUrl, borrow } = props;
   const { borrowDate, dueDate, returnDate, status } = borrow;
 
   const daysLeft = dayjs(dueDate).diff(dayjs(), "day");
@@ -56,14 +56,14 @@ export const BorrowedBook = (props: BorrowedBook) => {
         >
           <BookCover
             coverColor={coverColor}
-            coverImage={coverImage}
+            coverUrl={coverUrl}
             variant="medium"
           />
         </div>
 
         <div className="mt-2 w-full">
           <p className="book-title">{title}</p>
-          <p className="book-genre">{category}</p>
+          <p className="book-genre">{genre}</p>
 
           <div className="mt-5 space-y-1.5">
             <div className="flex flex-row gap-1 items-center">

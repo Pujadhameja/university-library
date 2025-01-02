@@ -27,7 +27,7 @@ interface Book {
   totalCopies: number;
   availableCopies: number;
   coverColor: string;
-  description: string;
+  description?: string;
   coverUrl: string;
   videoUrl: string;
   summary: string;
@@ -40,7 +40,7 @@ interface BorrowRecord {
   bookId: string;
   borrowDate: Date;
   dueDate: string;
-  returnDate: string;
+  returnDate: string | null;
   status: string;
 }
 

@@ -7,15 +7,14 @@ import BookCoverSvg from "./BookCoverSvg";
 type BookCoverVariant = "small" | "thin" | "medium" | "default" | "wide";
 
 interface Props {
+  coverUrl: string;
+  className?: string;
   coverColor: string;
   variant?: BookCoverVariant;
-  className?: string;
-  coverImage: string;
 }
 
 const variantStyles: Record<BookCoverVariant, string> = {
   small: "book-cover_small",
-  // create a new class for the another variant which is between small and medium
   thin: "w-[55px] h-[76px]",
   medium: "book-cover_medium",
   default: "book-cover",
@@ -26,7 +25,7 @@ const BookCover = async ({
   className,
   variant = "default",
   coverColor = "#012B48",
-  coverImage = "https://placehold.co/400x600.png",
+  coverUrl = "https://placehold.co/400x600.png",
 }: Props) => {
   return (
     <div
@@ -47,7 +46,7 @@ const BookCover = async ({
         }}
       >
         <Image
-          src={`${config.env.imagekit.urlEndpoint}/${coverImage}`}
+          src={`${config.env.imagekit.urlEndpoint}/${coverUrl}`}
           alt="Book cover"
           fill
           className="rounded-sm object-fill"

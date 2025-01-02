@@ -16,7 +16,7 @@ export async function getBooks({
     const searchConditions = query
       ? or(
           like(books.title, `%${query}%`),
-          like(books.category, `%${query}%`),
+          like(books.genre, `%${query}%`),
           like(books.author, `%${query}%`)
         )
       : undefined;
@@ -25,7 +25,7 @@ export async function getBooks({
       newest: desc(books.createdAt),
       oldest: asc(books.createdAt),
       highestRated: desc(books.rating),
-      available: desc(books.totalQuantity),
+      available: desc(books.totalCopies),
     };
 
     const sortingCondition = sortOptions[sort] || desc(books.createdAt);
@@ -74,7 +74,7 @@ export async function getBorrowRecords({
     const searchConditions = query
       ? or(
           like(books.title, `%${query}%`),
-          like(books.category, `%${query}%`),
+          like(books.genre, `%${query}%`),
           like(books.author, `%${query}%`)
         )
       : undefined;
@@ -83,7 +83,7 @@ export async function getBorrowRecords({
       newest: desc(books.createdAt),
       oldest: asc(books.createdAt),
       highestRated: desc(books.rating),
-      available: desc(books.totalQuantity),
+      available: desc(books.totalCopies),
     };
 
     const sortingCondition = sortOptions[sort] || desc(books.createdAt);
@@ -93,12 +93,12 @@ export async function getBorrowRecords({
         id: books.id,
         title: books.title,
         author: books.author,
-        category: books.category,
+        genre: books.genre,
         rating: books.rating,
-        totalQuantity: books.totalQuantity,
-        availableQuantity: books.availableQuantity,
+        totalCopies: books.totalCopies,
+        availableCopies: books.availableCopies,
         coverColor: books.coverColor,
-        coverImage: books.coverImage,
+        coverUrl: books.coverUrl,
         videoUrl: books.videoUrl,
         summary: books.summary,
         createdAt: books.createdAt,

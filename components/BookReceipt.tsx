@@ -16,7 +16,7 @@ const BookReceipt = (props: Props) => {
     id,
     title,
     author,
-    category,
+    genre,
     coverColor,
     borrow,
     btnVariant = "user",
@@ -142,7 +142,7 @@ const BookReceipt = (props: Props) => {
 
             <div className="space-y-1 rounded-md border border-light-100/10 p-3">
               <p className="text-xs text-light-700">Category</p>
-              <p className="text-sm font-bold text-white">{category}</p>
+              <p className="text-sm font-bold text-white">{genre}</p>
             </div>
 
             <div className="space-y-1 rounded-md border border-light-100/10 p-3">

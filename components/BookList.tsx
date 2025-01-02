@@ -2,7 +2,6 @@ import Link from "next/link";
 import Image from "next/image";
 
 import Sort from "./Sort";
-import BookCover from "./BookCover";
 import { Button } from "./ui/button";
 import { BorrowedBook, NormalBook } from "./BookCard";
 

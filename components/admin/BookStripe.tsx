@@ -29,7 +29,7 @@ const BookStripe = ({
       <BookCover
         variant="thin"
         coverColor="#012B48"
-        coverImage="books/covers/file_-ik4mAydL.png?updatedAt=1735233398192"
+        coverUrl="books/covers/file_-ik4mAydL.png?updatedAt=1735233398192"
       />
 
       <div>

@@ -52,8 +52,8 @@ const Page = async ({ searchParams }: PageProps) => {
                   <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
                     <BookCover
                       variant="small"
-                      coverImage={book.coverImage!}
-                      coverColor={book.coverColor!}
+                      coverUrl={book.coverUrl}
+                      coverColor={book.coverColor}
                     />
                     <p className="flex-1">{book.title}</p>
                   </div>
@@ -62,7 +62,7 @@ const Page = async ({ searchParams }: PageProps) => {
                   {book.author}
                 </TableCell>
                 <TableCell className="text-sm font-medium text-dark-200">
-                  {book.category}
+                  {book.genre}
                 </TableCell>
                 <TableCell className="text-sm font-medium text-dark-200">
                   Dec 19 2023

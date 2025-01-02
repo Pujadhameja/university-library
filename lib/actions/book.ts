@@ -14,7 +14,7 @@ export async function createBook(params: BookParams) {
       .insert(books)
       .values({
         ...params,
-        availableQuantity: params.totalQuantity,
+        availableCopies: params.totalCopies,
       })
       .returning();
 
@@ -37,13 +37,13 @@ export async function borrowBook(params: BorrowBookParams) {
   try {
     const book = await db
       .select({
-        availableQuantity: books.availableQuantity,
+        availableCopies: books.availableCopies,
       })
       .from(books)
       .where(eq(books.id, bookId))
       .limit(1);
 
-    if (!book.length || book[0].availableQuantity <= 0) {
+    if (!book.length || book[0].availableCopies <= 0) {
       return {
         success: false,
         error: "Book is not available",
@@ -62,7 +62,7 @@ export async function borrowBook(params: BorrowBookParams) {
     await db
       .update(books)
       .set({
-        availableQuantity: book[0].availableQuantity - 1,
+        availableCopies: book[0].availableCopies - 1,
       })
       .where(eq(books.id, bookId));
 
@@ -86,12 +86,12 @@ export async function getBorrowedBooks(userId: string) {
         id: books.id,
         title: books.title,
         author: books.author,
-        category: books.category,
+        genre: books.genre,
         rating: books.rating,
-        totalQuantity: books.totalQuantity,
-        availableQuantity: books.availableQuantity,
+        totalCopies: books.totalCopies,
+        availableCopies: books.availableCopies,
         coverColor: books.coverColor,
-        coverImage: books.coverImage,
+        coverUrl: books.coverUrl,
         videoUrl: books.videoUrl,
         summary: books.summary,
         createdAt: books.createdAt,
@@ -138,7 +138,7 @@ export async function searchBooks({
     if (query) {
       buildConditions = or(
         like(books.title, `%${query}%`),
-        like(books.category, `%${query}%`),
+        like(books.genre, `%${query}%`),
         like(books.author, `%${query}%`)
       );
     }
@@ -151,7 +151,7 @@ export async function searchBooks({
     } else if (sort === "highestRated") {
       buildSort = desc(books.rating);
     } else if (sort === "available") {
-      buildSort = desc(books.totalQuantity);
+      buildSort = desc(books.totalCopies);
     }
 
     const allBooks = await db

@@ -12,8 +12,8 @@ import BookCover from "@/components/BookCover";
 import Pagination from "@/components/Pagination";
 import BookReceipt from "@/components/BookReceipt";
 
-import { getBorrowRecords } from "@/lib/admin/actions/book";
 import Avatar from "@/components/Avatar";
+import { getBorrowRecords } from "@/lib/admin/actions/book";
 
 const Page = async ({ searchParams }: PageProps) => {
   const { query, sort, page } = await searchParams;
@@ -52,8 +52,8 @@ const Page = async ({ searchParams }: PageProps) => {
                     <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
                       <BookCover
                         variant="small"
-                        coverImage={record.coverImage!}
-                        coverColor={record.coverColor!}
+                        coverUrl={record.coverUrl}
+                        coverColor={record.coverColor}
                       />
                       <p className="flex-1">{record.title}</p>
                     </div>
@@ -81,7 +81,10 @@ const Page = async ({ searchParams }: PageProps) => {
                     {dayjs(record.borrow.dueDate).format("MMM DD, YYYY")}
                   </TableCell>
                   <TableCell>
-                    <BookReceipt btnVariant="admin" {...record} />
+                    <BookReceipt
+                      btnVariant="admin"
+                      {...(record as BorrowedBook)}
+                    />
                   </TableCell>
                 </TableRow>
               ))
