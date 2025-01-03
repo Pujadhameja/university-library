@@ -163,10 +163,7 @@ const FileUpload = ({
 
       {progress > 0 && (
         <div className="w-full rounded-full bg-green-200">
-          <div
-            className="rounded-full bg-green-800 p-0.5 text-center font-bebas-neue text-[8px] font-bold leading-none text-light-100"
-            style={{ width: `${progress}%` }}
-          >
+          <div className="progress" style={{ width: `${progress}%` }}>
             {progress}%
           </div>
         </div>

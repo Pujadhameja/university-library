@@ -1,7 +1,6 @@
 import { cn, getInitials } from "@/lib/utils";
-import { FC } from "react";
 
-interface AvatarProps {
+interface Props {
   name: string;
   size?: "sm" | "md" | "lg";
   bgColor?: string;
@@ -14,12 +13,12 @@ const sizeClasses = {
   lg: "size-20 text-3xl",
 };
 
-const Avatar: FC<AvatarProps> = ({
+const Avatar = ({
   name,
   size = "md",
   bgColor = "bg-blue-500",
   textColor = "text-white",
-}) => {
+}: Props) => {
   const initials = getInitials(name);
 
   return (

@@ -1,11 +1,11 @@
 "use client";
 
-import Image from "next/image";
+import { IKImage } from "imagekitio-next";
+
+import BookCoverSvg from "./BookCoverSvg";
 
 import { cn } from "@/lib/utils";
 import config from "@/lib/config";
-import BookCoverSvg from "./BookCoverSvg";
-import { IKImage } from "imagekitio-next";
 
 type BookCoverVariant = "extraSmall" | "small" | "medium" | "regular" | "wide";
 
