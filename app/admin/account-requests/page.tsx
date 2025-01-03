@@ -14,7 +14,7 @@ import {
 import config from "@/lib/config";
 import Pagination from "@/components/Pagination";
 import { getUsers } from "@/lib/admin/actions/user";
-import { Button } from "@/components/ui/button";
+import AccountConfirmation from "@/components/admin/dialogs/AccountConfirmation";
 
 const Page = async ({ searchParams }: PageProps) => {
   const { query, sort, page } = await searchParams;
@@ -76,11 +76,7 @@ const Page = async ({ searchParams }: PageProps) => {
                     {user.status}
                   </TableCell>
                   <TableCell className="flex justify-center">
-                    <Button className="bg-green-100 text-green-800 font-semibold text-sm shadow-none hover:bg-green-100">
-                      {user.status === "PENDING" || user.status === "REJECTED"
-                        ? "Approve Account"
-                        : "Revoke"}
-                    </Button>
+                    <AccountConfirmation user={user} />
                   </TableCell>
                 </TableRow>
               ))

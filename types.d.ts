@@ -12,10 +12,10 @@ interface User {
   email: string;
   universityId: number;
   universityCard: string;
-  status: string;
-  role: string;
-  lastActivityDate: Date;
-  createdAt: Date;
+  status: "PENDING" | "APPROVED" | "REJECTED" | null;
+  role: "USER" | "ADMIN" | null;
+  lastActivityDate: string | null;
+  createdAt: Date | null;
 }
 
 interface Book {
