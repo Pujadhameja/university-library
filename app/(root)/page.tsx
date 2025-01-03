@@ -1,10 +1,11 @@
-import { auth } from "@/auth";
-import BookList from "@/components/BookList";
-import BookOverview from "@/components/BookOverview";
+import { desc } from "drizzle-orm";
 
+import { auth } from "@/auth";
 import { db } from "@/database/drizzle";
 import { books } from "@/database/schema";
-import { desc } from "drizzle-orm";
+
+import BookList from "@/components/BookList";
+import BookOverview from "@/components/BookOverview";
 
 const Home = async () => {
   const session = await auth();
@@ -17,7 +18,7 @@ const Home = async () => {
 
   return (
     <>
-      {latestBooks.length > 0 && (
+      {latestBooks[0] && (
         <BookOverview
           {...latestBooks[0]}
           userId={session?.user?.id as string}
