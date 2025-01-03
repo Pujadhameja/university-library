@@ -18,12 +18,7 @@ const Home = async () => {
 
   return (
     <>
-      {latestBooks[0] && (
-        <BookOverview
-          {...latestBooks[0]}
-          userId={session?.user?.id as string}
-        />
-      )}
+      <BookOverview {...latestBooks[0]} userId={session?.user?.id as string} />
 
       <BookList
         title="Latest Books"
