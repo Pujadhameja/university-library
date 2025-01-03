@@ -1,15 +1,21 @@
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
+import { getStatistics } from "@/lib/admin/actions/general";
 
-interface Props {
+interface StatCardProps {
   label: string;
   count: number;
   changeAmount: number;
   isStatIncrease: boolean;
 }
 
-const StatCard = ({ label, count, changeAmount, isStatIncrease }: Props) => {
+const StatCard = ({
+  label,
+  count,
+  changeAmount,
+  isStatIncrease,
+}: StatCardProps) => {
   return (
     <div className="bg-white rounded-xl p-5 space-y-5 flex-1">
       <div className="flex justify-between items-center gap-5">
@@ -42,4 +48,35 @@ const StatCard = ({ label, count, changeAmount, isStatIncrease }: Props) => {
   );
 };
 
-export default StatCard;
+const Statistics = async () => {
+  const { data: stats } = await getStatistics();
+
+  if (!stats) {
+    throw new Error("Failed to fetch statistics");
+  }
+
+  return (
+    <section className="flex flex-wrap min-w-fit gap-5">
+      <StatCard
+        label="Borrowed Books"
+        count={stats?.borrowRecord.total!}
+        changeAmount={stats?.borrowRecord.change!}
+        isStatIncrease={stats?.borrowRecord.change! > 0}
+      />
+      <StatCard
+        label="Total Users"
+        count={stats?.user.total!}
+        changeAmount={stats?.user.change!}
+        isStatIncrease={stats?.user.change! > 0}
+      />
+      <StatCard
+        label="Total Books"
+        count={stats?.book.total!}
+        changeAmount={stats?.book.change!}
+        isStatIncrease={stats?.book.change! > 0}
+      />
+    </section>
+  );
+};
+
+export default Statistics;
