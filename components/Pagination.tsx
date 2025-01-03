@@ -26,14 +26,12 @@ const Pagination = ({ variant, hasNextPage }: Props) => {
   };
 
   return (
-    <div className="flex flex-row justify-end gap-3">
+    <div id="pagination">
       <Button
         disabled={page === 1}
         className={cn(
           "min-h-10 font-semibold text-sm",
-          variant === "dark"
-            ? "bg-dark-300 hover:bg-dark-100"
-            : "bg-light-300 text-dark-300 hover:bg-light-300/70"
+          variant === "dark" ? "pagination-btn_dark" : "pagination-btn_light"
         )}
         onClick={() => handlePageNavigation("previous")}
       >
@@ -42,7 +40,6 @@ const Pagination = ({ variant, hasNextPage }: Props) => {
 
       <p
         className={cn(
-          "text-sm inline-flex items-center font-semibold px-4 py-1.5 rounded-md text-center",
           variant === "dark"
             ? "bg-light-200 text-black"
             : "bg-primary-admin text-white"
@@ -55,9 +52,7 @@ const Pagination = ({ variant, hasNextPage }: Props) => {
         disabled={!hasNextPage}
         className={cn(
           "min-h-10 font-semibold text-sm",
-          variant === "dark"
-            ? "bg-dark-300 hover:bg-dark-100"
-            : "bg-light-300 text-dark-300 hover:bg-light-300/70"
+          variant === "dark" ? "pagination-btn_dark" : "pagination-btn_light"
         )}
         onClick={() => handlePageNavigation("next")}
       >

@@ -15,7 +15,7 @@ const NotFound = ({
   linkBtn = false,
 }: Props) => {
   return (
-    <div className="flex justify-center items-center flex-col text-center w-full">
+    <div id="not-found">
       <Image
         src="/images/no-books.png"
         alt="no-books"
@@ -24,14 +24,11 @@ const NotFound = ({
         className="object-contain"
       />
 
-      <h4 className="text-white mt-6 font-semibold text-2xl">{title}</h4>
-      <p className="text-light-100 w-[360px] mt-1">{description}</p>
+      <h4>{title}</h4>
+      <p>{description}</p>
 
       {linkBtn && (
-        <Button
-          asChild
-          className="bg-primary font-bebas-neue min-w-[360px] mt-6 text-dark-100 text-xl hover:bg-primary/90 min-h-12"
-        >
+        <Button asChild className="not-found-btn">
           <Link href="/library">Clear Search</Link>
         </Button>
       )}

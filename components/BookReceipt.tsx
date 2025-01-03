@@ -80,10 +80,7 @@ const BookReceipt = (props: Props) => {
           />
         </Button>
       ) : (
-        <Button
-          className="bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80"
-          onClick={handleDownload}
-        >
+        <Button className="book-receipt_admin-btn" onClick={handleDownload}>
           <Image
             src="/icons/admin/receipt.svg"
             width={16}
@@ -95,10 +92,7 @@ const BookReceipt = (props: Props) => {
         </Button>
       )}
 
-      <section
-        id="book-ticket"
-        className="relative mt-10 hidden w-[544px] overflow-hidden  bg-dark-300 py-8"
-      >
+      <section id="book-ticket">
         <div className="flex items-center gap-2 px-8">
           <Image
             src="/icons/logo.svg"
@@ -129,46 +123,43 @@ const BookReceipt = (props: Props) => {
         <div className="px-8">
           <h4 className="text-lg font-bold text-white">Book Details</h4>
 
-          <div className="mt-5 grid grid-cols-2 gap-5">
-            <div className="space-y-1 rounded-md border border-light-100/10 p-3">
-              <p className="text-xs text-light-700">Title</p>
-              <p className="text-sm font-bold text-white">{title}</p>
+          <div className="mt-5 grid grid-cols-2 gap-5" id="book-details">
+            <div>
+              <p>Title</p>
+              <p>{title}</p>
             </div>
 
-            <div className="space-y-1 rounded-md border border-light-100/10 p-3">
-              <p className="text-xs text-light-700">Author</p>
-              <p className="text-sm font-bold text-white">{author}</p>
+            <div>
+              <p>Author</p>
+              <p>{author}</p>
             </div>
 
-            <div className="space-y-1 rounded-md border border-light-100/10 p-3">
-              <p className="text-xs text-light-700">Category</p>
-              <p className="text-sm font-bold text-white">{genre}</p>
+            <div>
+              <p>Category</p>
+              <p>{genre}</p>
             </div>
 
-            <div className="space-y-1 rounded-md border border-light-100/10 p-3">
-              <p className="text-xs text-light-700">Borrowed on</p>
-              <p className="text-sm font-bold text-white">
-                {formattedBorrowDate}
-              </p>
+            <div>
+              <p>Borrowed on</p>
+              <p>{formattedBorrowDate}</p>
             </div>
 
-            <div className="space-y-1 rounded-md border border-light-100/10 p-3">
-              <p className="text-xs text-light-700">Due Date</p>
-              <p className="text-sm font-bold text-white">{formattedDueDate}</p>
+            <div>
+              <p>Due Date</p>
+              <p>{formattedDueDate}</p>
             </div>
 
-            <div className="space-y-1 rounded-md border border-light-100/10 p-3">
-              <p className="text-xs text-light-700">Duration</p>
-              <p className="text-sm font-bold text-white">{totalDays} days</p>
+            <div>
+              <p>Duration</p>
+              <p>{totalDays} days</p>
             </div>
           </div>
         </div>
 
-        <div className="relative">
-          <div className="absolute -left-3.5 top-1/2 size-7 -translate-y-1/2 rounded-full bg-black" />
+        <div className="relative" id="book-divider">
+          <div />
           <div className="my-10 h-px w-full bg-light-100/10 " />
-
-          <div className="absolute -right-3.5 top-1/2 size-7 -translate-y-1/2 rounded-full bg-black" />
+          <div />
         </div>
 
         <div className="px-8">
@@ -196,7 +187,7 @@ const BookReceipt = (props: Props) => {
           </p>
         </div>
 
-        <div className="absolute inset-x-0 -bottom-6 flex flex-row gap-1.5">
+        <div className="book-ticket-circles">
           {[...Array(17)].map((_, index) => (
             <div key={index} className="size-7 rounded-full bg-black" />
           ))}

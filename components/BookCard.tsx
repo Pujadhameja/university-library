@@ -27,7 +27,7 @@ export const NormalBook = ({
 };
 
 export const BorrowedBook = (props: BorrowedBook) => {
-  const { id, title, author, genre, coverColor, coverUrl, borrow } = props;
+  const { id, title, genre, coverColor, coverUrl, borrow } = props;
   const { borrowDate, dueDate, returnDate, status } = borrow;
 
   const daysLeft = dayjs(dueDate).diff(dayjs(), "day");
@@ -36,7 +36,7 @@ export const BorrowedBook = (props: BorrowedBook) => {
   const isOverDue = daysLeft < 0 && status === "BORROWED";
 
   return (
-    <li className="gradient-vertical p-5 rounded-2xl xs:w-min w-full relative">
+    <li className="borrowed-book">
       {isOverDue && (
         <Image
           src="/icons/warning.svg"
@@ -49,7 +49,7 @@ export const BorrowedBook = (props: BorrowedBook) => {
 
       <Link href={`/books/${id}`} className="w-full flex flex-col items-center">
         <div
-          className="py-4 lg:px-16 px-10 flex justify-center items-center w-full rounded-lg"
+          className="borrowed-book_cover"
           style={{
             background: `${coverColor}4d`,
           }}

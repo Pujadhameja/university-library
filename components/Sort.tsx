@@ -24,16 +24,16 @@ const Sort = () => {
 
   return (
     <Select onValueChange={handleSort}>
-      <SelectTrigger className="w-40 h-10 px-4 bg-dark-300 text-light-100 border-dark-100">
+      <SelectTrigger className="select-trigger">
         <SelectValue placeholder="Sort By" />
       </SelectTrigger>
 
-      <SelectContent className="bg-dark-300 text-light-100 border-dark-100">
+      <SelectContent className="select-content">
         {sorts.map((sort) => (
           <SelectItem
             key={sort.value}
             value={sort.value}
-            className="focus:bg-dark-600 focus:text-light-100"
+            className="select-item"
           >
             {sort.label}
           </SelectItem>
