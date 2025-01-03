@@ -1,7 +1,7 @@
 "use server";
 
 import dayjs from "dayjs";
-import { and, asc, count, desc, eq, like, or } from "drizzle-orm";
+import { and, asc, count, desc, eq, ilike, or } from "drizzle-orm";
 
 import { db } from "@/database/drizzle";
 import { books, borrowRecords, users } from "@/database/schema";
@@ -111,31 +111,28 @@ export async function searchBooks({
   page?: number;
 }) {
   try {
-    let buildConditions;
-    if (query) {
-      buildConditions = or(
-        like(books.title, `%${query}%`),
-        like(books.genre, `%${query}%`),
-        like(books.author, `%${query}%`)
-      );
-    }
+    const searchConditions = query
+      ? or(
+          ilike(books.title, `%${query}%`),
+          ilike(books.genre, `%${query}%`),
+          ilike(books.author, `%${query}%`)
+        )
+      : undefined;
 
-    let buildSort = desc(books.createdAt);
-    if (sort === "newest") {
-      buildSort = desc(books.createdAt);
-    } else if (sort === "oldest") {
-      buildSort = asc(books.createdAt);
-    } else if (sort === "highestRated") {
-      buildSort = desc(books.rating);
-    } else if (sort === "available") {
-      buildSort = desc(books.totalCopies);
-    }
+    const sortOptions: { [key: string]: any } = {
+      newest: desc(books.createdAt),
+      oldest: asc(books.createdAt),
+      highestRated: desc(books.rating),
+      available: desc(books.totalCopies),
+    };
+
+    const sortingCondition = sortOptions[sort] || desc(books.totalCopies);
 
     const allBooks = await db
       .select()
       .from(books)
-      .where(buildConditions)
-      .orderBy(buildSort)
+      .where(searchConditions)
+      .orderBy(sortingCondition)
       .limit(ITEMS_PER_PAGE)
       .offset((page - 1) * ITEMS_PER_PAGE);
 
@@ -144,7 +141,7 @@ export async function searchBooks({
         count: count(),
       })
       .from(books)
-      .where(buildConditions);
+      .where(searchConditions);
 
     const totalPage = Math.ceil(totalBooks[0].count / ITEMS_PER_PAGE);
     const hasNextPage = page < totalPage;

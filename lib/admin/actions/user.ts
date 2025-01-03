@@ -1,6 +1,6 @@
 "use server";
 
-import { or, like, desc, asc, count, eq } from "drizzle-orm";
+import { or, desc, asc, count, eq, ilike } from "drizzle-orm";
 
 import { db } from "@/database/drizzle";
 import { borrowRecords, users } from "@/database/schema";
@@ -16,7 +16,10 @@ export async function getUsers({
 }: QueryParams) {
   try {
     const searchConditions = query
-      ? or(like(users.fullname, `%${query}%`), like(users.email, `%${query}%`))
+      ? or(
+          ilike(users.fullname, `%${query}%`),
+          ilike(users.email, `%${query}%`)
+        )
       : undefined;
 
     const sortOptions: Record<string, any> = {

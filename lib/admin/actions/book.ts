@@ -1,6 +1,6 @@
 "use server";
 
-import { or, like, desc, asc, eq, count } from "drizzle-orm";
+import { or, desc, asc, eq, count, ilike } from "drizzle-orm";
 
 import { db } from "@/database/drizzle";
 import { books, borrowRecords, users } from "@/database/schema";
@@ -39,9 +39,9 @@ export async function getBooks({
   try {
     const searchConditions = query
       ? or(
-          like(books.title, `%${query}%`),
-          like(books.genre, `%${query}%`),
-          like(books.author, `%${query}%`)
+          ilike(books.title, `%${query}%`),
+          ilike(books.genre, `%${query}%`),
+          ilike(books.author, `%${query}%`)
         )
       : undefined;
 
@@ -98,9 +98,9 @@ export async function getBorrowRecords({
   try {
     const searchConditions = query
       ? or(
-          like(books.title, `%${query}%`),
-          like(books.genre, `%${query}%`),
-          like(books.author, `%${query}%`)
+          ilike(books.title, `%${query}%`),
+          ilike(books.genre, `%${query}%`),
+          ilike(books.author, `%${query}%`)
         )
       : undefined;
 
