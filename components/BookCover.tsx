@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
 import config from "@/lib/config";
 import BookCoverSvg from "./BookCoverSvg";
+import { IKImage } from "imagekitio-next";
 
 type BookCoverVariant = "extraSmall" | "small" | "medium" | "regular" | "wide";
 
@@ -21,7 +24,7 @@ const variantStyles: Record<BookCoverVariant, string> = {
   wide: "book-cover_wide",
 };
 
-const BookCover = async ({
+const BookCover = ({
   className,
   variant = "regular",
   coverColor = "#012B48",
@@ -45,11 +48,14 @@ const BookCover = async ({
           height: "88%",
         }}
       >
-        <Image
-          src={`${config.env.imagekit.urlEndpoint}/${coverUrl}`}
+        <IKImage
+          path={coverUrl}
+          urlEndpoint={config.env.imagekit.urlEndpoint}
           alt="Book cover"
           fill
           className="rounded-sm object-fill"
+          lqip={{ active: true }}
+          loading="lazy"
         />
       </div>
     </div>
