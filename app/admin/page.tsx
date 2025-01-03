@@ -1,47 +1,55 @@
+import Link from "next/link";
 import Image from "next/image";
 
-import BookCover from "@/components/BookCover";
 import { Button } from "@/components/ui/button";
+import UserCard from "@/components/admin/UserCard";
 import StatCard from "@/components/admin/StatCard";
 import BookStripe from "@/components/admin/BookStripe";
-import Link from "next/link";
 
-const UserCard = () => (
-  <div className="bg-light-300 py-4 px-3 flex justify-center items-center flex-col rounded-xl">
-    <div className="relative size-12 rounded-full">
-      <Image
-        src="/images/auth-illustration.png"
-        alt="auth-illustration"
-        fill
-        className="rounded-full object-cover"
-      />
-    </div>
-    <p className="font-medium text-dark-400 mt-3">Marc Atenson</p>
-    <p className="text-light-500 text-sm">marcnine@gmai.com</p>
-  </div>
-);
+import { getUsers } from "@/lib/admin/actions/user";
+import { getStatistics } from "@/lib/admin/actions/general";
+import { getBooks, getBorrowRecords } from "@/lib/admin/actions/book";
 
-const Page = () => {
+const Page = async () => {
+  const { data: stats } = await getStatistics();
+  const { data: latestUsers } = await getUsers({
+    sort: "newest",
+    page: 1,
+    limit: 6,
+  });
+
+  const { data: borrowRecords } = await getBorrowRecords({
+    sort: "newest",
+    page: 1,
+    limit: 5,
+  });
+
+  const { data: recentBooks } = await getBooks({
+    sort: "newest",
+    page: 1,
+    limit: 7,
+  });
+
   return (
     <>
       <section className="flex flex-wrap min-w-fit gap-5">
         <StatCard
           label="Borrowed Books"
-          count={125}
-          changeAmount={2}
-          isStatIncrease={false}
+          count={stats?.borrowRecord.total!}
+          changeAmount={stats?.borrowRecord.change!}
+          isStatIncrease={stats?.borrowRecord.change! > 0}
         />
         <StatCard
           label="Total Users"
-          count={317}
-          changeAmount={4}
-          isStatIncrease
+          count={stats?.user.total!}
+          changeAmount={stats?.user.change!}
+          isStatIncrease={stats?.user.change! > 0}
         />
         <StatCard
           label="Total Books"
-          count={163}
-          changeAmount={2}
-          isStatIncrease
+          count={stats?.book.total!}
+          changeAmount={stats?.book.change!}
+          isStatIncrease={stats?.book.change! > 0}
         />
       </section>
 
@@ -53,16 +61,19 @@ const Page = () => {
                 Borrow Requests
               </h3>
 
-              <Button className="bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80 shadow-none">
-                View All
+              <Button
+                asChild
+                className="bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80 shadow-none"
+              >
+                <Link href="/admin/borrow-records">View All</Link>
               </Button>
             </div>
 
             <div className="mt-7 space-y-3">
-              <BookStripe />
-              <BookStripe />
-              <BookStripe />
-              <BookStripe />
+              {borrowRecords?.length! > 0 &&
+                borrowRecords?.map((book) => (
+                  <BookStripe key={book.id} book={book as BorrowedBook} />
+                ))}
             </div>
           </section>
 
@@ -72,18 +83,23 @@ const Page = () => {
                 Account Requests
               </h3>
 
-              <Button className="bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80 shadow-none">
-                View All
+              <Button
+                asChild
+                className="bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80 shadow-none"
+              >
+                <Link href="/admin/account-requests">View All</Link>
               </Button>
             </div>
 
             <div className="mt-7 flex flex-wrap gap-3">
-              <UserCard />
-              <UserCard />
-              <UserCard />
-              <UserCard />
-              <UserCard />
-              <UserCard />
+              {latestUsers?.length! > 0 &&
+                latestUsers?.map(({ user }) => (
+                  <UserCard
+                    key={user.id}
+                    name={user.fullname}
+                    email={user.email}
+                  />
+                ))}
             </div>
           </section>
         </div>
@@ -94,8 +110,11 @@ const Page = () => {
               Recently Added Books
             </h3>
 
-            <Button className="bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80 shadow-none">
-              View All
+            <Button
+              asChild
+              className="bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80 shadow-none"
+            >
+              <Link href="/admin/books">View All</Link>
             </Button>
           </div>
 
@@ -116,13 +135,10 @@ const Page = () => {
           </Link>
 
           <div className="space-y-3">
-            <BookStripe />
-            <BookStripe />
-            <BookStripe />
-            <BookStripe />
-            <BookStripe />
-            <BookStripe />
-            <BookStripe />
+            {recentBooks?.length! > 0 &&
+              recentBooks?.map((book) => (
+                <BookStripe key={book.id} book={book as Book} />
+              ))}
           </div>
         </section>
       </div>

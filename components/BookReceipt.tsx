@@ -8,7 +8,7 @@ import { jsPDF as JsPDF } from "jspdf";
 import { Button } from "./ui/button";
 
 interface Props extends BorrowedBook {
-  btnVariant?: "user" | "admin";
+  btnVariant?: "user" | "admin" | "preview";
 }
 
 const BookReceipt = (props: Props) => {
@@ -79,7 +79,7 @@ const BookReceipt = (props: Props) => {
             className="object-contain"
           />
         </Button>
-      ) : (
+      ) : btnVariant === "admin" ? (
         <Button className="book-receipt_admin-btn" onClick={handleDownload}>
           <Image
             src="/icons/admin/receipt.svg"
@@ -90,6 +90,20 @@ const BookReceipt = (props: Props) => {
           />
           Generate
         </Button>
+      ) : (
+        <button
+          type="button"
+          onClick={handleDownload}
+          className="size-8 bg-white rounded-md flex justify-center items-center"
+        >
+          <Image
+            src="/icons/admin/eye.svg"
+            alt="eye"
+            width={20}
+            height={20}
+            className="object-contain"
+          />
+        </button>
       )}
 
       <section id="book-ticket">
@@ -179,7 +193,7 @@ const BookReceipt = (props: Props) => {
         <div className="px-8 text-center text-light-700">
           <p>
             Thank you for using{" "}
-            <span className="font-semibold text-light-200">BookWise</span> . For
+            <span className="font-semibold text-light-200">BookWise</span>. For
             any questions or concerns, please contact us at{" "}
             <span className="font-semibold text-light-200">
               support@bookwise.com

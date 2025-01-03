@@ -46,6 +46,7 @@ interface BorrowRecord {
 
 interface BorrowedBook extends Book {
   borrow: BorrowRecord;
+  user?: string;
 }
 
 interface BookParams {
@@ -78,6 +79,7 @@ interface QueryParams {
   query?: string;
   sort?: string;
   page?: number;
+  limit?: number;
 }
 
 interface Metdata {

@@ -1,5 +1,6 @@
-import { cn } from "@/lib/utils";
 import Image from "next/image";
+
+import { cn } from "@/lib/utils";
 
 interface Props {
   label: string;
@@ -34,7 +35,9 @@ const StatCard = ({ label, count, changeAmount, isStatIncrease }: Props) => {
           </p>
         </div>
       </div>
-      <p className="font-semibold text-3xl text-dark-400">{count}</p>
+      <p className="font-semibold text-3xl text-dark-400">
+        {count < 10 ? `0${count}` : count}
+      </p>
     </div>
   );
 };

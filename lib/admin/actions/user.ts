@@ -11,6 +11,7 @@ export async function getUsers({
   query,
   sort = "available",
   page = 1,
+  limit = ITEMS_PER_PAGE,
 }: QueryParams) {
   try {
     const searchConditions = query
@@ -37,8 +38,8 @@ export async function getUsers({
       .where(searchConditions)
       .groupBy(users.id) // Group by user to get borrow counts.
       .orderBy(sortingCondition)
-      .limit(ITEMS_PER_PAGE)
-      .offset((page - 1) * ITEMS_PER_PAGE);
+      .limit(limit)
+      .offset((page - 1) * limit);
 
     const totalItems = await db
       .select({

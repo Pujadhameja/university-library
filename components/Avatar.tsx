@@ -2,12 +2,13 @@ import { cn, getInitials } from "@/lib/utils";
 
 interface Props {
   name: string;
-  size?: "sm" | "md" | "lg";
+  size?: "xs" | "sm" | "md" | "lg";
   bgColor?: string;
   textColor?: string;
 }
 
 const sizeClasses = {
+  xs: "size-5 text-[8px]",
   sm: "size-8 text-xs",
   md: "size-10 text-sm",
   lg: "size-20 text-3xl",

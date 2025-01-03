@@ -1,60 +1,33 @@
+import dayjs from "dayjs";
 import Image from "next/image";
 
+import Avatar from "../Avatar";
 import BookCover from "../BookCover";
+import BookReceipt from "../BookReceipt";
 
-interface Props {
-  coverColor: string;
-  cover: string;
-  title: string;
-  author: string;
-  genre: string;
-  date: string;
-  user: {
-    name: string;
-    image: string;
-  };
-}
+const BookStripe = ({ book }: { book: BorrowedBook | Book }) => {
+  const { coverColor, coverUrl, title, author, genre, createdAt } = book;
 
-const BookStripe = ({
-  coverColor,
-  cover,
-  title,
-  author,
-  genre,
-  date,
-  user,
-}: Props) => {
   return (
     <div className="flex flex-row gap-4 bg-light-300 p-4 rounded-lg">
-      <BookCover
-        variant="small"
-        coverColor="#012B48"
-        coverUrl="books/covers/file_-ik4mAydL.png?updatedAt=1735233398192"
-      />
+      <BookCover variant="small" coverColor={coverColor} coverUrl={coverUrl} />
 
-      <div>
-        <p className="font-semibold text-base text-dark-400">
-          Inside Evil: Inside Evil Series, Book 1
+      <div className="flex-1">
+        <p className="font-semibold text-base text-dark-400 line-clamp-1">
+          {title}
         </p>
 
         <div className="flex flex-wrap flex-row items-center gap-2">
-          <p className="text-light-500 text-sm">By Rachel Heng</p>
+          <p className="text-light-500 text-sm line-clamp-1">By {author}</p>
           <div className="size-1 rounded-full bg-light-500" />
-          <p className="text-light-500 text-sm">Strategic, Fantasy</p>
+          <p className="text-light-500 text-sm">{genre}</p>
         </div>
 
-        <div className="mt-3 flex flex-row flex-wrap gap-5">
-          {user && (
+        <div className="mt-2.5 flex flex-row flex-wrap gap-5">
+          {"user" in book && book.user && (
             <div className="flex flex-row items-center gap-1.5">
-              <div className="size-5 rounded-full relative">
-                <Image
-                  src="/images/auth-illustration.png"
-                  alt="user"
-                  fill
-                  className="object-cover rounded-full"
-                />
-              </div>
-              <p className="text-xs text-dark-200">John Doe</p>
+              <Avatar size="xs" name={book.user} />
+              <p className="text-xs text-dark-200">{book.user}</p>
             </div>
           )}
 
@@ -66,10 +39,16 @@ const BookStripe = ({
               height={20}
               className="object-contain"
             />
-            <p className="text-xs text-dark-200">01/01/25</p>
+            <p className="text-xs text-dark-200">
+              {dayjs(createdAt).format("MMM DD, YYYY")}
+            </p>
           </div>
         </div>
       </div>
+
+      {"borrow" in book && book.borrow! && (
+        <BookReceipt {...(book as BorrowedBook)} btnVariant="preview" />
+      )}
     </div>
   );
 };
