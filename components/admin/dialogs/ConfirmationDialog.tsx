@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import {
   Dialog,
+  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -14,6 +15,8 @@ import {
 import { Button } from "../../ui/button";
 
 import { cn } from "@/lib/utils";
+import { useRef, useState, useTransition } from "react";
+import { toast } from "@/hooks/use-toast";
 
 interface ConfirmationDialogProps {
   variant: "approve" | "deny";
@@ -34,10 +37,35 @@ const ConfirmationDialog = ({
   confirmLabel,
   iconSrc = "/icons/admin/info.svg",
 }: ConfirmationDialogProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
+
   const isApprove = variant === "approve";
 
+  const handleConfirm = () => {
+    startTransition(() => {
+      try {
+        onConfirm();
+        toast({
+          title: "Success",
+          description: "Your request has been processed successfully.",
+          variant: "default",
+        });
+      } catch (error) {
+        toast({
+          title: "Error",
+          description: "An error occurred while processing your request.",
+          variant: "destructive",
+        });
+        console.log(error);
+      } finally {
+        setIsOpen(false);
+      }
+    });
+  };
+
   return (
-    <Dialog>
+    <Dialog open={isOpen} onOpenChange={(open) => setIsOpen(open)}>
       <DialogTrigger asChild>
         <Button
           className={cn(
@@ -85,13 +113,14 @@ const ConfirmationDialog = ({
         <DialogFooter className="w-full mt-5">
           <Button
             type="button"
+            disabled={isPending}
             className={cn(
               "w-full min-h-14 rounded-xl font-bold text-base text-light-800",
               isApprove
                 ? "bg-green-400 hover:bg-green-400/90"
                 : "bg-red-400 hover:bg-red-400/90"
             )}
-            onClick={onConfirm}
+            onClick={handleConfirm}
           >
             {confirmLabel}
           </Button>

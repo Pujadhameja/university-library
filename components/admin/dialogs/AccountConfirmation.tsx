@@ -1,6 +1,7 @@
 "use client";
 
 import ConfirmationDialog from "./ConfirmationDialog";
+import { updateAccountStatus } from "@/lib/admin/actions/user";
 
 const AccountConfirmation = ({ user }: { user: User }) => {
   const confirmationAction =
@@ -31,13 +32,27 @@ const AccountConfirmation = ({ user }: { user: User }) => {
       ? "/icons/admin/info.svg"
       : "/icons/admin/tick.svg";
 
+  const handleConfirm = () => {
+    if (confirmationAction === "approve") {
+      updateAccountStatus({
+        userId: user.id,
+        status: "APPROVED",
+      });
+    } else {
+      updateAccountStatus({
+        userId: user.id,
+        status: "REJECTED",
+      });
+    }
+  };
+
   return (
     <ConfirmationDialog
       variant={confirmationAction}
       title={title}
       description={description}
       triggerLabel={triggerLabel}
-      onConfirm={() => {}}
+      onConfirm={handleConfirm}
       confirmLabel={confirmLabel}
       iconSrc={iconSrc}
     />

@@ -4,6 +4,7 @@ import { or, like, desc, asc, count, eq } from "drizzle-orm";
 
 import { db } from "@/database/drizzle";
 import { borrowRecords, users } from "@/database/schema";
+import { revalidatePath } from "next/cache";
 
 const ITEMS_PER_PAGE = 20;
 
@@ -64,6 +65,30 @@ export async function getUsers({
     return {
       success: false,
       error: "An error occurred while fetching users",
+    };
+  }
+}
+
+export async function updateAccountStatus(params: UpdateAccountStatusParams) {
+  const { userId, status } = params;
+
+  try {
+    const updatedUser = await db
+      .update(users)
+      .set({ status })
+      .where(eq(users.id, userId))
+      .returning();
+
+    revalidatePath("/admin/account-requests");
+    return {
+      success: true,
+      data: updatedUser,
+    };
+  } catch (error) {
+    console.error("Error updating user status:", error);
+    return {
+      success: false,
+      error: "An error occurred while updating user status",
     };
   }
 }

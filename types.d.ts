@@ -86,3 +86,8 @@ interface Metdata {
   totalPages?: number;
   hasNextPage?: boolean;
 }
+
+interface UpdateAccountStatusParams {
+  userId: string;
+  status: "PENDING" | "APPROVED" | "REJECTED";
+}
