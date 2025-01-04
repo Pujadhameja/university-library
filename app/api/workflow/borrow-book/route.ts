@@ -1,3 +1,4 @@
+import dayjs from "dayjs";
 import { and, eq } from "drizzle-orm";
 import { serve } from "@upstash/workflow/nextjs";
 
@@ -59,6 +60,9 @@ export const { POST } = serve<BorrowEventData>(async (context) => {
   const { fullname, email } = user;
   const { title } = book;
 
+  // calculate difference between borrow date and due date
+  const diff = dayjs(dueDate).diff(dayjs(borrowDate), "day");
+
   // Send initial borrow confirmation email
   await context.run("send-borrowed-email", async () => {
     await sendEmail({
@@ -69,10 +73,7 @@ export const { POST } = serve<BorrowEventData>(async (context) => {
   });
 
   // Wait until 1 day before due date to send reminder
-  await context.sleep(
-    "wait-for-1-day-before-due",
-    (ONE_DAY_MS * (new Date(dueDate).getTime() - Date.now())) / ONE_DAY_MS
-  );
+  await context.sleep("wait-for-1-day-before-due", 60 * 60 * 24 * (diff - 1));
 
   // Send 1 day before due date reminder email
   await context.run("send-reminder-before-due", async () => {
@@ -84,7 +85,7 @@ export const { POST } = serve<BorrowEventData>(async (context) => {
   });
 
   // Wait until the due date to send the "last day" reminder
-  await context.sleep("wait-for-due-date", ONE_DAY_MS);
+  await context.sleep("wait-for-due-date", 60 * 60 * 24 * diff);
 
   // Send final day reminder email
   await context.run("send-final-reminder", async () => {
@@ -96,7 +97,7 @@ export const { POST } = serve<BorrowEventData>(async (context) => {
   });
 
   // Wait until after due date to check if the book has been returned
-  await context.sleep("wait-for-check-if-returned", ONE_DAY_MS);
+  await context.sleep("wait-for-check-if-returned", 60 * 60 * 24 * (diff + 1));
 
   // Check if the book has been returned, if not, send overdue email
   const isReturned = await isBookReturned(userId, bookId);
