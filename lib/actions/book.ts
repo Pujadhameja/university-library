@@ -5,6 +5,8 @@ import { and, asc, count, desc, eq, ilike, or } from "drizzle-orm";
 
 import { db } from "@/database/drizzle";
 import { books, borrowRecords, users } from "@/database/schema";
+import { workflowClient } from "../workflow";
+import config from "../config";
 
 const ITEMS_PER_PAGE = 20;
 
@@ -42,6 +44,16 @@ export async function borrowBook(params: BorrowBookParams) {
         availableCopies: book[0].availableCopies - 1,
       })
       .where(eq(books.id, bookId));
+
+    await workflowClient.trigger({
+      url: `${config.env.prodApiEndpoint}/api/workflow/borrow-book`,
+      body: {
+        userId,
+        bookId,
+        borrowDate: dayjs().toDate().toDateString(),
+        dueDate,
+      },
+    });
 
     return {
       success: true,
