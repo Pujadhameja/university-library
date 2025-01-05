@@ -75,7 +75,7 @@ const BookForm = () => {
                 <Input
                   placeholder="Enter the book title"
                   {...field}
-                  className="min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
+                  className="book-form_input"
                 />
               </FormControl>
               <FormMessage />
@@ -95,7 +95,7 @@ const BookForm = () => {
                 <Input
                   placeholder="Enter the author name"
                   {...field}
-                  className="min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
+                  className="book-form_input"
                 />
               </FormControl>
               <FormMessage />
@@ -115,7 +115,7 @@ const BookForm = () => {
                 <Input
                   placeholder="Enter the genre of the book"
                   {...field}
-                  className="min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
+                  className="book-form_input"
                 />
               </FormControl>
               <FormMessage />
@@ -137,7 +137,7 @@ const BookForm = () => {
                     type="number"
                     placeholder="Enter the rating of the book"
                     {...field}
-                    className="min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
+                    className="book-form_input"
                   />
                 </FormControl>
                 <FormMessage />
@@ -158,7 +158,7 @@ const BookForm = () => {
                     type="number"
                     placeholder="Enter the total number of books"
                     {...field}
-                    className="min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
+                    className="book-form_input"
                   />
                 </FormControl>
                 <FormMessage />
@@ -219,7 +219,7 @@ const BookForm = () => {
                   placeholder="Write a brief description of the book"
                   {...field}
                   rows={10}
-                  className="min-h-14 border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
+                  className="book-form_input"
                 />
               </FormControl>
               <FormMessage />
@@ -263,7 +263,7 @@ const BookForm = () => {
                   placeholder="Write a brief summary of the book"
                   {...field}
                   rows={10}
-                  className="border border-gray-100 bg-light-600 p-4 text-base font-semibold placeholder:font-normal placeholder:text-slate-500"
+                  className="book-form_input"
                 />
               </FormControl>
               <FormMessage />
@@ -271,10 +271,7 @@ const BookForm = () => {
           )}
         />
 
-        <Button
-          type="submit"
-          className="min-h-14 w-full bg-primary-admin hover:bg-primary-admin/95"
-        >
+        <Button type="submit" className="book-form_btn">
           Add Book
         </Button>
       </form>

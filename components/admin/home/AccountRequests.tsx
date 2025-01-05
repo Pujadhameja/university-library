@@ -23,10 +23,7 @@ const AccountRequests = async () => {
           Account Requests
         </h3>
 
-        <Button
-          asChild
-          className="bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80 shadow-none"
-        >
+        <Button asChild className="view-btn">
           <Link href="/admin/account-requests">View All</Link>
         </Button>
       </div>

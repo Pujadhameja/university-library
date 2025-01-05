@@ -17,11 +17,9 @@ const StatCard = ({
   isStatIncrease,
 }: StatCardProps) => {
   return (
-    <div className="bg-white rounded-xl p-5 space-y-5 flex-1">
-      <div className="flex justify-between items-center gap-5">
-        <p className="font-medium text-base text-light-500 whitespace-nowrap">
-          {label}
-        </p>
+    <div className="stat">
+      <div className="stat-info">
+        <p className="stat-label">{label}</p>
         <div className="flex items-center gap-1">
           <Image
             src={
@@ -41,9 +39,8 @@ const StatCard = ({
           </p>
         </div>
       </div>
-      <p className="font-semibold text-3xl text-dark-400">
-        {count < 10 ? `0${count}` : count}
-      </p>
+
+      <p className="stat-count">{count < 10 ? `0${count}` : count}</p>
     </div>
   );
 };

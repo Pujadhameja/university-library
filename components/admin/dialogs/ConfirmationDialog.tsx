@@ -15,7 +15,7 @@ import {
 import { Button } from "../../ui/button";
 
 import { cn } from "@/lib/utils";
-import { useRef, useState, useTransition } from "react";
+import { useState, useTransition } from "react";
 import { toast } from "@/hooks/use-toast";
 
 interface ConfirmationDialogProps {
@@ -69,29 +69,22 @@ const ConfirmationDialog = ({
       <DialogTrigger asChild>
         <Button
           className={cn(
-            "font-semibold text-sm shadow-none hover:bg-opacity-70 w-full",
-            isApprove
-              ? "bg-green-100 text-green-800 hover:bg-green-100/70"
-              : "bg-red-100 text-red-800 hover:bg-red-100/70"
+            "confirm-trigger",
+            isApprove ? "confirm-approve" : "confirm-reject"
           )}
         >
           {triggerLabel}
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-md flex flex-col items-center justify-center p-6">
+      <DialogContent className="confirm-content">
         <DialogHeader className="w-full">
           <div
             className={cn(
-              "size-28 rounded-full flex justify-center items-center mx-auto",
+              "confirm-illustration",
               isApprove ? "bg-green-400/10" : "bg-red-400/10"
             )}
           >
-            <div
-              className={cn(
-                "size-[70%] rounded-full flex justify-center items-center",
-                isApprove ? "bg-green-400" : "bg-red-400"
-              )}
-            >
+            <div className={cn(isApprove ? "bg-green-400" : "bg-red-400")}>
               <Image
                 src={iconSrc}
                 width={30}
@@ -115,7 +108,7 @@ const ConfirmationDialog = ({
             type="button"
             disabled={isPending}
             className={cn(
-              "w-full min-h-14 rounded-xl font-bold text-base text-light-800",
+              "confirm-btn",
               isApprove
                 ? "bg-green-400 hover:bg-green-400/90"
                 : "bg-red-400 hover:bg-red-400/90"

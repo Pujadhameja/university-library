@@ -24,19 +24,13 @@ const RecentBooks = async () => {
           Recently Added Books
         </h3>
 
-        <Button
-          asChild
-          className="bg-light-300 rounded-md text-primary-admin font-semibold hover:bg-light-300/80 shadow-none"
-        >
+        <Button asChild className="view-btn">
           <Link href="/admin/books">View All</Link>
         </Button>
       </div>
 
-      <Link
-        href="/admin/books/new"
-        className="mt-7 mb-3 bg-light-300 py-4 px-3 flex flex-row items-center rounded-xl gap-4"
-      >
-        <div className="size-12 bg-white rounded-full flex justify-center items-center">
+      <Link href="/admin/books/new" className="add-new-book_btn">
+        <div>
           <Image
             src="/icons/admin/plus.svg"
             width={18}
@@ -45,7 +39,7 @@ const RecentBooks = async () => {
             className="object-contain"
           />
         </div>
-        <p className="font-semibold text-lg text-dark-400">Add New Book</p>
+        <p>Add New Book</p>
       </Link>
 
       <div className="space-y-3">

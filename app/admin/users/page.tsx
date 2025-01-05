@@ -44,20 +44,23 @@ const Page = async ({ searchParams }: PageProps) => {
           <TableBody>
             {allRecords!?.length > 0 ? (
               allRecords!.map(({ user, totalBorrowedBooks }) => (
-                <TableRow key={user.id} className="border-b-dark-100/5">
-                  <TableCell className="text-sm font-medium text-dark-200">
+                <TableRow
+                  key={user.id}
+                  className="border-b-dark-100/5 text-sm font-medium"
+                >
+                  <TableCell className="text-dark-200">
                     {user.fullname}
                   </TableCell>
-                  <TableCell className="text-sm font-medium text-dark-200">
+                  <TableCell className="text-dark-200">
                     {dayjs(user.createdAt).format("MMM DD, YYYY")}
                   </TableCell>
-                  <TableCell className="text-sm font-medium text-dark-200">
+                  <TableCell className="text-dark-200">
                     {totalBorrowedBooks}
                   </TableCell>
-                  <TableCell className="text-sm font-medium text-dark-200">
+                  <TableCell className="text-dark-200">
                     {user.universityId}
                   </TableCell>
-                  <TableCell className="text-sm font-medium text-blue-100">
+                  <TableCell className="text-blue-100">
                     <div className="flex items-center gap-1.5">
                       <Link
                         href={`${config.env.imagekit.urlEndpoint}${user.universityCard}`}

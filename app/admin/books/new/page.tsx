@@ -6,10 +6,7 @@ import { Button } from "@/components/ui/button";
 const Page = () => {
   return (
     <>
-      <Button
-        asChild
-        className="mb-10 w-fit border border-light-300 bg-white text-xs font-medium text-dark-200 hover:bg-light-300"
-      >
+      <Button asChild className="back-btn">
         <Link href="/admin/books">Go Back</Link>
       </Button>
 

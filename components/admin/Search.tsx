@@ -28,7 +28,7 @@ const Search = () => {
   );
 
   return (
-    <div className="flex border border-gray-100 min-h-14 items-center gap-1 rounded-md bg-light-600 px-4 lg:max-w-md w-full">
+    <div className="admin-search">
       <Image
         src="/icons/admin/search.svg"
         alt="search"
@@ -42,7 +42,7 @@ const Search = () => {
         value={search}
         placeholder="Search users, books by title, author, or genre."
         onChange={(e) => setSearch(e.target.value)}
-        className="w-full border-0 shadow-none bg-transparent outline-none focus:outline-none focus:ring-0 focus:border-0"
+        className="admin-search_input"
       />
     </div>
   );
