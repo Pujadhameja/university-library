@@ -37,11 +37,11 @@ const Page = async () => {
 
   return (
     <>
-      <section className="flex flex-col gap-16 lg:flex-row">
-        <div className="flex flex-col h-fit max-lg:items-center max-lg:justify-center lg:sticky lg:top-10">
-          <div className="gradient-blue relative w-full rounded-[20px] border border-dark-600 p-5 sm:w-[512px]">
-            <div className="absolute -top-10 left-1/2 z-10 h-28 w-20 -translate-x-1/2 rounded-b-full bg-dark-700 shadow-lg">
-              <div className="absolute bottom-3.5 left-1/2 h-3 w-10 -translate-x-1/2 rounded-full bg-dark-800" />
+      <section className="profile">
+        <div className="id-card">
+          <div className="inner">
+            <div className="badge">
+              <div className="badge-inner" />
             </div>
 
             <div>
@@ -88,8 +88,8 @@ const Page = async () => {
               />
             </div>
 
-            <div className="mt-7 border-t border-dotted border-neutral-800 pt-5">
-              <p className="text-center font-bebas-neue text-xs tracking-wider text-gray-400">
+            <div className="validity">
+              <p>
                 Valid for {new Date().getFullYear()}-
                 {new Date().getFullYear() + 1} Academic Year
               </p>
@@ -103,11 +103,7 @@ const Page = async () => {
               redirect("/sign-in");
             }}
           >
-            <Button
-              type="submit"
-              variant="destructive"
-              className="w-full mt-2 bg-red-100 text-red font-bold hover:bg-red-100"
-            >
+            <Button type="submit" variant="destructive" className="logout">
               Logout
             </Button>
           </form>
