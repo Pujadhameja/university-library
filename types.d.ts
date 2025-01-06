@@ -31,7 +31,7 @@ interface Book {
   coverUrl: string;
   videoUrl: string;
   summary: string;
-  createdAt: Date;
+  createdAt: Date | null;
 }
 
 interface BorrowRecord {
@@ -90,4 +90,8 @@ interface Metdata {
 interface UpdateAccountStatusParams {
   userId: string;
   status: "PENDING" | "APPROVED" | "REJECTED";
+}
+
+interface UpdateBookParams extends BookParams {
+  bookId: string;
 }

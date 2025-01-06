@@ -3,13 +3,14 @@ import { useClickAway, useDebounce } from "react-use";
 import { HexColorInput, HexColorPicker } from "react-colorful";
 
 interface Props {
+  value?: string;
   onPickerChange: (color: string) => void;
 }
 
-const ColorPicker = ({ onPickerChange }: Props) => {
+const ColorPicker = ({ value, onPickerChange }: Props) => {
   const popoverRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
-  const [color, setColor] = useState("#000000");
+  const [color, setColor] = useState(value || "#000000");
 
   useDebounce(() => onPickerChange(color), 500, [color]);
   useClickAway(popoverRef, () => setIsOpen(false));

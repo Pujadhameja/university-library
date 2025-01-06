@@ -21,40 +21,55 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { bookSchema } from "@/lib/validations";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { createBook } from "@/lib/admin/actions/book";
+import { createBook, editBook } from "@/lib/admin/actions/book";
 
-const BookForm = () => {
+interface Props extends Partial<Book> {
+  type?: "create" | "update";
+}
+
+const BookForm = ({ type, ...book }: Props) => {
   const router = useRouter();
   const form = useForm<z.infer<typeof bookSchema>>({
     resolver: zodResolver(bookSchema),
     defaultValues: {
-      title: "",
-      author: "",
-      genre: "",
-      rating: 1,
-      totalCopies: 1,
-      coverUrl: "",
-      coverColor: "",
-      description: "",
-      videoUrl: "",
-      summary: "",
+      title: book.title || "",
+      author: book.author || "",
+      genre: book.genre || "",
+      rating: book.rating || 1,
+      totalCopies: book.totalCopies || 1,
+      coverUrl: book.coverUrl || "",
+      coverColor: book.coverColor || "#012B48",
+      description: book.description || "",
+      videoUrl: book.videoUrl || "",
+      summary: book.summary || "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof bookSchema>) {
-    const result = await createBook(values);
+    let result;
+    if (type === "create") {
+      result = await createBook(values);
+    } else if (type === "update") {
+      result = await editBook({
+        bookId: book.id!,
+        ...values,
+      });
+    }
 
-    if (result.success) {
+    if (result?.success) {
       toast({
         title: "Success",
-        description: "Book created successfully.",
+        description:
+          type === "create"
+            ? "Book created successfully."
+            : "Book updated successfully.",
       });
 
       router.push(`/admin/books/${result.data.id}`);
     } else {
       toast({
         title: "Error",
-        description: result.error,
+        description: result?.error,
         variant: "destructive",
       });
     }
@@ -182,6 +197,7 @@ const BookForm = () => {
                   placeholder="Upload a cover image"
                   folder="books/covers"
                   variant="light"
+                  value={field.value}
                   onFileChange={field.onChange}
                 />
               </FormControl>
@@ -199,7 +215,10 @@ const BookForm = () => {
                 Book Primary Color
               </FormLabel>
               <FormControl>
-                <ColorPicker onPickerChange={field.onChange} />
+                <ColorPicker
+                  value={field.value}
+                  onPickerChange={field.onChange}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -242,6 +261,7 @@ const BookForm = () => {
                   placeholder="Upload a video"
                   folder="books/videos"
                   variant="light"
+                  value={field.value}
                   onFileChange={field.onChange}
                 />
               </FormControl>
@@ -272,7 +292,7 @@ const BookForm = () => {
         />
 
         <Button type="submit" className="book-form_btn">
-          Add Book
+          {type === "create" ? "Add Book" : "Update Book"}
         </Button>
       </form>
     </Form>

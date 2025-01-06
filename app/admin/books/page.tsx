@@ -70,13 +70,15 @@ const Page = async ({ searchParams }: PageProps) => {
                   </TableCell>
                   <TableCell>
                     <div className="flex flex-row gap-5">
-                      <Image
-                        src="/icons/admin/edit.svg"
-                        width={20}
-                        height={20}
-                        className="object-contain"
-                        alt="edit"
-                      />
+                      <Link href={`/admin/books/${book.id}/edit`}>
+                        <Image
+                          src="/icons/admin/edit.svg"
+                          width={20}
+                          height={20}
+                          className="object-contain"
+                          alt="edit"
+                        />
+                      </Link>
                       <Image
                         src="/icons/admin/trash.svg"
                         width={20}
