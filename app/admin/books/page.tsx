@@ -70,17 +70,19 @@ const Page = async ({ searchParams }: PageProps) => {
                     Dec 19 2023
                   </TableCell>
                   <TableCell>
-                    <Button asChild className="view-btn !shadow-md">
+                    <Button asChild className="view-btn !shadow">
                       <Link href={`/admin/books/${book.id}`}>View</Link>
                     </Button>
                   </TableCell>
                   <TableCell>
-                    <div className="flex flex-row gap-5">
-                      <Link href={`/admin/books/${book.id}/edit`}>
+                    <div className="flex flex-row items-center gap-3.5">
+                      <Link
+                        href={`/admin/books/${book.id}/edit`}
+                        className="relative size-5"
+                      >
                         <Image
                           src="/icons/admin/edit.svg"
-                          width={20}
-                          height={20}
+                          fill
                           className="object-contain"
                           alt="edit"
                         />

@@ -10,7 +10,7 @@ const RecentBooks = async () => {
   const { data: recentBooks } = await getBooks({
     sort: "newest",
     page: 1,
-    limit: 7,
+    limit: 8,
   });
 
   if (!recentBooks) {

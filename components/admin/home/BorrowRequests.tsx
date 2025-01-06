@@ -31,7 +31,7 @@ const BorrowRequests = async () => {
       <div className="mt-7 space-y-3">
         {borrowRecords?.length! > 0 &&
           borrowRecords?.map((book) => (
-            <BookStripe key={book.id} book={book as BorrowedBook} />
+            <BookStripe key={book.borrow.id} book={book as BorrowedBook} />
           ))}
       </div>
     </section>
