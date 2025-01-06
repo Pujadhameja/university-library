@@ -20,7 +20,7 @@ const BorrowRequests = async () => {
     <section className="bg-white p-4 rounded-xl">
       <div className="flex justify-between">
         <h3 className="font-semibold text-dark-400  text-xl">
-          Borrow Requestssss
+          Borrow Requests
         </h3>
 
         <Button asChild className="view-btn">

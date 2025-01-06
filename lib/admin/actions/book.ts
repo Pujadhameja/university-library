@@ -1,6 +1,6 @@
 "use server";
 
-import { or, desc, asc, eq, count, ilike } from "drizzle-orm";
+import { or, desc, asc, eq, count, ilike, and } from "drizzle-orm";
 
 import { db } from "@/database/drizzle";
 import { books, borrowRecords, users } from "@/database/schema";
@@ -96,70 +96,80 @@ export async function getBorrowRecords({
   limit = ITEMS_PER_PAGE,
 }: QueryParams) {
   try {
+    const offset = (page - 1) * limit;
+
     const searchConditions = query
       ? or(
           ilike(books.title, `%${query}%`),
           ilike(books.genre, `%${query}%`),
-          ilike(books.author, `%${query}%`)
+          ilike(users.fullname, `%${query}%`)
         )
       : undefined;
 
-    const sortOptions: Record<string, any> = {
+    const sortOptions = {
       newest: desc(books.createdAt),
       oldest: asc(books.createdAt),
       highestRated: desc(books.rating),
-      available: desc(books.totalCopies),
+      available: desc(books.availableCopies),
     };
 
-    const sortingCondition = sortOptions[sort] || desc(books.createdAt);
+    const sortingCondition =
+      sortOptions[sort as keyof typeof sortOptions] || sortOptions.available;
 
-    const borrowRecordsData = await db
-      .select({
-        id: books.id,
-        title: books.title,
-        author: books.author,
-        genre: books.genre,
-        rating: books.rating,
-        totalCopies: books.totalCopies,
-        availableCopies: books.availableCopies,
-        coverColor: books.coverColor,
-        coverUrl: books.coverUrl,
-        videoUrl: books.videoUrl,
-        summary: books.summary,
-        createdAt: books.createdAt,
-        borrow: {
-          id: borrowRecords.id,
-          userId: borrowRecords.userId,
-          bookId: borrowRecords.bookId,
-          borrowDate: borrowRecords.borrowDate,
-          dueDate: borrowRecords.dueDate,
-          returnDate: borrowRecords.returnDate,
-          status: borrowRecords.status,
-        },
-        user: users.fullname,
-      })
-      .from(borrowRecords)
-      .innerJoin(books, eq(borrowRecords.bookId, books.id))
-      .innerJoin(users, eq(borrowRecords.userId, users.id))
-      .where(searchConditions)
-      .orderBy(sortingCondition)
-      .limit(limit)
-      .offset((page - 1) * limit);
+    const [borrowRecordsData, totalItems] = await Promise.all([
+      db
+        .select({
+          id: books.id,
+          title: books.title,
+          author: books.author,
+          genre: books.genre,
+          rating: books.rating,
+          totalCopies: books.totalCopies,
+          availableCopies: books.availableCopies,
+          coverColor: books.coverColor,
+          coverUrl: books.coverUrl,
+          videoUrl: books.videoUrl,
+          summary: books.summary,
+          createdAt: books.createdAt,
+          borrow: {
+            id: borrowRecords.id,
+            userId: borrowRecords.userId,
+            bookId: borrowRecords.bookId,
+            borrowDate: borrowRecords.borrowDate,
+            dueDate: borrowRecords.dueDate,
+            returnDate: borrowRecords.returnDate,
+            status: borrowRecords.status,
+          },
+          user: users.fullname,
+        })
+        .from(borrowRecords)
+        .innerJoin(books, eq(borrowRecords.bookId, books.id))
+        .innerJoin(users, eq(borrowRecords.userId, users.id))
+        .where(searchConditions ? and(searchConditions) : undefined)
+        .orderBy(sortingCondition)
+        .limit(limit)
+        .offset(offset),
 
-    const totalItems = await db
-      .select({ count: count() })
-      .from(borrowRecords)
-      .where(searchConditions);
+      db
+        .select({ count: count() })
+        .from(borrowRecords)
+        .innerJoin(books, eq(borrowRecords.bookId, books.id))
+        .innerJoin(users, eq(borrowRecords.userId, users.id))
+        .where(searchConditions ? and(searchConditions) : undefined),
+    ]);
 
-    const totalPage = Math.ceil(totalItems[0].count / ITEMS_PER_PAGE);
-    const hasNextPage = page < totalPage;
+    const totalCount = Number(totalItems[0]?.count) || 0;
+    const totalPages = Math.ceil(totalCount / limit);
+    const hasNextPage = page < totalPages;
 
     return {
       success: true,
       data: borrowRecordsData,
       metadata: {
-        totalPage,
+        totalPages,
         hasNextPage,
+        totalCount,
+        currentPage: page,
       },
     };
   } catch (error) {
