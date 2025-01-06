@@ -222,3 +222,20 @@ export async function editBook(params: UpdateBookParams) {
     };
   }
 }
+
+export async function getBook({ id }: { id: string }) {
+  try {
+    const book = await db.select().from(books).where(eq(books.id, id)).limit(1);
+
+    return {
+      success: true,
+      data: JSON.parse(JSON.stringify(book[0])),
+    };
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      error: "Error getting book",
+    };
+  }
+}

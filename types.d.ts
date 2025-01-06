@@ -73,6 +73,7 @@ interface PageProps {
     sort?: string;
     page?: number;
   }>;
+  params: Promise<{ id: string }>;
 }
 
 interface QueryParams {

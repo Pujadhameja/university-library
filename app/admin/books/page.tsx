@@ -41,6 +41,7 @@ const Page = async ({ searchParams }: PageProps) => {
               <TableHead>Author</TableHead>
               <TableHead>Genre</TableHead>
               <TableHead>Date Created</TableHead>
+              <TableHead>View</TableHead>
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -67,6 +68,11 @@ const Page = async ({ searchParams }: PageProps) => {
                   </TableCell>
                   <TableCell className="text-sm font-medium text-dark-200">
                     Dec 19 2023
+                  </TableCell>
+                  <TableCell>
+                    <Button asChild className="view-btn !shadow-md">
+                      <Link href={`/admin/books/${book.id}`}>View</Link>
+                    </Button>
                   </TableCell>
                   <TableCell>
                     <div className="flex flex-row gap-5">
