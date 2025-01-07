@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
+import { useState, useTransition } from "react";
 
 import {
   Dialog,
-  DialogClose,
   DialogContent,
   DialogDescription,
   DialogFooter,
@@ -15,7 +15,6 @@ import {
 import { Button } from "../../ui/button";
 
 import { cn } from "@/lib/utils";
-import { useState, useTransition } from "react";
 import { toast } from "@/hooks/use-toast";
 
 interface ConfirmationDialogProps {

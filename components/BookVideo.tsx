@@ -3,7 +3,7 @@
 import { IKVideo, ImageKitProvider } from "imagekitio-next";
 
 import config from "@/lib/config";
-import { borderTopLeftRadius } from "html2canvas/dist/types/css/property-descriptors/border-radius";
+import { cn } from "@/lib/utils";
 
 interface Props {
   videoUrl: string;
@@ -16,7 +16,11 @@ const BookVideo = ({ videoUrl, className }: Props) => {
       publicKey={config.env.imagekit.publicKey}
       urlEndpoint={config.env.imagekit.urlEndpoint}
     >
-      <IKVideo path={videoUrl} controls={true} className="w-full rounded-xl" />
+      <IKVideo
+        path={videoUrl}
+        controls={true}
+        className={cn("w-full rounded-xl", className)}
+      />
     </ImageKitProvider>
   );
 };

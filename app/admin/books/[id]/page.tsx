@@ -1,12 +1,12 @@
+import dayjs from "dayjs";
 import Link from "next/link";
+import Image from "next/image";
 import { redirect } from "next/navigation";
 
-import { getBook } from "@/lib/admin/actions/book";
-import { Button } from "@/components/ui/button";
 import BookCover from "@/components/BookCover";
-import Image from "next/image";
-import dayjs from "dayjs";
 import BookVideo from "@/components/BookVideo";
+import { Button } from "@/components/ui/button";
+import { getBook } from "@/lib/admin/actions/book";
 
 const Page = async ({ params }: PageProps) => {
   const { id } = await params;

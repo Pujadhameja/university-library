@@ -11,9 +11,9 @@ import {
 } from "@/components/ui/table";
 import BookCover from "@/components/BookCover";
 import { Button } from "@/components/ui/button";
+import Pagination from "@/components/Pagination";
 
 import { getBooks } from "@/lib/admin/actions/book";
-import Pagination from "@/components/Pagination";
 
 const Page = async ({ searchParams }: PageProps) => {
   const { query, sort, page } = await searchParams;

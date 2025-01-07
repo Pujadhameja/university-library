@@ -1,10 +1,10 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { or, desc, asc, count, eq, ilike } from "drizzle-orm";
 
 import { db } from "@/database/drizzle";
 import { borrowRecords, users } from "@/database/schema";
-import { revalidatePath } from "next/cache";
 
 const ITEMS_PER_PAGE = 20;
 

@@ -1,8 +1,9 @@
 "use server";
 
+import { count, sql } from "drizzle-orm";
+
 import { db } from "@/database/drizzle";
 import { books, borrowRecords, users } from "@/database/schema";
-import { count, lt, sql } from "drizzle-orm";
 
 export async function getStatistics() {
   const now = new Date();

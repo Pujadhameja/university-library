@@ -3,16 +3,17 @@ import { eq } from "drizzle-orm";
 import { redirect } from "next/navigation";
 
 import { auth, signOut } from "@/auth";
-import config from "@/lib/config";
 
 import Avatar from "@/components/Avatar";
 import BookList from "@/components/BookList";
+import NotFound from "@/components/NotFound";
+import { Button } from "@/components/ui/button";
 
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
+
+import config from "@/lib/config";
 import { getBorrowedBooks } from "@/lib/actions/book";
-import NotFound from "@/components/NotFound";
-import { Button } from "@/components/ui/button";
 
 interface BorrowedBookProps {
   data: BorrowedBook[];

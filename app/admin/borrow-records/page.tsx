@@ -8,11 +8,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Avatar from "@/components/Avatar";
 import BookCover from "@/components/BookCover";
 import Pagination from "@/components/Pagination";
 import BookReceipt from "@/components/BookReceipt";
 
-import Avatar from "@/components/Avatar";
 import { getBorrowRecords } from "@/lib/admin/actions/book";
 
 const Page = async ({ searchParams }: PageProps) => {

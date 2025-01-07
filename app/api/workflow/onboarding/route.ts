@@ -1,10 +1,10 @@
 import { eq } from "drizzle-orm";
+import { serve } from "@upstash/workflow/nextjs";
 
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
 
 import { sendEmail } from "@/lib/workflow";
-import { serve } from "@upstash/workflow/nextjs";
 
 type UserState = "non-active" | "active";
 type InitialData = {

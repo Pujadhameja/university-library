@@ -5,8 +5,8 @@ import Image from "next/image";
 import { Session } from "next-auth";
 import { usePathname } from "next/navigation";
 
-import { cn } from "@/lib/utils";
 import Avatar from "./Avatar";
+import { cn } from "@/lib/utils";
 
 const Header = ({ session }: { session: Session }) => {
   const pathname = usePathname();
