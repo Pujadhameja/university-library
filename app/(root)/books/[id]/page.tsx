@@ -9,7 +9,7 @@ import { auth } from "@/auth";
 import { db } from "@/database/drizzle";
 import { books } from "@/database/schema";
 
-const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
+const Page = async ({ params }: PageProps) => {
   const id = (await params).id;
   const session = await auth();
 
