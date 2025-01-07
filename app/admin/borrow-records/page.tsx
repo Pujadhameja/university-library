@@ -60,12 +60,12 @@ const Page = async ({ searchParams }: PageProps) => {
                   </TableCell>
                   <TableCell className="text-sm">
                     <div className="flex flex-row items-center gap-2">
-                      <Avatar name={record.user} size="md" />
+                      <Avatar name={record.user.fullname} size="md" />
                       <div>
                         <p className="font-semibold text-dark-400">
-                          {record.user}
+                          {record.user.fullname}
                         </p>
-                        <p className="text-dark-100">someone@gmail.com</p>
+                        <p className="text-dark-100">{record.user.email}</p>
                       </div>
                     </div>
                   </TableCell>

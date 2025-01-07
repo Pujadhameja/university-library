@@ -46,7 +46,7 @@ interface BorrowRecord {
 
 interface BorrowedBook extends Book {
   borrow: BorrowRecord;
-  user?: string;
+  user?: User;
 }
 
 interface BookParams {

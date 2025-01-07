@@ -1,7 +1,16 @@
 "use server";
 
 import dayjs from "dayjs";
-import { and, asc, count, desc, eq, ilike, or } from "drizzle-orm";
+import {
+  and,
+  asc,
+  count,
+  desc,
+  eq,
+  getTableColumns,
+  ilike,
+  or,
+} from "drizzle-orm";
 
 import { db } from "@/database/drizzle";
 import { books, borrowRecords, users } from "@/database/schema";
@@ -72,26 +81,9 @@ export async function getBorrowedBooks(userId: string) {
   try {
     const borrowedBooks = await db
       .select({
-        id: books.id,
-        title: books.title,
-        author: books.author,
-        genre: books.genre,
-        rating: books.rating,
-        totalCopies: books.totalCopies,
-        availableCopies: books.availableCopies,
-        coverColor: books.coverColor,
-        coverUrl: books.coverUrl,
-        videoUrl: books.videoUrl,
-        summary: books.summary,
-        createdAt: books.createdAt,
+        ...getTableColumns(books),
         borrow: {
-          id: borrowRecords.id,
-          userId: borrowRecords.userId,
-          bookId: borrowRecords.bookId,
-          borrowDate: borrowRecords.borrowDate,
-          dueDate: borrowRecords.dueDate,
-          returnDate: borrowRecords.returnDate,
-          status: borrowRecords.status,
+          ...getTableColumns(borrowRecords),
         },
       })
       .from(borrowRecords)

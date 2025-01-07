@@ -24,8 +24,8 @@ const BookStripe = ({ book }: { book: BorrowedBook | Book }) => {
         <div className="user">
           {"user" in book && book.user && (
             <div className="avatar">
-              <Avatar size="xs" name={book.user} />
-              <p>{book.user}</p>
+              <Avatar size="xs" name={book.user.fullname} />
+              <p>{book.user.fullname}</p>
             </div>
           )}
 
