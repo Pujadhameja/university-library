@@ -18,8 +18,11 @@ const BookVideo = ({ videoUrl, className }: Props) => {
     >
       <IKVideo
         path={videoUrl}
+        title="Book Trailer"
+        lang="en"
         controls={true}
         className={cn("w-full rounded-xl", className)}
+        preload="auto"
       />
     </ImageKitProvider>
   );

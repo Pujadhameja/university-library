@@ -13,8 +13,6 @@ type BorrowEventData = {
   dueDate: string;
 };
 
-const ONE_DAY_MS = 24 * 60 * 60 * 1000; // 1 day in milliseconds
-
 async function getBookDetails(bookId: string) {
   const bookDetails = await db
     .select()
