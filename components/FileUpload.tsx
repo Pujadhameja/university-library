@@ -125,7 +125,7 @@ const FileUpload = ({
     >
       <IKUpload
         ref={ikUploadRef}
-        fileName="file.png"
+        fileName={type === "image" ? "image" : "video"}
         useUniqueFileName={true}
         validateFile={onValidate}
         onUploadStart={() => setProgress(0)}
