@@ -173,7 +173,7 @@ const FileUpload = ({
         </div>
       )}
 
-      {file &&
+      {file?.filePath &&
         (type === "image" ? (
           <IKImage
             path={file?.filePath!}
