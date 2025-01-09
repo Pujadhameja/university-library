@@ -11,7 +11,11 @@ import {
 
 const ROLE_ENUM = pgEnum("role", ["USER", "ADMIN"]);
 const STATUS_ENUM = pgEnum("status", ["PENDING", "APPROVED", "REJECTED"]);
-const BORROW_STATUS_ENUM = pgEnum("borrow_status", ["BORROWED", "RETURNED"]);
+const BORROW_STATUS_ENUM = pgEnum("borrow_status", [
+  "OVERDUE",
+  "BORROWED",
+  "RETURNED",
+]);
 
 export const users = pgTable("users", {
   id: uuid("id").notNull().primaryKey().defaultRandom().unique(),

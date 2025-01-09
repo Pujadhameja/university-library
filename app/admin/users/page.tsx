@@ -14,6 +14,8 @@ import {
 import config from "@/lib/config";
 import Pagination from "@/components/Pagination";
 import { getUsers } from "@/lib/admin/actions/user";
+import Menu from "@/components/admin/Menu";
+import { userRoles } from "@/constants";
 
 const Page = async ({ searchParams }: PageProps) => {
   const { query, sort, page } = await searchParams;
@@ -32,11 +34,12 @@ const Page = async ({ searchParams }: PageProps) => {
         <Table className="overflow-hidden">
           <TableHeader>
             <TableRow className="h-14 border-none bg-light-300">
-              <TableHead className="w-96">Name</TableHead>
+              <TableHead className="w-72">Name</TableHead>
               <TableHead>Date Joined</TableHead>
-              <TableHead>Books Borrowed</TableHead>
+              <TableHead>Role</TableHead>
               <TableHead>University ID No</TableHead>
               <TableHead>University ID Card</TableHead>
+              <TableHead>Books Borrowed</TableHead>
               <TableHead>Action</TableHead>
             </TableRow>
           </TableHeader>
@@ -54,9 +57,14 @@ const Page = async ({ searchParams }: PageProps) => {
                   <TableCell className="text-dark-200">
                     {dayjs(user.createdAt).format("MMM DD, YYYY")}
                   </TableCell>
-                  <TableCell className="text-dark-200">
-                    {totalBorrowedBooks}
+                  <TableCell>
+                    <Menu
+                      label="Change Role"
+                      initialValue={user.role!.toLowerCase()}
+                      items={userRoles}
+                    />
                   </TableCell>
+
                   <TableCell className="text-dark-200">
                     {user.universityId}
                   </TableCell>
@@ -76,6 +84,9 @@ const Page = async ({ searchParams }: PageProps) => {
                         alt="delete"
                       />
                     </div>
+                  </TableCell>
+                  <TableCell className="text-dark-200 w-24">
+                    {totalBorrowedBooks}
                   </TableCell>
                   <TableCell className="flex justify-center">
                     <Image

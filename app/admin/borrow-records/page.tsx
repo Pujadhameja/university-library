@@ -13,6 +13,8 @@ import BookCover from "@/components/BookCover";
 import Pagination from "@/components/Pagination";
 import BookReceipt from "@/components/BookReceipt";
 
+import Menu from "@/components/admin/Menu";
+import { borrowStatuses } from "@/constants";
 import { getBorrowRecords } from "@/lib/admin/actions/book";
 
 const Page = async ({ searchParams }: PageProps) => {
@@ -32,11 +34,12 @@ const Page = async ({ searchParams }: PageProps) => {
         <Table className="overflow-hidden">
           <TableHeader>
             <TableRow className="h-14 border-none bg-light-300">
-              <TableHead className="w-96">Book Title</TableHead>
+              <TableHead className="w-72">Book Title</TableHead>
               <TableHead>User Requested</TableHead>
               <TableHead>Borrowed Date</TableHead>
               <TableHead>Return Date</TableHead>
               <TableHead>Due Date</TableHead>
+              <TableHead>Status</TableHead>
               <TableHead>Receipt</TableHead>
             </TableRow>
           </TableHeader>
@@ -49,7 +52,7 @@ const Page = async ({ searchParams }: PageProps) => {
                   className="border-b-dark-100/5"
                 >
                   <TableCell className="py-5 font-medium">
-                    <div className="flex w-96 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
+                    <div className="flex w-72 flex-row items-center gap-2 text-sm font-semibold text-dark-400">
                       <BookCover
                         variant="extraSmall"
                         coverUrl={record.coverUrl}
@@ -58,6 +61,7 @@ const Page = async ({ searchParams }: PageProps) => {
                       <p className="flex-1">{record.title}</p>
                     </div>
                   </TableCell>
+
                   <TableCell className="text-sm">
                     <div className="flex flex-row items-center gap-2">
                       <Avatar name={record.user.fullname} size="md" />
@@ -69,6 +73,7 @@ const Page = async ({ searchParams }: PageProps) => {
                       </div>
                     </div>
                   </TableCell>
+
                   <TableCell className="text-sm font-medium text-dark-200">
                     {dayjs(record.borrow.borrowDate).format("MMM DD, YYYY")}
                   </TableCell>
@@ -79,6 +84,13 @@ const Page = async ({ searchParams }: PageProps) => {
                   </TableCell>
                   <TableCell className="text-sm font-medium text-dark-200">
                     {dayjs(record.borrow.dueDate).format("MMM DD, YYYY")}
+                  </TableCell>
+                  <TableCell>
+                    <Menu
+                      label="Change Status"
+                      initialValue={record.borrow.status!.toLowerCase()}
+                      items={borrowStatuses}
+                    />
                   </TableCell>
                   <TableCell>
                     <BookReceipt
