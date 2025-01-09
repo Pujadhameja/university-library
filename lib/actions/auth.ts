@@ -55,7 +55,10 @@ export async function signUp(params: AuthCredentails) {
     return { success: true };
   } catch (error) {
     console.error("Error in signup:", error);
-    return { success: false, error: "An error occurred during sign up" };
+    return {
+      success: false,
+      error: `An error occurred during sign up. ${error}`,
+    };
   }
 }
 
@@ -82,6 +85,9 @@ export async function signInWithCredentials(
     return { success: true };
   } catch (error) {
     console.error("Error in signin:", error);
-    return { success: false, error: "An error occurred during sign in" };
+    return {
+      success: false,
+      error: `An error occurred during sign in. ${error}`,
+    };
   }
 }
