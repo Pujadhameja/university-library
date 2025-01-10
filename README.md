@@ -40,7 +40,7 @@ If you prefer visual learning, this is the perfect resource for you. Follow our 
 
 ## <a name="introduction">🤖 Introduction</a>
 
-Built with React.js for handling the user interface, Three.js for rendering 3D elements, and styled with TailwindCSS, 3D Island is a website project. The primary goal is to demonstrate the developer's skills in a unique manner that creates a lasting impact.
+Built with Next.js, TypeScript, and Postgres, the University Library Management System is a production-grade platform featuring a public-facing app and an admin interface. It offers advanced functionalities like seamless book borrowing with reminders and receipts, robust user management, automated workflows, and a modern, optimized tech stack for real-world scalability.
 
 If you're getting started and need assistance or face any bugs, join our active Discord community with over **50k+** members. It's a place where people help each other out.
 
@@ -1289,7 +1289,9 @@ seed();
 
 ## <a name="links">🔗 Assets</a>
 
-Assets used in the project can be found [here](https://drive.google.com/file/d/1nlajTtmrjenScsEo4J-Z-ejcQxT2n8b9/view?usp=sharing). 
+- Assets used in the project can be found [here](https://drive.google.com/file/d/1nlajTtmrjenScsEo4J-Z-ejcQxT2n8b9/view?usp=sharing)
+- [Watch how to Integrate EmailJS](https://youtu.be/kt0FrkQgw8w?feature=shared&t=13792) in Your Website.
+- [Source Code for Integrating EmailJS](https://github.com/adrianhajdin/threejs-portfolio/blob/main/src/sections/Contact.jsx) in any of your codebases. 
 
 ## <a name="more">🚀 More</a>
 
