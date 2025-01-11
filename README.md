@@ -1,6 +1,6 @@
 <div align="center">
   <br />
-    <a href="https://youtu.be/EZajJGOMWas" target="_blank">
+    <a href="https://youtu.be/EZajJGOMWas?feature=shared" target="_blank">
       <img src="https://github.com/user-attachments/assets/4a161355-1529-4155-bcd9-226b7ef9b0db" alt="Project Banner">
     </a>
   <br />
@@ -36,7 +36,7 @@ This repository contains the code corresponding to an in-depth tutorial availabl
 
 If you prefer visual learning, this is the perfect resource for you. Follow our tutorial to learn how to build projects like these step-by-step in a beginner-friendly manner!
 
-<a href="https://youtu.be/EZajJGOMWas" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
+<a href="https://youtu.be/EZajJGOMWas?feature=shared" target="_blank"><img src="https://github.com/sujatagunale/EasyRead/assets/151519281/1736fca5-a031-4854-8c09-bc110e3bc16d" /></a>
 
 ## <a name="introduction">🤖 Introduction</a>
 
@@ -1289,7 +1289,7 @@ seed();
 
 ## <a name="links">🔗 Assets</a>
 
-- Assets used in the project can be found [here](https://drive.google.com/file/d/1nlajTtmrjenScsEo4J-Z-ejcQxT2n8b9/view?usp=sharing)
+- Assets used in the project can be found [here](https://drive.google.com/file/d/1Q-Wx1Y5W-0tsHCyWLXQ1oLW8x8fnROy_/view?usp=sharing)
 - [Watch how to Integrate EmailJS](https://youtu.be/kt0FrkQgw8w?feature=shared&t=13792) in Your Website.
 - [Source Code for Integrating EmailJS](https://github.com/adrianhajdin/threejs-portfolio/blob/main/src/sections/Contact.jsx) in any of your codebases. 
 
