@@ -1,10 +1,9 @@
-import { eq } from "drizzle-orm";
-import { compare } from "bcryptjs";
 import NextAuth, { User } from "next-auth";
+import { compare } from "bcryptjs";
 import CredentialsProvider from "next-auth/providers/credentials";
-
 import { db } from "@/database/drizzle";
 import { users } from "@/database/schema";
+import { eq } from "drizzle-orm";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
   session: {
@@ -13,7 +12,9 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        if (!credentials?.email || !credentials?.password) return null;
+        if (!credentials?.email || !credentials?.password) {
+          return null;
+        }
 
         const user = await db
           .select()
@@ -25,7 +26,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
         const isPasswordValid = await compare(
           credentials.password.toString(),
-          user[0].password
+          user[0].password,
         );
 
         if (!isPasswordValid) return null;
@@ -39,7 +40,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     }),
   ],
   pages: {
-    signIn: "/signin",
+    signIn: "/sign-in",
   },
   callbacks: {
     async jwt({ token, user }) {
@@ -47,6 +48,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         token.id = user.id;
         token.name = user.name;
       }
+
       return token;
     },
     async session({ session, token }) {
@@ -54,6 +56,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         session.user.id = token.id as string;
         session.user.name = token.name as string;
       }
+
       return session;
     },
   },
