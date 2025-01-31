@@ -1,25 +1,28 @@
 import {
+  varchar,
+  uuid,
   integer,
   text,
   pgTable,
-  varchar,
-  pgEnum,
   date,
+  pgEnum,
   timestamp,
-  uuid,
 } from "drizzle-orm/pg-core";
 
-const ROLE_ENUM = pgEnum("role", ["USER", "ADMIN"]);
-const STATUS_ENUM = pgEnum("status", ["PENDING", "APPROVED", "REJECTED"]);
-const BORROW_STATUS_ENUM = pgEnum("borrow_status", [
-  "OVERDUE",
+export const STATUS_ENUM = pgEnum("status", [
+  "PENDING",
+  "APPROVED",
+  "REJECTED",
+]);
+export const ROLE_ENUM = pgEnum("role", ["USER", "ADMIN"]);
+export const BORROW_STATUS_ENUM = pgEnum("borrow_status", [
   "BORROWED",
   "RETURNED",
 ]);
 
 export const users = pgTable("users", {
   id: uuid("id").notNull().primaryKey().defaultRandom().unique(),
-  fullname: varchar("fullname", { length: 255 }).notNull(),
+  fullName: varchar("full_name", { length: 255 }).notNull(),
   email: text("email").notNull().unique(),
   universityId: integer("university_id").notNull().unique(),
   password: text("password").notNull(),
@@ -41,7 +44,7 @@ export const books = pgTable("books", {
   coverUrl: text("cover_url").notNull(),
   coverColor: varchar("cover_color", { length: 7 }).notNull(),
   description: text("description").notNull(),
-  totalCopies: integer("total_copies").notNull().default(0),
+  totalCopies: integer("total_copies").notNull().default(1),
   availableCopies: integer("available_copies").notNull().default(0),
   videoUrl: text("video_url").notNull(),
   summary: varchar("summary").notNull(),
