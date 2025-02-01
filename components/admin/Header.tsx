@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/classnames-order */
 import { Session } from "next-auth";
 
 import Search from "./Search";

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
+/* eslint-disable tailwindcss/classnames-order */
 import Link from "next/link";
 
 import UserCard from "../UserCard";

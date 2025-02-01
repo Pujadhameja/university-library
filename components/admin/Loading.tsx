@@ -1,3 +1,4 @@
+/* eslint-disable tailwindcss/classnames-order */
 const Loading = () => {
   return (
     <div className="flex justify-center items-center p-4">

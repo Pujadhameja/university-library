@@ -1,3 +1,5 @@
+/* eslint-disable tailwindcss/classnames-order */
+/* eslint-disable @typescript-eslint/no-non-null-asserted-optional-chain */
 import Image from "next/image";
 
 import { cn } from "@/lib/utils";
