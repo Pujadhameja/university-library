@@ -1,5 +1,5 @@
 interface AuthCredentails {
-  fullname: string;
+  fullName: string;
   email: string;
   password: string;
   universityId: number;

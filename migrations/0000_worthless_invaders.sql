@@ -1,6 +1,3 @@
-CREATE TYPE "public"."borrow_status" AS ENUM('BORROWED', 'RETURNED');--> statement-breakpoint
-CREATE TYPE "public"."role" AS ENUM('USER', 'ADMIN');--> statement-breakpoint
-CREATE TYPE "public"."status" AS ENUM('PENDING', 'APPROVED', 'REJECTED');--> statement-breakpoint
 CREATE TABLE "books" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"title" varchar(255) NOT NULL,
@@ -10,7 +7,7 @@ CREATE TABLE "books" (
 	"cover_url" text NOT NULL,
 	"cover_color" varchar(7) NOT NULL,
 	"description" text NOT NULL,
-	"total_copies" integer DEFAULT 1 NOT NULL,
+	"total_copies" integer DEFAULT 0 NOT NULL,
 	"available_copies" integer DEFAULT 0 NOT NULL,
 	"video_url" text NOT NULL,
 	"summary" varchar NOT NULL,
@@ -22,17 +19,16 @@ CREATE TABLE "borrow_records" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"user_id" uuid NOT NULL,
 	"book_id" uuid NOT NULL,
-	"borrow_date" timestamp with time zone DEFAULT now() NOT NULL,
+	"borrow_date" timestamp with time zone DEFAULT now(),
 	"due_date" date NOT NULL,
 	"return_date" date,
-	"status" "borrow_status" DEFAULT 'BORROWED' NOT NULL,
-	"created_at" timestamp with time zone DEFAULT now(),
+	"status" "borrow_status" DEFAULT 'BORROWED',
 	CONSTRAINT "borrow_records_id_unique" UNIQUE("id")
 );
 --> statement-breakpoint
 CREATE TABLE "users" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
-	"full_name" varchar(255) NOT NULL,
+	"fullname" varchar(255) NOT NULL,
 	"email" text NOT NULL,
 	"university_id" integer NOT NULL,
 	"password" text NOT NULL,
